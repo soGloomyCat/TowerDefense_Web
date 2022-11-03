@@ -1,5 +1,17 @@
 {
   "dependencies": {
+    "com.agava.webutility": {
+      "version": "file:D:/Program Files/Репозитории/com.agava.webutility",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
+    "com.agava.yandexgames": {
+      "version": "file:D:/Program Files/Репозитории/com.agava.yandexgames",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
     "com.unity.collab-proxy": {
       "version": "1.17.2",
       "depth": 0,
