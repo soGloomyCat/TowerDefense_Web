@@ -4,5 +4,7 @@ namespace TowerDefense.Daniel.Interfaces
     {
         void FocusIn();
         void FocusOut();
+        void Accept(IUnit unit);
+        void Destroy();
     }
 }
