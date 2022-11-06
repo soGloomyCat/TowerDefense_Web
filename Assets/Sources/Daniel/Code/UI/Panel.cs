@@ -8,18 +8,21 @@ namespace TowerDefense.Daniel.UI
     [ExecuteAlways]
     public class Panel : MonoBehaviour
     {
+        private const float _SizeAnimationSpeedMultiplier = 10;
+
         [SerializeField] private bool _isCurrent = false;
 
         [SerializeField, HideInInspector] private static Panel _runtimeCurrent = null;
         private static Panel _current = null;
 
         private RectTransform _rectTransform = null;
+        private Vector2 _targetSize = Vector2.zero;
 
         private void Awake()
         {
             _rectTransform = GetComponent<RectTransform>();
 
-            if (_runtimeCurrent == this)
+            if (this == _runtimeCurrent)
             {
                 Show();
 
@@ -55,6 +58,11 @@ namespace TowerDefense.Daniel.UI
 
         private void OnValidate()
         {
+            if (this == _runtimeCurrent && !_isCurrent)
+            {
+                _isCurrent = true;
+            }
+
             if (_isCurrent)
             {
                 if (_runtimeCurrent != null)
@@ -66,6 +74,11 @@ namespace TowerDefense.Daniel.UI
             }
         }
 
+        private void Update()
+        {
+            _rectTransform.sizeDelta = Vector2.Lerp(_rectTransform.sizeDelta, _targetSize, _SizeAnimationSpeedMultiplier * Time.deltaTime);
+        }
+
         public void Show()
         {
             if (_current != null)
@@ -73,14 +86,32 @@ namespace TowerDefense.Daniel.UI
                 _current.Hide();
             }
 
-            _rectTransform.sizeDelta = Vector2.zero;
+            _targetSize = Vector2.zero;
 
             _current = this;
+
+#if UNITY_EDITOR
+            if (UnityEditor.EditorApplication.isPlaying)
+            {
+                return;
+            }
+
+            _rectTransform.sizeDelta = _targetSize;
+#endif
         }
 
         public void Hide()
         {
-            _rectTransform.sizeDelta = _rectTransform.rect.size;
+            _targetSize = _rectTransform.rect.size;
+
+#if UNITY_EDITOR
+            if (UnityEditor.EditorApplication.isPlaying)
+            {
+                return;
+            }
+
+            _rectTransform.sizeDelta = _targetSize;
+#endif
         }
 
 #if UNITY_EDITOR
@@ -100,9 +131,16 @@ namespace TowerDefense.Daniel.UI
                 }
             }
 
-            if (panelsCount < 1 && _current != null)
+            if (panelsCount < 1)
             {
-                _current.Hide();
+                if (_runtimeCurrent != null)
+                {
+                    _runtimeCurrent.Show();
+                }
+                else if (_current != null)
+                {
+                    _current.Hide();
+                }
             }
         }
 #endif
