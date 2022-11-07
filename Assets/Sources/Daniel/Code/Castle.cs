@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,6 +7,8 @@ namespace TowerDefense.Daniel
 {
     public class Castle : MonoBehaviour
     {
+        public event Action<RoomHolder> ClickedOnEmptyHolder = null;
+
         [SerializeField, HideInInspector] private List<RoomHolder> _roomHolders = new List<RoomHolder>();
 
         private RoomHolder _selectedHolder = null;
@@ -39,6 +41,13 @@ namespace TowerDefense.Daniel
 
         public void Select(RoomHolder holder)
         {
+            if (holder.IsEmpty)
+            {
+                ClickedOnEmptyHolder?.Invoke(holder);
+
+                return;
+            }
+
             _selectedHolder = holder;
         }
 

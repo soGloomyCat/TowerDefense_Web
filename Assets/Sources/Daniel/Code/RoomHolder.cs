@@ -20,9 +20,9 @@ namespace TowerDefense.Daniel
             _room = GetComponentInChildren<IRoom>();
         }
 
-        public void BuildRoom(Func<Transform, IRoom> roomInstantiate)
+        public void BuildRoom(IRoom roomPrefab)
         {
-            _room = roomInstantiate(transform);
+            _room = roomPrefab.Instantiate(transform.position, transform.rotation, transform);
         }
 
         public void DestroyRoom()

@@ -12,7 +12,7 @@ namespace TowerDefense.Daniel.UI
 
         [SerializeField] private bool _isCurrent = false;
 
-        [SerializeField, HideInInspector] private static Panel _runtimeCurrent = null;
+        private static Panel _runtimeCurrent = null;
         private static Panel _current = null;
 
         private RectTransform _rectTransform = null;
@@ -22,7 +22,7 @@ namespace TowerDefense.Daniel.UI
         {
             _rectTransform = GetComponent<RectTransform>();
 
-            if (this == _runtimeCurrent)
+            if (_isCurrent)
             {
                 Show();
 

@@ -20,6 +20,11 @@ namespace TowerDefense.Daniel.Rooms
             throw new System.NotImplementedException();
         }
 
+        public IRoom Instantiate(Vector3 position, Quaternion rotation, Transform parent)
+        {
+            return Instantiate(this, position, rotation, parent);
+        }
+
         public void Destroy()
         {
             Destroy(gameObject);
