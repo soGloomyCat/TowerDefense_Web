@@ -860,7 +860,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 8960, y: 5040}
+  m_SizeDelta: {x: 1280, y: 720}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &599106394
 MonoBehaviour:
@@ -889,6 +889,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rooms:
   - {fileID: 11400000, guid: e16d17aaac513cb43abc3f695afea9e5, type: 2}
+  - {fileID: 11400000, guid: 0580128285f217246bc538ebec77bb5f, type: 2}
   _itemPrefab: {fileID: 2804093155799139446, guid: d2e270eaca2d5a84bbc80e834e07713b, type: 3}
   _itemsContainer: {fileID: 1808612586}
 --- !u!1001 &616314864
@@ -2226,7 +2227,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1280, y: 720}
+  m_SizeDelta: {x: 5120, y: 2880}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1108997329
 MonoBehaviour:

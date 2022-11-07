@@ -154,7 +154,7 @@ namespace AYellowpaper.Editor
         {
             if (CanAssign(obj, args))
                 return obj;
-            if (args.ObjectType.IsSubclassOf(typeof(Component)))
+            //if (args.ObjectType.IsSubclassOf(typeof(Component)))
             {
                 if (obj is GameObject go && TryFindSuitableComponent(go, args, out Component foundComponent))
                     return foundComponent;
@@ -166,7 +166,7 @@ namespace AYellowpaper.Editor
 
         private static bool TryFindSuitableComponent(GameObject go, InterfaceObjectArguments args, out Component component)
         {
-            foreach (var comp in go.GetComponents(args.ObjectType))
+            foreach (var comp in go.GetComponents(typeof(Component).IsAssignableFrom(args.ObjectType) ? args.ObjectType : typeof(Component)))
             {
                 if (CanAssign(comp, args))
                 {
