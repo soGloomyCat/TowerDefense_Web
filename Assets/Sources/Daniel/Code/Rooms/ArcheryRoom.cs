@@ -4,7 +4,7 @@ using TowerDefense.Daniel.Interfaces;
 
 namespace TowerDefense.Daniel.Rooms
 {
-    public class StrategyRoom : MonoBehaviour, IRoom
+    public class ArcheryRoom : MonoBehaviour, IRoom
     {
         public event Action<IReadOnlyRoom> Upgraded = null;
 

@@ -1,6 +1,7 @@
+using System.Collections.Generic;
+using UnityEngine;
 using AYellowpaper;
 using TowerDefense.Daniel.Interfaces;
-using UnityEngine;
 
 namespace TowerDefense.Daniel.Models
 {
@@ -12,5 +13,6 @@ namespace TowerDefense.Daniel.Models
         [field: SerializeField] public Sprite Preview { get; private set; } = null;
         [field: SerializeField] public string Description { get; private set; } = "";
         [field: SerializeField] public int Price { get; private set; } = 0;
+        [field: SerializeField] public List<int> UpgradePrices { get; private set; } = new List<int>();
     }
 }

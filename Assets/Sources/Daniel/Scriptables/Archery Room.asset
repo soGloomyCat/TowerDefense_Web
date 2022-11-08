@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e98b1953702a8b4a907e1ede149ec5b, type: 3}
-  m_Name: Attack Room
+  m_Name: Archery Room
   m_EditorClassIdentifier: 
   _internalId: 62768934-ad01-4767-b60f-96a88255557c
   <Prefab>k__BackingField:
-    _underlyingValue: {fileID: 5714660829908029752, guid: 62631604bb6f3704787302b00dfe9288, type: 3}
-  <Title>k__BackingField: Attack Room
+    _underlyingValue: {fileID: 5714660829908029752, guid: 9ae47b69f4471c643949ba98b5751f47, type: 3}
+  <Title>k__BackingField: Archery Room
   <Preview>k__BackingField: {fileID: 21300000, guid: 3042b019b052942a1baf7aa49d7ca6bb, type: 3}
-  <Description>k__BackingField: Attack Room
+  <Description>k__BackingField: Archery Room
   <Price>k__BackingField: 300

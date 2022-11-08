@@ -10,6 +10,7 @@ namespace TowerDefense.Daniel
     public class BuildingMode : MonoBehaviour
     {
         [SerializeField] private Panel _mainPanel = null;
+        [SerializeField] private InputPanel _inputPanel = null;
         [SerializeField] private Castle _castle = null;
         [SerializeField] private Market _market = null;
 
@@ -36,12 +37,14 @@ namespace TowerDefense.Daniel
         public void Activate()
         {
             _linkedPanel.Show();
+            _inputPanel.gameObject.SetActive(false);
             _castle.ShowEmptyHolders();
         }
 
         public void Deactivate()
         {
             _mainPanel.Show();
+            _inputPanel.gameObject.SetActive(true);
             _castle.HideAllHolders();
         }
 
