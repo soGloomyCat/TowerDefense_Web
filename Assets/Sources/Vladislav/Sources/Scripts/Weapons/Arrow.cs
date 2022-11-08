@@ -9,7 +9,7 @@ public class Arrow : MonoBehaviour
     [SerializeField] private float _damage;
     private Coroutine _coroutine;
 
-    public void PrepairFly(Enemy enemy)
+    public void PrepairFly(Vladislav.Enemy enemy)
     {
         if (_coroutine != null)
             StopCoroutine(_coroutine);
@@ -17,7 +17,7 @@ public class Arrow : MonoBehaviour
         _coroutine = StartCoroutine(Fly(enemy));
     }
 
-    private IEnumerator Fly(Enemy enemy)
+    private IEnumerator Fly(Vladislav.Enemy enemy)
     {
         if (enemy != null)
         {

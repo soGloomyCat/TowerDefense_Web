@@ -25,7 +25,7 @@ public class Warrior : MonoBehaviour
         _enemyDetector.EnemyFounded += Attack;
     }
 
-    private void Attack(Enemy enemy)
+    private void Attack(Vladislav.Enemy enemy)
     {
         Vector3 tempDirection = enemy.transform.position + transform.position;
         transform.rotation = Quaternion.LookRotation(tempDirection, Vector3.up);
