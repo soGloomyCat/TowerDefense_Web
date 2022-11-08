@@ -7,22 +7,56 @@ namespace TowerDefense.Daniel
 {
     public class RoomHolder : MonoBehaviour, IPointerClickHandler
     {
-        [SerializeField] private SpriteRenderer _buildOverlay = null;
-
         public event Action<RoomHolder> Clicked = null;
+        public event Action<IReadOnlyRoom> RoomAdded = null;
+        public event Action<IReadOnlyRoom> RoomUpgraded = null;
+
+        [SerializeField] private SpriteRenderer _buildOverlay = null;
+        [SerializeField] private Transform _background = null;
 
         private IRoom _room = null;
 
+        public IReadOnlyRoom Room => _room;
         public bool IsEmpty => _room == null;
 
         private void Awake()
         {
             _room = GetComponentInChildren<IRoom>();
+
+            UpdateBackground();
+        }
+
+        private void OnEnable()
+        {
+            if (_room != null)
+            {
+                _room.Upgraded += OnRoomUpgraded;
+            }
+
+        }
+
+        private void OnDisable()
+        {
+            if (_room != null)
+            {
+                _room.Upgraded -= OnRoomUpgraded;
+            }
         }
 
         public void BuildRoom(IRoom roomPrefab)
         {
+            if (_room != null)
+            {
+                _room.Upgraded -= OnRoomUpgraded;
+            }
+
             _room = roomPrefab.Instantiate(transform.position, transform.rotation, transform);
+
+            RoomAdded?.Invoke(_room);
+
+            _room.Upgraded += OnRoomUpgraded;
+
+            UpdateBackground();
         }
 
         public void DestroyRoom()
@@ -45,6 +79,16 @@ namespace TowerDefense.Daniel
         public void OnPointerClick(PointerEventData eventData)
         {
             Clicked?.Invoke(this);
+        }
+
+        private void UpdateBackground()
+        {
+            _background.gameObject.SetActive(_room == null);
+        }
+
+        private void OnRoomUpgraded(IReadOnlyRoom room)
+        {
+            RoomUpgraded?.Invoke(room);
         }
     }
 }

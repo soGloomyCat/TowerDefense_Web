@@ -1,10 +1,15 @@
+using System;
 using UnityEngine;
 using TowerDefense.Daniel.Interfaces;
 
 namespace TowerDefense.Daniel.Rooms
 {
-    public class AttackRoom : MonoBehaviour, IRoom
+    public class StrategyRoom : MonoBehaviour, IRoom
     {
+        public event Action<IReadOnlyRoom> Upgraded = null;
+
+        public int Level => 1;
+
         public void FocusIn()
         {
             throw new System.NotImplementedException();
