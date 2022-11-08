@@ -60,7 +60,7 @@ namespace TowerDefense.Daniel
 
         public IEnumerable<T> GetRoomsOfType<T>() where T : IReadOnlyRoom
         {
-            return _roomHolders.Select(x => x.Room).Where(x => x != null) as IEnumerable<T>;
+            return _roomHolders.Select(x => x.Room).Where(x => x != null).Where(x => x is T).Cast<T>();
         }
 
         public void ShowEmptyHolders()
