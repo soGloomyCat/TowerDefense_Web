@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using TowerDefense.Daniel.Interfaces;
 using TowerDefense.Daniel.UI;
@@ -20,6 +20,14 @@ namespace TowerDefense.Daniel
         private void Awake()
         {
             _linkedPanel = GetComponent<Panel>();
+        }
+
+        private void Update()
+        {
+            if (!_mainPanel.IsActive && Input.GetKeyDown(KeyCode.Escape))
+            {
+                Deactivate();
+            }
         }
 
         private void OnEnable()
@@ -57,6 +65,18 @@ namespace TowerDefense.Daniel
 
         private void OnEmptyHolderClicked(RoomHolder holder)
         {
+            if (_currentItem == null)
+            {
+                return;
+            }
+
+            if (!_market.TryWithdraw(_currentItem.Information.Price))
+            {
+                Deactivate();
+
+                return;
+            }
+
             holder.BuildRoom(_currentItem.Information.Prefab.Value);
 
             _currentItem = null;

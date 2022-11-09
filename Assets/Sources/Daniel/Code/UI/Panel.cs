@@ -18,6 +18,9 @@ namespace TowerDefense.Daniel.UI
         private RectTransform _rectTransform = null;
         private Vector2 _targetSize = Vector2.zero;
 
+        public Panel CurrentPanel => _current;
+        public bool IsActive => this == _current;
+
         private void Awake()
         {
             _rectTransform = GetComponent<RectTransform>();
