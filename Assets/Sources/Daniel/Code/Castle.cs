@@ -1,13 +1,16 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
 using UnityEngine;
+using TowerDefense.Daniel.Interfaces;
 
 namespace TowerDefense.Daniel
 {
     public class Castle : MonoBehaviour
     {
         public event Action<RoomHolder> ClickedOnEmptyHolder = null;
+        public event Action<IReadOnlyRoom> RoomAdded = null;
+        public event Action<IReadOnlyRoom> RoomUpgraded = null;
 
         [SerializeField, HideInInspector] private List<RoomHolder> _roomHolders = new List<RoomHolder>();
 
@@ -23,6 +26,8 @@ namespace TowerDefense.Daniel
             foreach (var roomHolder in _roomHolders)
             {
                 roomHolder.Clicked += Select;
+                roomHolder.RoomAdded += OnRoomAdded;
+                roomHolder.RoomUpgraded += OnRoomUpgraded;
             }
         }
 
@@ -31,6 +36,8 @@ namespace TowerDefense.Daniel
             foreach (var roomHolder in _roomHolders)
             {
                 roomHolder.Clicked -= Select;
+                roomHolder.RoomAdded -= OnRoomAdded;
+                roomHolder.RoomUpgraded -= OnRoomUpgraded;
             }
         }
 
@@ -49,6 +56,11 @@ namespace TowerDefense.Daniel
             }
 
             _selectedHolder = holder;
+        }
+
+        public IEnumerable<T> GetRoomsOfType<T>() where T : IReadOnlyRoom
+        {
+            return _roomHolders.Select(x => x.Room).Where(x => x != null).Where(x => x is T).Cast<T>();
         }
 
         public void ShowEmptyHolders()
@@ -70,6 +82,16 @@ namespace TowerDefense.Daniel
             {
                 roomHolder.HideBuildOverlay();
             }
+        }
+
+        private void OnRoomAdded(IReadOnlyRoom room)
+        {
+            RoomAdded?.Invoke(room);
+        }
+
+        private void OnRoomUpgraded(IReadOnlyRoom room)
+        {
+            RoomUpgraded?.Invoke(room);
         }
     }
 }
