@@ -5,6 +5,7 @@ public class BattleDirector : MonoBehaviour
     [SerializeField] private CastleHealth _castleHealth;
     [SerializeField] private BattleCanvas _battleCanvas;
     [SerializeField] private EnemySpawner _enemySpawner;
+    [SerializeField] private Money _money;
 
     private void OnEnable()
     {
@@ -22,6 +23,7 @@ public class BattleDirector : MonoBehaviour
 
     private void Start()
     {
+        _money.Init();
         OnNewWave();
     }
 

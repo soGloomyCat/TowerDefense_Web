@@ -8,6 +8,7 @@ public class BattleCanvas : MonoBehaviour
     [SerializeField] private RectTransform _castleBar;
     [SerializeField] private ResultPanel _winPanel;
     [SerializeField] private ResultPanel _losePanel;
+    [SerializeField] private Money _money;
 
     private Transform _openedPanel;
     private int _reward;
@@ -27,6 +28,7 @@ public class BattleCanvas : MonoBehaviour
             _openedPanel = _winPanel.transform;
             _reward = money;
             _winPanel.SetMoney(money);
+            _money.Deposit(_reward);
 
             if (callback != null)
                 callback();
@@ -38,6 +40,7 @@ public class BattleCanvas : MonoBehaviour
         _openedPanel = _losePanel.transform;
         _reward = money;
         _losePanel.SetMoney(money);
+        _money.Deposit(_reward);
 
         _losePanel.transform.DOScale(Vector3.one, 0.3f).SetEase(Ease.OutBack).OnComplete(() =>
         {
@@ -51,8 +54,6 @@ public class BattleCanvas : MonoBehaviour
         _openedPanel.transform.DOScale(Vector3.zero, 0.3f).OnComplete(() =>
         {
             PanelButtonClicked?.Invoke();
-            Debug.Log($"начисление денег {_reward}");
-            Debug.Log("переход");
         });
     }
 
