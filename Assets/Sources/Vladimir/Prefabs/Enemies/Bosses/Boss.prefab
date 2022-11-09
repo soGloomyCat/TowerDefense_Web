@@ -163,6 +163,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AnimatedModel: {fileID: 889949008012103043}
+  AttackPower: 100
+  _projectile: {fileID: 36141675156108353, guid: 6541d85bfa411f84fb563d34ade52f64, type: 3}
 --- !u!114 &8984507795552326364
 MonoBehaviour:
   m_ObjectHideFlags: 0

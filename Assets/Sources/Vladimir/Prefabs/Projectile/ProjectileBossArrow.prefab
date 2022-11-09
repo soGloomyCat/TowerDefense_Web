@@ -78,7 +78,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 400253829511475222, guid: 65e1a74eceb5ab843ac4f9a8c484fe9b, type: 3}
       propertyPath: m_Name
-      value: Projectile
+      value: ProjectileBossArrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 4314000349420291860, guid: 65e1a74eceb5ab843ac4f9a8c484fe9b, type: 3}
+      propertyPath: _speed
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8101473945964536551, guid: 65e1a74eceb5ab843ac4f9a8c484fe9b, type: 3}
       propertyPath: m_RootOrder

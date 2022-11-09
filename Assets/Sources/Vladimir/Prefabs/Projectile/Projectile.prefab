@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 6488842180372458371}
   - component: {fileID: 4314000349420291860}
   - component: {fileID: 8388330712670904065}
+  - component: {fileID: 6082570642956937703}
+  - component: {fileID: 6229858987765030595}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
@@ -47,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc2c4144f497a604dabad6fd45e63620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _model: {fileID: 634473246609133249}
 --- !u!114 &4314000349420291860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,6 +77,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _flyEffect: {fileID: 0}
   _collisionEffect: {fileID: 0}
+--- !u!135 &6082570642956937703
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400253829511475222}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &6229858987765030595
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400253829511475222}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &634473246609133249
 GameObject:
   m_ObjectHideFlags: 0

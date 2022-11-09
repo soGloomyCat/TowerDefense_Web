@@ -80,9 +80,8 @@ MonoBehaviour:
   _closePoint: {fileID: 2979154224182587815}
   _farPoint: {fileID: 2558232266714282934}
   _depthSpread: 1.2
-  _width: 15
-  _gap: 0.5
   _settings: {fileID: 11400000, guid: 630c2846663fa674f9561a6305c6cec0, type: 2}
+  _targetCastle: {fileID: 0}
 --- !u!1 &4401533870354258727
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,19 +1,27 @@
 using System.Collections;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class ProjectileMover : MonoBehaviour
 {
     [SerializeField] private float _speed;
 
-    public event UnityAction TargetReached;
+    private Coroutine _movement;
+
+    //public event UnityAction TargetReached;
 
     public void Move(Vector3 target)
     {
-        StartCoroutine(Movement(target));
+        _movement = StartCoroutine(Movement(target));
         //StartCoroutine(MovementSlerp(target));
+    }
+
+    public void Deactivate()
+    {
+        if (_movement != null)
+        { 
+            StopCoroutine(_movement);
+            _movement = null;
+        }
     }
 
     private IEnumerator Movement(Vector3 target)
@@ -25,7 +33,7 @@ public class ProjectileMover : MonoBehaviour
             yield return null;
         }
 
-        TargetReached?.Invoke();
+        //TargetReached?.Invoke();
     }
 
     private IEnumerator MovementSlerp(Vector3 target)
@@ -41,6 +49,6 @@ public class ProjectileMover : MonoBehaviour
             yield return null;
         }
 
-        TargetReached?.Invoke();
+        //TargetReached?.Invoke();
     }
 }

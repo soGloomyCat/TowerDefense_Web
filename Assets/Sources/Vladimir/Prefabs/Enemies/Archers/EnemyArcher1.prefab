@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2182628875730668869, guid: 3486ebfda4c541d45b2955f27b43c783, type: 3}
       propertyPath: AttackPower
-      value: 20
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5221790430657751076, guid: 3486ebfda4c541d45b2955f27b43c783, type: 3}
       propertyPath: _startHealth
