@@ -54,7 +54,7 @@ namespace TowerDefense.Daniel.UI
 
         private void OnMarketItemClicked(MarketItem item)
         {
-            if (_money.Value < item.Information.Price)
+            if (item.Information.CurrentPrice > 0 && _money.Value < item.Information.CurrentPrice)
             {
                 return;
             }

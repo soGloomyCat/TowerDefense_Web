@@ -12,7 +12,21 @@ namespace TowerDefense.Daniel.Models
         [field: SerializeField] public string Title { get; private set; } = "";
         [field: SerializeField] public Sprite Preview { get; private set; } = null;
         [field: SerializeField] public string Description { get; private set; } = "";
-        [field: SerializeField] public int Price { get; private set; } = 0;
+        [field: SerializeField] public List<int> BuyingPrices { get; private set; } = new List<int>();
         [field: SerializeField] public List<int> UpgradePrices { get; private set; } = new List<int>();
+
+        private int _currentAmount = 0;
+
+        public int CurrentPrice => _currentAmount < BuyingPrices.Count ? BuyingPrices[_currentAmount] : -1;
+
+        public void Buy()
+        {
+            _currentAmount++;
+        }
+
+        protected override void AfterEnabled()
+        {
+            _currentAmount = 0;
+        }
     }
 }

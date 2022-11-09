@@ -41,6 +41,8 @@ namespace TowerDefense.Daniel.Models
             // If we updated the internalId during serialization, save the asset.
             if (!_internalIdWasUpdated)
             {
+                AfterEnabled();
+
                 return;
             }
 
@@ -56,6 +58,8 @@ namespace TowerDefense.Daniel.Models
             EditorUtility.SetDirty(this);
             AssetDatabase.SaveAssets();
 #endif
+
+            AfterEnabled();
         }
 
         protected void OnDestroy()
@@ -186,5 +190,7 @@ namespace TowerDefense.Daniel.Models
 
             // Debug.Log($"Created Internal ID: {obj.internalId}");
         }
+
+        protected virtual void AfterEnabled() { }
     }
 }

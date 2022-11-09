@@ -25,16 +25,24 @@ namespace TowerDefense.Daniel.UI
             UpdateVisual();
         }
 
-        private void UpdateVisual()
+        public void UpdateVisual()
         {
             _title.text = Information.Title;
             _preview.sprite = Information.Preview;
             _description.text = Information.Description;
-            _price.text = $"{Information.Price}$";
+
+            _price.text = Information.CurrentPrice < 0 ? "No longer available" :
+                          Information.CurrentPrice == 0 ? "" :
+                          $"{Information.CurrentPrice}$";
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
+            if (Information.CurrentPrice < 0)
+            {
+                return;
+            }
+
             Clicked?.Invoke(this);
         }
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TowerDefense.Daniel.Interfaces;
 using TowerDefense.Daniel.UI;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 namespace TowerDefense.Daniel
 {
@@ -70,12 +71,15 @@ namespace TowerDefense.Daniel
                 return;
             }
 
-            if (!_market.TryWithdraw(_currentItem.Information.Price))
+            if (_currentItem.Information.CurrentPrice > 0 && !_market.TryWithdraw(_currentItem.Information.CurrentPrice))
             {
                 Deactivate();
 
                 return;
             }
+
+            _currentItem.Information.Buy();
+            _currentItem.UpdateVisual();
 
             holder.BuildRoom(_currentItem.Information.Prefab.Value);
 
