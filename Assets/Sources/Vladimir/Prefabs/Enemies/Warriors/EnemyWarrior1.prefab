@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1772907502917999274, guid: 916271699114525459fa36a12a31b64c, type: 3}
       propertyPath: m_Name
-      value: EnemyWarriorBase
+      value: EnemyWarrior1
       objectReference: {fileID: 0}
     - target: {fileID: 1772907502917999276, guid: 916271699114525459fa36a12a31b64c, type: 3}
       propertyPath: m_RootOrder
@@ -62,6 +62,10 @@ PrefabInstance:
     - target: {fileID: 1772907502917999277, guid: 916271699114525459fa36a12a31b64c, type: 3}
       propertyPath: _speed
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8677613368131197124, guid: 916271699114525459fa36a12a31b64c, type: 3}
+      propertyPath: AttackPower
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 916271699114525459fa36a12a31b64c, type: 3}

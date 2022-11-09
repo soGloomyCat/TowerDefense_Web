@@ -2,18 +2,15 @@ using UnityEngine;
 using UnityEngine.Events;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private Transform _closePoint;
     [SerializeField] private Transform _farPoint;
     [SerializeField] private float _depthSpread;
-    //[SerializeField] private float _width;
-    //[SerializeField] private float _gap;
     [SerializeField] private EnemySpawnerSettings _settings;
 
-    [SerializeField] private Transform _testTarget;
+    [SerializeField] private Transform _targetCastle;
 
     private Dictionary<float, bool> _points = new Dictionary<float, bool>();
     private List<Enemy> _enemies = new List<Enemy>();
@@ -26,6 +23,7 @@ public class EnemySpawner : MonoBehaviour
 
     public int WaveNumber => _wavesIndex + 1;
     public IReadOnlyList<Enemy> Enemies => _enemies;
+    public WaveSettings WaveSettings => _waveSettings;
 
     public event UnityAction<int> AllEnemiesKilled;
 
@@ -60,12 +58,26 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    private void Stop()
+    private void StopSpawn()
     {
         _wavesIndex++;
         _isGoing = false;
     }
-    
+
+    public void Clear()
+    { 
+        foreach (Enemy enemy in _enemies)
+            Destroy(enemy.gameObject);
+
+        _enemies.Clear();
+    }
+
+    public void StopAttack()
+    {
+        foreach (Enemy enemy in _enemies)
+            enemy.StopAttack();
+    }
+
     private void Tick()
     {
         float tick = 0.3f;
@@ -86,7 +98,7 @@ public class EnemySpawner : MonoBehaviour
     {
         if (!_formationsDirector.TryGetTemplate(out Enemy enemyTemplate))
         { 
-            Stop();
+            StopSpawn();
             return;
         }
 
@@ -116,13 +128,13 @@ public class EnemySpawner : MonoBehaviour
         if (enemy is FarEnemy)
         {
             z = _farPoint.localPosition.z;
-            FarEnemy farEnemy = enemy as FarEnemy;
-            farEnemy.SetTarget(new Vector3(x, _testTarget.position.y, _testTarget.position.z));
         }
         else if (enemy is CloseEnemy)
         {
             z = _closePoint.localPosition.z;
         }
+
+        enemy.SetTarget(new Vector3(x, _targetCastle.position.y, _targetCastle.position.z));
 
         return new Vector3(x, 0, z + Random.Range(-_depthSpread, _depthSpread));
     }
@@ -165,7 +177,7 @@ public class EnemySpawner : MonoBehaviour
         else
             buttonText = $"Spawn {WaveNumber}";
 
-        if (GUI.Button(new Rect(5, 5, 60, 30), buttonText))
+        if (GUI.Button(new Rect(30, 30, 150, 120), buttonText))
         { 
             TryNextWave();
         }

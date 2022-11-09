@@ -189,6 +189,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AnimatedModel: {fileID: 544406172640315564}
+  AttackPower: 0
+  _projectile: {fileID: 36141675156108353, guid: 6541d85bfa411f84fb563d34ade52f64, type: 3}
 --- !u!4 &1772907503466101472 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5772621644242775717, guid: 7ec3dc757fa3bd84bade37c777137771, type: 3}

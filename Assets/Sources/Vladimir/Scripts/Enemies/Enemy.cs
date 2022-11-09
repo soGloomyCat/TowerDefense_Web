@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEngine.GraphicsBuffer;
 
 [RequireComponent(typeof(EnemyMover))]
 [RequireComponent(typeof(EnemyHealth))]
@@ -13,6 +14,7 @@ public abstract class Enemy : MonoBehaviour
     private GameObject[] _targets;
 
     protected bool HasTargets;
+    protected Vector3 Target;
 
     public event UnityAction<Enemy> Dead;
 
@@ -37,7 +39,9 @@ public abstract class Enemy : MonoBehaviour
 
     public virtual void SetTargets(GameObject[] targets)
     { }
-    
+
+    public void SetTarget(Vector3 target) => Target = target;
+
     public void Move(Vector3 destination)
     {
         _enemyMover.Move(destination);
@@ -45,9 +49,13 @@ public abstract class Enemy : MonoBehaviour
 
     public void TakeDamage(float amount) => _enemyHealth.TakeDamage(amount);
 
+    public void StopAttack() => AnimatedModel.Idle();
+
     private void OnDead()
     {
         Dead?.Invoke(this);
+        AnimatedModel.Death();
+        Destroy(gameObject, 2f);
     }
 
     protected abstract void OnDestinationReach();

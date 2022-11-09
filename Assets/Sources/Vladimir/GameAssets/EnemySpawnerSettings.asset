@@ -14,13 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _waves:
   - _formations:
-    - _enemyTemplate: {fileID: 1867990732151823423, guid: d79ac406dc8c93d4f9010916ecfa57c8, type: 3}
-      _count: 20
     - _enemyTemplate: {fileID: 2095690484339277924, guid: ed525e7e2c0e89649a057e073a5fb3d3, type: 3}
+      _count: 20
+    - _enemyTemplate: {fileID: 1867990732151823423, guid: d79ac406dc8c93d4f9010916ecfa57c8, type: 3}
       _count: 20
     _tick: 0.3
     _width: 10
     _gap: 0.25
+    _winMoney: 300
+    _loseMoney: 50
   - _formations:
     - _enemyTemplate: {fileID: 2095690484339277924, guid: ed525e7e2c0e89649a057e073a5fb3d3, type: 3}
       _count: 20
@@ -29,6 +31,8 @@ MonoBehaviour:
     _tick: 0.3
     _width: 15
     _gap: 0.5
+    _winMoney: 300
+    _loseMoney: 50
   - _formations:
     - _enemyTemplate: {fileID: 2095690484339277924, guid: ed525e7e2c0e89649a057e073a5fb3d3, type: 3}
       _count: 20
@@ -37,6 +41,8 @@ MonoBehaviour:
     _tick: 0.3
     _width: 15
     _gap: 0.5
+    _winMoney: 300
+    _loseMoney: 50
   - _formations:
     - _enemyTemplate: {fileID: 2095690484339277924, guid: ed525e7e2c0e89649a057e073a5fb3d3, type: 3}
       _count: 20
@@ -45,12 +51,16 @@ MonoBehaviour:
     _tick: 0.3
     _width: 15
     _gap: 0.5
+    _winMoney: 300
+    _loseMoney: 50
   - _formations:
     - _enemyTemplate: {fileID: 6969779309938259547, guid: 38b828cb36da0e74096c53f9ae9fe0ed, type: 3}
       _count: 1
     _tick: 0.3
     _width: 15
     _gap: 0.5
+    _winMoney: 500
+    _loseMoney: 50
   - _formations:
     - _enemyTemplate: {fileID: 2071640828970480399, guid: f7700b01e3aa37048b093af07055922e, type: 3}
       _count: 20
@@ -59,6 +69,8 @@ MonoBehaviour:
     _tick: 0.3
     _width: 15
     _gap: 0.5
+    _winMoney: 300
+    _loseMoney: 50
   - _formations:
     - _enemyTemplate: {fileID: 2071640828970480399, guid: f7700b01e3aa37048b093af07055922e, type: 3}
       _count: 20
@@ -67,6 +79,8 @@ MonoBehaviour:
     _tick: 0.3
     _width: 15
     _gap: 0.5
+    _winMoney: 300
+    _loseMoney: 50
   - _formations:
     - _enemyTemplate: {fileID: 2071640828970480399, guid: f7700b01e3aa37048b093af07055922e, type: 3}
       _count: 20
@@ -75,6 +89,8 @@ MonoBehaviour:
     _tick: 0.3
     _width: 15
     _gap: 0.5
+    _winMoney: 300
+    _loseMoney: 50
   - _formations:
     - _enemyTemplate: {fileID: 2071640828970480399, guid: f7700b01e3aa37048b093af07055922e, type: 3}
       _count: 20
@@ -83,9 +99,13 @@ MonoBehaviour:
     _tick: 0.3
     _width: 15
     _gap: 0.5
+    _winMoney: 300
+    _loseMoney: 50
   - _formations:
     - _enemyTemplate: {fileID: 4561717335393180486, guid: eb5976c8e82739646b2b189ff2b010ed, type: 3}
       _count: 1
     _tick: 0.3
     _width: 15
     _gap: 0.5
+    _winMoney: 700
+    _loseMoney: 50

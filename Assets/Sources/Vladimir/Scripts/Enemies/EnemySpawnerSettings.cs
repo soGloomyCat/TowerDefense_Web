@@ -31,11 +31,15 @@ public class WaveSettings
     [SerializeField] private float _tick;
     [SerializeField] private float _width;
     [SerializeField] private float _gap;
+    [SerializeField] private int _winMoney;
+    [SerializeField] private int _loseMoney;
 
     public IReadOnlyCollection<WaveFormation> Formations => _formations;
     public float Tick => _tick;
     public float Width => _width;
     public float Gap => _gap;
+    public int LoseMoney => _loseMoney;
+    public int WinMoney => _winMoney;
 
     public int Count
     {
