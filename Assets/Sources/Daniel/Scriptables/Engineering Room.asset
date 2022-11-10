@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e98b1953702a8b4a907e1ede149ec5b, type: 3}
-  m_Name: Library Room
+  m_Name: Engineering Room
   m_EditorClassIdentifier: 
-  _internalId: a612d89e-755b-4cea-8bb6-08679437c94c
+  _internalId: 63be8c01-a0b6-4681-9ca4-1d1afd5d3613
   <Prefab>k__BackingField:
-    _underlyingValue: {fileID: 5714660829908029752, guid: 5948ab2897b098c47829ee6ff15671a3, type: 3}
-  <Title>k__BackingField: "\u0411\u0438\u0431\u043B\u0438\u043E\u0442\u0435\u043A\u0430"
+    _underlyingValue: {fileID: 5714660829908029752, guid: df2f812397c03da49870ca23c5da9c40, type: 3}
+  <Title>k__BackingField: "\u0418\u043D\u0436\u0435\u043D\u0435\u0440\u043D\u0430\u044F"
   <Preview>k__BackingField: {fileID: 21300000, guid: 3042b019b052942a1baf7aa49d7ca6bb, type: 3}
   <Description>k__BackingField: "\u0414\u043E\u0431\u0430\u0432\u043B\u044F\u0435\u0442
-    \u043C\u0430\u0433\u043E\u0432"
-  <BuyingPrices>k__BackingField: c8000000
+    \u0438\u043D\u0436\u0435\u043D\u0435\u0440\u043E\u0432"
+  <BuyingPrices>k__BackingField: 90010000
   <UpgradePrices>k__BackingField: 

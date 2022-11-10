@@ -2222,7 +2222,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 9115.5, y: 5122}
+  m_SizeDelta: {x: 11675.5, y: 6562}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &507745150
 GameObject:
@@ -2764,7 +2764,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 80948.5, y: 45774.5}
+  m_SizeDelta: {x: 3200, y: 1800}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &551610093
 MonoBehaviour:
@@ -6331,13 +6331,13 @@ MonoBehaviour:
   - {fileID: 309644604}
   - {fileID: 1519842977}
   - {fileID: 1965183588}
-  _warriorsHandler: {fileID: 63029818}
-  _warriorsPanel: {fileID: 1928300358}
+  _warriorsHandler: {fileID: 0}
+  _warriorsPanel: {fileID: 0}
   _startButton: {fileID: 330098408}
   _startCamera: {fileID: 1047948041}
   _mainCamera: {fileID: 1322463123}
   _enemyDetector: {fileID: 1804629832}
-  _prepairCanvas: {fileID: 1715679695}
+  _prepairCanvas: {fileID: 0}
   _battleCanvas: {fileID: 1696090538}
 --- !u!1 &1722263159
 GameObject:
@@ -7703,7 +7703,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 176566307}
   m_HandleRect: {fileID: 176566306}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

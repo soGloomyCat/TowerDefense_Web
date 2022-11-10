@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using TowerDefense.Daniel.Extensions;
 
@@ -10,21 +11,25 @@ namespace TowerDefense.Daniel.UI
     {
         private const float _SizeAnimationSpeedMultiplier = 10;
 
-        [SerializeField] private bool _isCurrent = false;
+#if UNITY_EDITOR
+        public event Action<Panel> FieldChanged = null;
+#endif
+        public event Action<Panel> Showed = null;
 
-        private static Panel _runtimeCurrent = null;
-        private static Panel _current = null;
+        [SerializeField] private bool _isCurrent = false;
 
         private RectTransform _rectTransform = null;
         private Vector2 _targetSize = Vector2.zero;
 
-        public Panel CurrentPanel => _current;
-        public bool IsActive => this == _current;
+        public bool IsActive => true;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             _rectTransform = GetComponent<RectTransform>();
+        }
 
+        protected virtual void Start()
+        {
             if (_isCurrent)
             {
                 Show();
@@ -35,38 +40,14 @@ namespace TowerDefense.Daniel.UI
             Hide();
         }
 
-        private void OnEnable()
+        protected virtual void OnValidate()
         {
-#if UNITY_EDITOR
-            if (UnityEditor.EditorApplication.isPlaying)
-            {
-                return;
-            }
-
-            UnityEditor.Selection.selectionChanged += OnSelectionChanged;
-#endif
-        }
-
-        private void OnDisable()
-        {
-#if UNITY_EDITOR
-            if (UnityEditor.EditorApplication.isPlaying)
-            {
-                return;
-            }
-
-            UnityEditor.Selection.selectionChanged -= OnSelectionChanged;
-#endif
-        }
-
-        private void OnValidate()
-        {
-            if (this == _runtimeCurrent && !_isCurrent)
+            /*if (this == _runtimeCurrent && !_isCurrent)
             {
                 _isCurrent = true;
             }
-
-            if (_isCurrent)
+            
+            if (this != _runtimeCurrent && _isCurrent)
             {
                 if (_runtimeCurrent != null)
                 {
@@ -74,7 +55,11 @@ namespace TowerDefense.Daniel.UI
                 }
 
                 _runtimeCurrent = this;
-            }
+            }*/
+
+#if UNITY_EDITOR
+            FieldChanged?.Invoke(this);
+#endif
         }
 
         private void Update()
@@ -84,14 +69,9 @@ namespace TowerDefense.Daniel.UI
 
         public void Show()
         {
-            if (_current != null)
-            {
-                _current.Hide();
-            }
+            Showed?.Invoke(this);
 
             _targetSize = Vector2.zero;
-
-            _current = this;
 
 #if UNITY_EDITOR
             if (UnityEditor.EditorApplication.isPlaying)
@@ -117,35 +97,14 @@ namespace TowerDefense.Daniel.UI
 #endif
         }
 
-#if UNITY_EDITOR
-        private void OnSelectionChanged()
+        protected bool GetIsCurrent(Panel panel)
         {
-            //var panels = UnityEditor.Selection.GetFiltered<Panel>(UnityEditor.SelectionMode.ExcludePrefab | UnityEditor.SelectionMode.Assets);
-            var transforms = UnityEditor.Selection.GetTransforms(UnityEditor.SelectionMode.ExcludePrefab | UnityEditor.SelectionMode.Assets);
-
-            var panelsCount = 0;
-            foreach (var transform in transforms)
-            {
-                if (transform.TryGetComponentInParent<Panel>(out var panel))
-                {
-                    panel.Show();
-
-                    panelsCount++;
-                }
-            }
-
-            if (panelsCount < 1)
-            {
-                if (_runtimeCurrent != null)
-                {
-                    _runtimeCurrent.Show();
-                }
-                else if (_current != null)
-                {
-                    _current.Hide();
-                }
-            }
+            return panel._isCurrent;
         }
-#endif
+
+        protected void SetIsCurrent(Panel panel, bool state)
+        {
+            panel._isCurrent = state;
+        }
     }
 }

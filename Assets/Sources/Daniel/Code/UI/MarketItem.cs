@@ -31,7 +31,7 @@ namespace TowerDefense.Daniel.UI
             _preview.sprite = Information.Preview;
             _description.text = Information.Description;
 
-            _price.text = Information.CurrentPrice < 0 ? "No longer available" :
+            _price.text = Information.CurrentPrice < 0 ? "Недоступно" :
                           $"{Information.CurrentPrice}$";
         }
 

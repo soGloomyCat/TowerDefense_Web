@@ -30,7 +30,7 @@ public class TowersHandler : MonoBehaviour
 
     private void PrepairActivateTowers(IReadOnlyRoom roomType)
     {
-        if (roomType is StrategyRoom)
+        if (roomType is ArcheryRoom)
             ActivateTowers();
     }
 
