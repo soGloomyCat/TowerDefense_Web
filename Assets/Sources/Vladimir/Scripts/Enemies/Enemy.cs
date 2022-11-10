@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.Events;
-using static UnityEngine.GraphicsBuffer;
 
 [RequireComponent(typeof(EnemyMover))]
 [RequireComponent(typeof(EnemyHealth))]
+[RequireComponent(typeof(HazardHandlersList))]
 public abstract class Enemy : MonoBehaviour
 {
     [SerializeField] protected EnemyAnimatedModel AnimatedModel;
@@ -11,7 +11,7 @@ public abstract class Enemy : MonoBehaviour
 
     private EnemyMover _enemyMover;
     private EnemyHealth _enemyHealth;
-    private GameObject[] _targets;
+    private HazardHandlersList _hazardHandlersList;
 
     protected bool HasTargets;
     protected Vector3 Target;
@@ -22,6 +22,7 @@ public abstract class Enemy : MonoBehaviour
     {
         _enemyMover = GetComponent<EnemyMover>();
         _enemyHealth = GetComponent<EnemyHealth>();
+        _hazardHandlersList = GetComponent<HazardHandlersList>();
         HasTargets = true;
     }
 
@@ -37,8 +38,10 @@ public abstract class Enemy : MonoBehaviour
         _enemyHealth.Dead -= OnDead;
     }
 
-    public virtual void SetTargets(GameObject[] targets)
-    { }
+    private void OnTriggerEnter(Collider other)
+    {
+        _hazardHandlersList.Handle(other);
+    }
 
     public void SetTarget(Vector3 target) => Target = target;
 
@@ -56,6 +59,7 @@ public abstract class Enemy : MonoBehaviour
         Dead?.Invoke(this);
         AnimatedModel.Death();
         Destroy(gameObject, 2f);
+        _enemyMover.StopMove();
     }
 
     protected abstract void OnDestinationReach();

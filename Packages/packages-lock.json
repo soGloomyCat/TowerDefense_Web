@@ -1,16 +1,18 @@
 {
   "dependencies": {
     "com.agava.webutility": {
-      "version": "file:C:/Users/tonyh/Desktop/GamDev/Add-Ons/Unity/com.agava.webutility-master",
+      "version": "https://github.com/forcepusher/com.agava.webutility.git",
       "depth": 0,
-      "source": "local",
-      "dependencies": {}
+      "source": "git",
+      "dependencies": {},
+      "hash": "dbf49295fd77c3f9d8ba0ab156c96c0f2e90e9de"
     },
     "com.agava.yandexgames": {
-      "version": "file:C:/Users/tonyh/Desktop/GamDev/Add-Ons/Unity/com.agava.yandexgames-master",
+      "version": "https://github.com/forcepusher/com.agava.yandexgames.git",
       "depth": 0,
-      "source": "local",
-      "dependencies": {}
+      "source": "git",
+      "dependencies": {},
+      "hash": "85a60e3ac21767a09751a4028e4d826ec6166af6"
     },
     "com.unity.2d.sprite": {
       "version": "1.0.0",

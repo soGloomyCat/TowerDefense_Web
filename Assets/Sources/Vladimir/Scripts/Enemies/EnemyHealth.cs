@@ -1,9 +1,11 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] private float _startHealth;
+    [SerializeField] private Slider _bar;
 
     private float _currentHealth;
 
@@ -12,6 +14,8 @@ public class EnemyHealth : MonoBehaviour
     private void Awake()
     {
         _currentHealth = _startHealth;
+        _bar.maxValue = _currentHealth;
+        _bar.value = _currentHealth;
     }
 
     public void TakeDamage(float amount)
@@ -20,9 +24,11 @@ public class EnemyHealth : MonoBehaviour
             return;
 
         _currentHealth -= amount;
+        _bar.value = _currentHealth;
 
         if (_currentHealth <= 0)
         { 
+            _bar.gameObject.SetActive(false);
             _currentHealth = 0;
             Dead?.Invoke();
         }
