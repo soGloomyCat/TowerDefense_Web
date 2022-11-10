@@ -1,18 +1,16 @@
 {
   "dependencies": {
     "com.agava.webutility": {
-      "version": "https://github.com/forcepusher/com.agava.webutility.git",
+      "version": "file:C:/Users/tonyh/Desktop/GamDev/Add-Ons/Unity/com.agava.webutility-master",
       "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "dbf49295fd77c3f9d8ba0ab156c96c0f2e90e9de"
+      "source": "local",
+      "dependencies": {}
     },
     "com.agava.yandexgames": {
-      "version": "https://github.com/forcepusher/com.agava.yandexgames.git",
+      "version": "file:C:/Users/tonyh/Desktop/GamDev/Add-Ons/Unity/com.agava.yandexgames-master",
       "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "85a60e3ac21767a09751a4028e4d826ec6166af6"
+      "source": "local",
+      "dependencies": {}
     },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
@@ -105,17 +103,6 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
-    "com.unity.probuilder": {
-      "version": "5.0.6",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.settings-manager": "1.0.3",
-        "com.unity.modules.physics": "1.0.0",
-        "com.unity.modules.imgui": "1.0.0"
-      },
-      "url": "https://packages.unity.com"
-    },
     "com.unity.services.core": {
       "version": "1.4.2",
       "depth": 1,
@@ -129,7 +116,7 @@
     },
     "com.unity.settings-manager": {
       "version": "1.0.3",
-      "depth": 1,
+      "depth": 2,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"

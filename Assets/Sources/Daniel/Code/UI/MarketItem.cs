@@ -32,7 +32,6 @@ namespace TowerDefense.Daniel.UI
             _description.text = Information.Description;
 
             _price.text = Information.CurrentPrice < 0 ? "No longer available" :
-                          Information.CurrentPrice == 0 ? "" :
                           $"{Information.CurrentPrice}$";
         }
 

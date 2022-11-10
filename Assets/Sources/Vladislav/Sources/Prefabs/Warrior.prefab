@@ -1438,7 +1438,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7825392073687236551}
   - component: {fileID: 7825392073687236550}
-  - component: {fileID: 7825392073687236549}
   m_Layer: 0
   m_Name: Warrior
   m_TagString: Untagged
@@ -1474,44 +1473,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20aafbb73785044aa656a687a6e235e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyDetector: {fileID: 0}
   _arrowPrefab: {fileID: 2569470654422615193, guid: 3750ae015fbf2bc4da1daecdafc652ee, type: 3}
   _spawnPosition: {fileID: 47325291705097774}
   _point: {fileID: 0}
   _animator: {fileID: 47325291696075212}
---- !u!114 &7825392073687236549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7825392073687236568}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 770d223a3468e964f900f7a4bf915d2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _button: {fileID: 0}
-  _spawnPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  _arrowPrefab: {fileID: 2569470654422615193, guid: 3750ae015fbf2bc4da1daecdafc652ee, type: 3}
+  _cooldown: 3

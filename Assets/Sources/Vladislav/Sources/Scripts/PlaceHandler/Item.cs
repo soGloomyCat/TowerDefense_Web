@@ -40,9 +40,9 @@ public class Item : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     {
         transform.localPosition = Vector3.zero;
 
-        if (transform.parent.TryGetComponent(out Place place))
-            _canvasGroup.blocksRaycasts = false;
-        else
-            _canvasGroup.blocksRaycasts = true;
+        //if (transform.parent.TryGetComponent(out Place place))
+        //    _canvasGroup.blocksRaycasts = false;
+        //else
+        _canvasGroup.blocksRaycasts = true;
     }
 }

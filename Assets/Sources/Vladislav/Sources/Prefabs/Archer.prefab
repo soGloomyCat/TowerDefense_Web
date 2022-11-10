@@ -1365,13 +1365,7 @@ Animator:
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
-    are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'RigSpine2'\n\tTransform 'RigLFoot'\n\tTransform
-    'RigRUpperarm'\n\tTransform 'RigPelvis'\n\tTransform 'RigHead'\n\tTransform 'RigRThigh'\n\tTransform
-    'RigLUpperarm'\n\tTransform 'RigRFoot'\n\tTransform 'RigLToe11'\n\tTransform
-    'RigLThigh'\n\tand more ...\n\tFrom animation clip 'Idle'\n\tFrom animation clip
-    'MeleeAttack'\n\tFrom animation clip 'RangeAttack'\n\tFrom animation clip 'Walk'"
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -1542,9 +1536,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _arrowPrefab: {fileID: 2569470654422615193, guid: 3750ae015fbf2bc4da1daecdafc652ee, type: 3}
-  _spawnPosition: {fileID: 1039622553458514125}
-  _point: {fileID: 0}
+  _spawnPosition: {fileID: 1039622553458514085}
   _animator: {fileID: 1039622552262109194}
+  _cooldown: 1.5
 --- !u!1 &9127056482816708024
 GameObject:
   m_ObjectHideFlags: 0

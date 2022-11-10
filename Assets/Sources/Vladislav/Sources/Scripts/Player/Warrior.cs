@@ -9,10 +9,23 @@ public class Warrior : MonoBehaviour
 
     [SerializeField] private Arrow _arrowPrefab;
     [SerializeField] private Transform _spawnPosition;
-    [SerializeField] private Transform _point;
     [SerializeField] private Animator _animator;
+    [SerializeField] private float _cooldown;
 
     private EnemyDetector _enemyDetector;
+    private bool _canAttack;
+    private float _currentTime;
+
+    private void Update()
+    {
+        if (_currentTime >= _cooldown)
+        {
+            _currentTime = 0;
+            _canAttack = true;
+        }
+
+        _currentTime += Time.deltaTime;
+    }
 
     private void OnDisable()
     {
@@ -23,15 +36,21 @@ public class Warrior : MonoBehaviour
     {
         _enemyDetector = enemyDetector;
         _enemyDetector.EnemyFounded += Attack;
+        _canAttack = true;
+        _currentTime = _cooldown;
     }
 
-    private void Attack(Vladislav.Enemy enemy)
+    private void Attack(Enemy enemy)
     {
-        Vector3 tempDirection = enemy.transform.position + transform.position;
-        transform.rotation = Quaternion.LookRotation(tempDirection, Vector3.up);
-        _animator.SetTrigger(AttackTrigger);
-        Arrow tempArrow = Instantiate(_arrowPrefab);
-        tempArrow.transform.position = _spawnPosition.position;
-        tempArrow.PrepairFly(enemy);
+        if (_canAttack)
+        {
+            _canAttack = false;
+            Vector3 tempDirection = enemy.transform.position + transform.position;
+            transform.rotation = Quaternion.LookRotation(tempDirection, Vector3.up);
+            _animator.SetTrigger(AttackTrigger);
+            Arrow tempArrow = Instantiate(_arrowPrefab);
+            tempArrow.transform.position = _spawnPosition.position;
+            tempArrow.PrepairFly(enemy);
+        }
     }
 }

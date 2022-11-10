@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.UI;
+using TMPro;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -9,6 +11,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private Transform _farPoint;
     [SerializeField] private float _depthSpread;
     [SerializeField] private EnemySpawnerSettings _settings;
+    [SerializeField] private Button _battleButton;
+    [SerializeField] private TMP_Text _waveInfo;
 
     [SerializeField] private Transform _targetCastle;
 
@@ -27,9 +31,20 @@ public class EnemySpawner : MonoBehaviour
 
     public event UnityAction<int> AllEnemiesKilled;
 
+    private void OnEnable()
+    {
+        _battleButton.onClick.AddListener(TryNextWave);
+    }
+
+    private void OnDisable()
+    {
+        _battleButton.onClick.RemoveListener(TryNextWave);
+    }
+
     private void Awake()
     {
         GeneratePoints();
+        _waveInfo.text = $"Волна {WaveNumber}";
     }
 
     private void Update()
@@ -37,11 +52,11 @@ public class EnemySpawner : MonoBehaviour
         Tick();
     }
 
-    public bool TryNextWave()
+    public void TryNextWave()
     {
         if (_isGoing)
-            return true;
-        
+            return;
+
         _waveSettings = _settings[_wavesIndex];
 
         if (_waveSettings != null)
@@ -50,11 +65,11 @@ public class EnemySpawner : MonoBehaviour
             _formationsDirector = new FormationsDirector(_waveSettings.Formations);
             _pointsDirector = new PointsDirector(_points);
             _isGoing = true;
-            return true;
+            return;
         }
         else
         {
-            return false;
+            return;
         }
     }
 
@@ -65,7 +80,7 @@ public class EnemySpawner : MonoBehaviour
     }
 
     public void Clear()
-    { 
+    {
         foreach (Enemy enemy in _enemies)
             Destroy(enemy.gameObject);
 
@@ -97,7 +112,7 @@ public class EnemySpawner : MonoBehaviour
     private void Spawn()
     {
         if (!_formationsDirector.TryGetTemplate(out Enemy enemyTemplate))
-        { 
+        {
             StopSpawn();
             return;
         }
@@ -134,7 +149,7 @@ public class EnemySpawner : MonoBehaviour
             z = _closePoint.localPosition.z;
         }
 
-        enemy.SetTarget(new Vector3(x, _targetCastle.position.y, _targetCastle.position.z));
+        enemy.SetTarget(_targetCastle.position);
 
         return new Vector3(x, 0, z + Random.Range(-_depthSpread, _depthSpread));
     }
@@ -145,7 +160,7 @@ public class EnemySpawner : MonoBehaviour
         float gap = 0.5f;
 
         if (_waveSettings != null)
-        { 
+        {
             width = _waveSettings.Width;
             gap = _waveSettings.Gap;
         }
@@ -167,20 +182,8 @@ public class EnemySpawner : MonoBehaviour
 
         if (_enemies.Count == 0)
             AllEnemiesKilled?.Invoke(WaveNumber);
-    }
 
-    private void OnGUI()
-    {
-        string buttonText;
-        if (WaveNumber > _settings.Count)
-            buttonText = $"Done!";
-        else
-            buttonText = $"Spawn {WaveNumber}";
-
-        if (GUI.Button(new Rect(30, 30, 150, 120), buttonText))
-        { 
-            TryNextWave();
-        }
+        _waveInfo.text = $"Волна {WaveNumber}";
     }
 
     void OnDrawGizmos()
@@ -191,10 +194,10 @@ public class EnemySpawner : MonoBehaviour
             width = _waveSettings.Width;
 
         Gizmos.color = Color.cyan;
-        Gizmos.DrawCube(_closePoint.position, new Vector3(width, 1, .2f));
+        Gizmos.DrawCube(_closePoint.position, new Vector3(0.2f, 1, width));
 
         Gizmos.color = Color.red;
-        Gizmos.DrawCube(_farPoint.position, new Vector3(width, 1, .2f));
+        Gizmos.DrawCube(_farPoint.position, new Vector3(0.2f, 1, width));
     }
 
     private class PointsDirector
@@ -202,7 +205,7 @@ public class EnemySpawner : MonoBehaviour
         private Dictionary<float, bool> _points;
 
         public PointsDirector(Dictionary<float, bool> points)
-        { 
+        {
             _points = points;
         }
 
@@ -212,7 +215,7 @@ public class EnemySpawner : MonoBehaviour
             {
                 KeyValuePair<float, bool> pair;
 
-                do 
+                do
                 {
                     pair = _points.ElementAt(Random.Range(0, _points.Count));
                 }
@@ -249,7 +252,7 @@ public class EnemySpawner : MonoBehaviour
         {
             foreach (WaveFormation waveFormation in waveSettings)
             {
-                _formations.Add(new FormationPair() { Template = waveFormation.Template, Count = waveFormation.Count});
+                _formations.Add(new FormationPair() { Template = waveFormation.Template, Count = waveFormation.Count });
             }
         }
 
@@ -261,7 +264,7 @@ public class EnemySpawner : MonoBehaviour
                 return true;
             }
             else
-            { 
+            {
                 enemy = null;
                 return false;
             }

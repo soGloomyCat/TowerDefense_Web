@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class EnemyDetector : MonoBehaviour
 {
-    public event Action<Vladislav.Enemy> EnemyFounded;
+    public event Action<Enemy> EnemyFounded;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if (other.TryGetComponent(out Vladislav.Enemy enemy))
+        if (other.TryGetComponent(out Enemy enemy))
             EnemyFounded?.Invoke(enemy);
     }
 }

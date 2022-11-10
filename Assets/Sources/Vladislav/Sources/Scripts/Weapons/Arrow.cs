@@ -1,47 +1,62 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private float _damage;
+    [SerializeField] private float _lifeTime;
+
+    private float _currentTime;
     private Coroutine _coroutine;
 
-    public void PrepairFly(Vladislav.Enemy enemy)
+    private void Awake()
+    {
+        _currentTime = 0;
+    }
+
+    private void Update()
+    {
+        if (_currentTime >= _lifeTime)
+            Destroy(gameObject);
+
+        _currentTime += Time.deltaTime;
+    }
+
+    public void PrepairFly(Enemy enemy)
     {
         if (_coroutine != null)
             StopCoroutine(_coroutine);
 
-        _coroutine = StartCoroutine(Fly(enemy));
+        if (enemy != null)
+            _coroutine = StartCoroutine(Fly(enemy));
+        else
+            _coroutine = StartCoroutine(ActivateUltimate());
     }
 
-    private IEnumerator Fly(Vladislav.Enemy enemy)
+    private IEnumerator ActivateUltimate()
     {
-        if (enemy != null)
+        while (_currentTime < _lifeTime)
         {
-            while (enemy != null && Vector3.Distance(transform.position, enemy.TargetPoint.position) > 0.5f)
-            {
-                transform.position = Vector3.MoveTowards(transform.position, enemy.TargetPoint.position, _speed * Time.deltaTime);
-                transform.LookAt(enemy.transform);
-                yield return null;
-            }
-
-            if (enemy != null)
-                enemy.TakeDamage(_damage);
+            transform.position = Vector3.MoveTowards(transform.position, transform.position + Vector3.down, _speed * Time.deltaTime);
+            yield return null;
         }
-        else
+    }
+
+    private IEnumerator Fly(Enemy enemy)
+    {
+        while (enemy != null)
         {
-            float currentTime = 0;
-            float lifeTime = 3f;
-
-            while (currentTime <= lifeTime)
-            {
-                transform.position = Vector3.MoveTowards(transform.position, transform.position + Vector3.down, _speed * Time.deltaTime);
-                yield return null;
-            }
+            transform.position = Vector3.MoveTowards(transform.position, enemy.transform.position, _speed * Time.deltaTime);
+            transform.LookAt(enemy.transform);
+            yield return null;
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out Enemy enemy))
+            enemy.TakeDamage(_damage);
 
         Destroy(gameObject);
     }

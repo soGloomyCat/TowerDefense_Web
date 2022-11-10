@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TowerDefense.Daniel.Interfaces;
 using TowerDefense.Daniel.UI;
 using UnityEngine;
-using static UnityEditor.Progress;
+//using static UnityEditor.Progress;
 
 namespace TowerDefense.Daniel
 {

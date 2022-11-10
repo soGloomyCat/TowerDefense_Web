@@ -13,6 +13,7 @@ public class MoneyInfoPanel : MonoBehaviour
     private void OnEnable()
     {
         _money.ValueChanged += OnMoneyChange;
+        _moneyText.text = _money.Value.ToString();
     }
 
     private void OnDisable()
@@ -37,7 +38,7 @@ public class MoneyInfoPanel : MonoBehaviour
     }
 
     private IEnumerator IncreaseMoney(int oldValue, int newValue)
-    { 
+    {
         int bufer = oldValue;
 
         while (bufer < newValue)
