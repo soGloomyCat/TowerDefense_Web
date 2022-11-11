@@ -6,9 +6,35 @@ namespace TowerDefense.Daniel.Rooms
 {
     public class MiningRoom : MonoBehaviour, IRoom
     {
+        [SerializeField] private Money _money = null;
+        [SerializeField] private int _goldPerTick = 1;
+        [SerializeField] private float _delay = 1;
+
         public event Action<IReadOnlyRoom> Upgraded = null;
 
+        private Timer _timer = null;
+
         public int Level => 1;
+
+        private void Awake()
+        {
+            _timer = new Timer(_delay);
+        }
+
+        private void OnEnable()
+        {
+            _timer.Ticked += OnTimerTicked;
+        }
+
+        private void OnDisable()
+        { 
+            _timer.Ticked -= OnTimerTicked;
+        }
+
+        private void Update()
+        {
+            _timer.Update(Time.deltaTime);
+        }
 
         public void FocusIn()
         {
@@ -33,6 +59,11 @@ namespace TowerDefense.Daniel.Rooms
         public void Destroy()
         {
             Destroy(gameObject);
+        }
+
+        private void OnTimerTicked()
+        {
+            _money.Deposit(_goldPerTick);
         }
     }
 }
