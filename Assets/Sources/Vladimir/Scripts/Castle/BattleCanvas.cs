@@ -6,6 +6,7 @@ using System;
 public class BattleCanvas : MonoBehaviour
 {
     [SerializeField] private RectTransform _castleBar;
+    [SerializeField] private RectTransform _spawnerBar;
     [SerializeField] private ResultPanel _winPanel;
     [SerializeField] private ResultPanel _losePanel;
     [SerializeField] private Money _money;
@@ -59,11 +60,13 @@ public class BattleCanvas : MonoBehaviour
 
     public void ShowBar()
     {
-        _castleBar.DOAnchorPosY(-120, 0.5f).SetEase(Ease.OutBack);
+        _castleBar.DOAnchorPosX(90, 0.5f).SetEase(Ease.OutBack);
+        _spawnerBar.DOAnchorPosX(-90, 0.5f).SetEase(Ease.OutBack);
     }
 
     public void HideBar()
     {
-        _castleBar.DOAnchorPosY(120, 0.5f).SetEase(Ease.OutBack);
+        _castleBar.DOAnchorPosX(-90, 0.5f).SetEase(Ease.InBack);
+        _spawnerBar.DOAnchorPosX(90, 0.5f).SetEase(Ease.InBack);
     }
 }

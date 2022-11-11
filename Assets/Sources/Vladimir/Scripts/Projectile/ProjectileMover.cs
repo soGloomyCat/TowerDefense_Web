@@ -33,7 +33,7 @@ public class ProjectileMover : MonoBehaviour
             yield return null;
         }
 
-        //TargetReached?.Invoke();
+        Destroy(gameObject);
     }
 
     private IEnumerator MovementSlerp(Vector3 target)

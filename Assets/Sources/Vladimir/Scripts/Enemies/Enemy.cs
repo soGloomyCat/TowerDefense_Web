@@ -13,8 +13,10 @@ public abstract class Enemy : MonoBehaviour
     private EnemyHealth _enemyHealth;
     private HazardHandlersList _hazardHandlersList;
 
-    protected bool HasTargets;
+    //protected bool HasTargets;
     protected Vector3 Target;
+
+    public bool IsFarEnemy { get; private set; }
 
     public event UnityAction<Enemy> Dead;
 
@@ -23,7 +25,7 @@ public abstract class Enemy : MonoBehaviour
         _enemyMover = GetComponent<EnemyMover>();
         _enemyHealth = GetComponent<EnemyHealth>();
         _hazardHandlersList = GetComponent<HazardHandlersList>();
-        HasTargets = true;
+        //HasTargets = true;
     }
 
     protected void OnEnable()

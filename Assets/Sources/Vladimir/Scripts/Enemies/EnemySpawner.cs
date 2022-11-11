@@ -11,13 +11,14 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private Transform _farPoint;
     [SerializeField] private float _depthSpread;
     [SerializeField] private EnemySpawnerSettings _settings;
-    [SerializeField] private Button _battleButton;
+    //[SerializeField] private Button _battleButton;
     [SerializeField] private TMP_Text _waveInfo;
-
-    [SerializeField] private Transform _targetCastle;
+    [SerializeField] private EnemySquad _enemySquad;
+    [SerializeField] private Slider _slider;
+    //[SerializeField] private Transform _targetCastle;
 
     private Dictionary<float, bool> _points = new Dictionary<float, bool>();
-    private List<Enemy> _enemies = new List<Enemy>();
+    //private List<Enemy> _enemies = new List<Enemy>();
     private float _timeBuffer;
     private bool _isGoing;
     private int _wavesIndex;
@@ -26,11 +27,11 @@ public class EnemySpawner : MonoBehaviour
     private PointsDirector _pointsDirector;
 
     public int WaveNumber => _wavesIndex + 1;
-    public IReadOnlyList<Enemy> Enemies => _enemies;
+    //public IReadOnlyList<Enemy> Enemies => _enemies;
     public WaveSettings WaveSettings => _waveSettings;
 
-    public event UnityAction<int> AllEnemiesKilled;
-
+    //public event UnityAction<int> AllEnemiesKilled;
+    /*
     private void OnEnable()
     {
         _battleButton.onClick.AddListener(TryNextWave);
@@ -40,7 +41,7 @@ public class EnemySpawner : MonoBehaviour
     {
         _battleButton.onClick.RemoveListener(TryNextWave);
     }
-
+    */
     private void Awake()
     {
         GeneratePoints();
@@ -64,6 +65,9 @@ public class EnemySpawner : MonoBehaviour
             GeneratePoints();
             _formationsDirector = new FormationsDirector(_waveSettings.Formations);
             _pointsDirector = new PointsDirector(_points);
+            _enemySquad.OnWaveStart(WaveNumber);
+            _slider.maxValue = _formationsDirector.EnemiesCount;
+            _slider.value = 0;
             _isGoing = true;
             return;
         }
@@ -76,9 +80,11 @@ public class EnemySpawner : MonoBehaviour
     private void StopSpawn()
     {
         _wavesIndex++;
+        _waveInfo.text = $"Волна {WaveNumber}";
         _isGoing = false;
     }
 
+    /*
     public void Clear()
     {
         foreach (Enemy enemy in _enemies)
@@ -92,6 +98,7 @@ public class EnemySpawner : MonoBehaviour
         foreach (Enemy enemy in _enemies)
             enemy.StopAttack();
     }
+    */
 
     private void Tick()
     {
@@ -118,8 +125,10 @@ public class EnemySpawner : MonoBehaviour
         }
 
         Enemy enemy = Instantiate(enemyTemplate, transform);
-        enemy.Dead += OnEnemyDead;
-        _enemies.Add(enemy);
+        //enemy.Dead += OnEnemyDead;
+        //_enemies.Add(enemy);
+        _enemySquad.Add(enemy);
+        _slider.value++;
 
         SetPosition(enemy, out float x);
         enemy.Move(GetDestination(enemy, x));
@@ -149,7 +158,7 @@ public class EnemySpawner : MonoBehaviour
             z = _closePoint.localPosition.z;
         }
 
-        enemy.SetTarget(_targetCastle.position);
+        //enemy.SetTarget(_targetCastle.position);
 
         return new Vector3(x, 0, z + Random.Range(-_depthSpread, _depthSpread));
     }
@@ -175,6 +184,7 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    /*
     private void OnEnemyDead(Enemy enemy)
     {
         enemy.Dead -= OnEnemyDead;
@@ -185,6 +195,7 @@ public class EnemySpawner : MonoBehaviour
 
         _waveInfo.text = $"Волна {WaveNumber}";
     }
+    */
 
     void OnDrawGizmos()
     {
@@ -248,11 +259,14 @@ public class EnemySpawner : MonoBehaviour
     {
         private List<FormationPair> _formations = new List<FormationPair>();
 
+        public int EnemiesCount { get; private set; }
+
         public FormationsDirector(IReadOnlyCollection<WaveFormation> waveSettings)
         {
             foreach (WaveFormation waveFormation in waveSettings)
             {
                 _formations.Add(new FormationPair() { Template = waveFormation.Template, Count = waveFormation.Count });
+                EnemiesCount += waveFormation.Count;
             }
         }
 

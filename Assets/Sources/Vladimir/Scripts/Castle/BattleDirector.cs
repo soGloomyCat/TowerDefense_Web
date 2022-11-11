@@ -1,34 +1,41 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BattleDirector : MonoBehaviour
 {
     [SerializeField] private CastleHealth _castleHealth;
     [SerializeField] private BattleCanvas _battleCanvas;
     [SerializeField] private EnemySpawner _enemySpawner;
+    [SerializeField] private CastleTargets _castleTargets;
+    [SerializeField] private EnemySquad _enemySquad;
     [SerializeField] private Money _money;
+    [SerializeField] private Button _battleButton;
 
     private void OnEnable()
     {
         _castleHealth.CastleDestroyed += OnCastleDestroy;
-        _enemySpawner.AllEnemiesKilled += OnAllEnemiesKill;
+        _enemySquad.AllEnemiesKilled += OnAllEnemiesKill;
         _battleCanvas.PanelButtonClicked += OnPanelButtonClick;
+        _battleButton.onClick.AddListener(OnNewWave);
     }
 
     private void OnDisable()
     {
         _castleHealth.CastleDestroyed -= OnCastleDestroy;
-        _enemySpawner.AllEnemiesKilled -= OnAllEnemiesKill;
+        _enemySquad.AllEnemiesKilled -= OnAllEnemiesKill;
         _battleCanvas.PanelButtonClicked -= OnPanelButtonClick;
+        _battleButton.onClick.RemoveListener(OnNewWave);
     }
 
     private void Start()
     {
         _money.Init();
-        OnNewWave();
+        //OnNewWave();
     }
 
     public void OnNewWave()
     {
+        _enemySpawner.TryNextWave();
         _battleCanvas.ShowBar();
     }
 
@@ -47,12 +54,13 @@ public class BattleDirector : MonoBehaviour
     private void OnBattleEnd()
     {
         _battleCanvas.HideBar();
-        _enemySpawner.StopAttack();
+        _enemySquad.StopAttack();
+        _castleTargets.ResetTargets();
     }
 
     private void OnPanelButtonClick()
     {
-        _enemySpawner.Clear();
+        _enemySquad.Clear();
         _castleHealth.ResetCastle();
     }
 }

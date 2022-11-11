@@ -9,6 +9,9 @@ public class EnemyArcher : FarEnemy
 
     protected override void OnDestinationReach()
     {
+        Attack();
+
+        /*
         if (HasTargets)
         {
             Attack();
@@ -17,5 +20,6 @@ public class EnemyArcher : FarEnemy
         {
             AnimatedModel.Idle();
         }
+        */
     }
 }
