@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Library Room
   m_EditorClassIdentifier: 
   _internalId: a612d89e-755b-4cea-8bb6-08679437c94c
-  <Prefab>k__BackingField:
-    _underlyingValue: {fileID: 5714660829908029752, guid: 5948ab2897b098c47829ee6ff15671a3, type: 3}
+  <Prefab>k__BackingField: {fileID: 5714660829908029752, guid: 5948ab2897b098c47829ee6ff15671a3, type: 3}
   <Title>k__BackingField: "\u0411\u0438\u0431\u043B\u0438\u043E\u0442\u0435\u043A\u0430"
   <Preview>k__BackingField: {fileID: 21300000, guid: 3042b019b052942a1baf7aa49d7ca6bb, type: 3}
   <Description>k__BackingField: "\u0414\u043E\u0431\u0430\u0432\u043B\u044F\u0435\u0442

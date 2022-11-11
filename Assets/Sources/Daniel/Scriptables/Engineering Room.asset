@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Engineering Room
   m_EditorClassIdentifier: 
   _internalId: 63be8c01-a0b6-4681-9ca4-1d1afd5d3613
-  <Prefab>k__BackingField:
-    _underlyingValue: {fileID: 5714660829908029752, guid: df2f812397c03da49870ca23c5da9c40, type: 3}
+  <Prefab>k__BackingField: {fileID: 5714660829908029752, guid: df2f812397c03da49870ca23c5da9c40, type: 3}
   <Title>k__BackingField: "\u0418\u043D\u0436\u0435\u043D\u0435\u0440\u043D\u0430\u044F"
   <Preview>k__BackingField: {fileID: 21300000, guid: 3042b019b052942a1baf7aa49d7ca6bb, type: 3}
   <Description>k__BackingField: "\u0414\u043E\u0431\u0430\u0432\u043B\u044F\u0435\u0442

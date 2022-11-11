@@ -14,14 +14,14 @@ namespace TowerDefense.Daniel
         [SerializeField] private SpriteRenderer _buildOverlay = null;
         [SerializeField] private Transform _background = null;
 
-        private IRoom _room = null;
+        private Room _room = null;
 
         public IReadOnlyRoom Room => _room;
         public bool IsEmpty => _room == null;
 
         private void Awake()
         {
-            _room = GetComponentInChildren<IRoom>();
+            _room = GetComponentInChildren<Room>();
 
             UpdateBackground();
         }
@@ -43,14 +43,14 @@ namespace TowerDefense.Daniel
             }
         }
 
-        public void BuildRoom(IRoom roomPrefab)
+        public void BuildRoom(Room roomPrefab)
         {
             if (_room != null)
             {
                 _room.Upgraded -= OnRoomUpgraded;
             }
 
-            _room = roomPrefab.Instantiate(transform.position, transform.rotation, transform);
+            _room = Instantiate(roomPrefab, transform.position, transform.rotation, transform);
 
             RoomAdded?.Invoke(_room);
 
@@ -59,9 +59,14 @@ namespace TowerDefense.Daniel
             UpdateBackground();
         }
 
+        public void UpgradeRoom()
+        {
+            _room.Upgrade();
+        }
+
         public void DestroyRoom()
         {
-            _room.Destroy();
+            Destroy(_room.gameObject);
 
             _room = null;
         }

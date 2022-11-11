@@ -1,20 +1,17 @@
-using System;
+using System.Collections.Generic;
 using UnityEngine;
-using TowerDefense.Daniel.Interfaces;
 
 namespace TowerDefense.Daniel.Rooms
 {
-    public class MiningRoom : MonoBehaviour, IRoom
+    public class MiningRoom : Room
     {
         [SerializeField] private Money _money = null;
-        [SerializeField] private int _goldPerTick = 1;
+        [SerializeField] private List<int> _goldPerTick = new List<int>();
         [SerializeField] private float _delay = 1;
-
-        public event Action<IReadOnlyRoom> Upgraded = null;
 
         private Timer _timer = null;
 
-        public int Level => 1;
+        protected override int MaxLevel => _goldPerTick.Count - 1;
 
         private void Awake()
         {
@@ -36,34 +33,9 @@ namespace TowerDefense.Daniel.Rooms
             _timer.Update(Time.deltaTime);
         }
 
-        public void FocusIn()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void FocusOut()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void Accept(IUnit unit)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public IRoom Instantiate(Vector3 position, Quaternion rotation, Transform parent)
-        {
-            return Instantiate(this, position, rotation, parent);
-        }
-
-        public void Destroy()
-        {
-            Destroy(gameObject);
-        }
-
         private void OnTimerTicked()
         {
-            _money.Deposit(_goldPerTick);
+            _money.Deposit(_goldPerTick[Level]);
         }
     }
 }

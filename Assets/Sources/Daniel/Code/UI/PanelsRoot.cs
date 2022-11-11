@@ -122,11 +122,16 @@ namespace TowerDefense.Daniel.UI
             var panelsCount = 0;
             foreach (var transform in transforms)
             {
-                if (transform.TryGetComponentInParent<Panel>(out var panel))
+                if (transform.IsChildOf(transform) && transform.TryGetComponentInParent<Panel>(out var panel))
                 {
                     panel.Show();
 
                     panelsCount++;
+                }
+
+                if (this.transform == transform)
+                {
+                    panelsCount--;
                 }
             }
 

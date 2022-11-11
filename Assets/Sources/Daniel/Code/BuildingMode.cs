@@ -81,7 +81,7 @@ namespace TowerDefense.Daniel
             _currentItem.Information.Buy();
             _currentItem.UpdateVisual();
 
-            holder.BuildRoom(_currentItem.Information.Prefab.Value);
+            holder.BuildRoom(_currentItem.Information.Prefab);
 
             _currentItem = null;
 

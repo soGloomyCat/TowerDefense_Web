@@ -13,11 +13,10 @@ MonoBehaviour:
   m_Name: Mining Room
   m_EditorClassIdentifier: 
   _internalId: 3e343557-24e8-45ac-a4b0-8ab6371ed3e4
-  <Prefab>k__BackingField:
-    _underlyingValue: {fileID: 5714660829908029752, guid: ff1baa7bedbba444896f57e24cc15541, type: 3}
-  <Title>k__BackingField: "\u0417\u043E\u043B\u043E\u0442\u043E\u0434\u043E\u0431\u044B\u0447\u0430"
+  <Prefab>k__BackingField: {fileID: 5714660829908029752, guid: ff1baa7bedbba444896f57e24cc15541, type: 3}
+  <Title>k__BackingField: "\u0428\u0430\u0445\u0442\u0430"
   <Preview>k__BackingField: {fileID: 21300000, guid: 3042b019b052942a1baf7aa49d7ca6bb, type: 3}
-  <Description>k__BackingField: "\u041F\u0430\u0441\u0441\u0438\u0432\u043D\u043E
-    \u0434\u043E\u0431\u044B\u0432\u0430\u0435\u0442 \u0437\u043E\u043B\u043E\u0442\u043E"
-  <BuyingPrices>k__BackingField: f4010000
-  <UpgradePrices>k__BackingField: ee020000e8030000
+  <Description>k__BackingField: "\u0414\u043E\u0431\u044B\u0432\u0430\u0435\u0442
+    \u0437\u043E\u043B\u043E\u0442\u043E"
+  <BuyingPrices>k__BackingField: e8030000
+  <UpgradePrices>k__BackingField: dc050000d0070000

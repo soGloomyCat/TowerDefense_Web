@@ -239,8 +239,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 536f746be2bb80e4bba462fcdf38b158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _information: {fileID: 11400000, guid: 5964374fdbedb174db2505454739d820, type: 2}
   _money: {fileID: 11400000, guid: bb9a8b4e1ee21cc4d8760834e29440f9, type: 2}
-  _goldPerTick: 1
+  _goldPerTick: 010000000200000004000000
   _delay: 1
 --- !u!1 &6200907703291286567
 GameObject:

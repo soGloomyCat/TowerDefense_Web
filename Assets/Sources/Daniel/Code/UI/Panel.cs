@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using TowerDefense.Daniel.Extensions;
+using DG.Tweening;
 
 namespace TowerDefense.Daniel.UI
 {
@@ -62,10 +63,10 @@ namespace TowerDefense.Daniel.UI
 #endif
         }
 
-        private void Update()
+        /*private void Update()
         {
             _rectTransform.sizeDelta = Vector2.Lerp(_rectTransform.sizeDelta, _targetSize, _SizeAnimationSpeedMultiplier * Time.deltaTime);
-        }
+        }*/
 
         public void Show()
         {
@@ -74,27 +75,31 @@ namespace TowerDefense.Daniel.UI
             _targetSize = Vector2.zero;
 
 #if UNITY_EDITOR
-            if (UnityEditor.EditorApplication.isPlaying)
+            if (!UnityEditor.EditorApplication.isPlaying)
             {
+                _rectTransform.sizeDelta = _targetSize;
+
                 return;
             }
-
-            _rectTransform.sizeDelta = _targetSize;
 #endif
+
+            _rectTransform.DOSizeDelta(_targetSize, Mathf.Max(Screen.width, Screen.height) * 4).SetEase(Ease.InOutSine).SetSpeedBased();
         }
 
         public void Hide()
         {
-            _targetSize = _rectTransform.rect.size;
+            _targetSize = new Vector2(Screen.width, Screen.height);
 
 #if UNITY_EDITOR
-            if (UnityEditor.EditorApplication.isPlaying)
+            if (!UnityEditor.EditorApplication.isPlaying)
             {
+                _rectTransform.sizeDelta = _targetSize * 2;
+
                 return;
             }
-
-            _rectTransform.sizeDelta = _targetSize;
 #endif
+
+            _rectTransform.DOSizeDelta(_targetSize, Mathf.Max(Screen.width, Screen.height) * 4).SetEase(Ease.InOutSine).SetSpeedBased();
         }
 
         protected bool GetIsCurrent(Panel panel)

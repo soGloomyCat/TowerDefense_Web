@@ -1,4 +1,5 @@
 using System;
+using TowerDefense.Daniel.Models;
 
 namespace TowerDefense.Daniel.Interfaces
 {
@@ -6,6 +7,7 @@ namespace TowerDefense.Daniel.Interfaces
     {
         event Action<IReadOnlyRoom> Upgraded;
         int Level { get; }
+        RoomMarketInformation Information { get; }
 
         void FocusIn();
         void FocusOut();
