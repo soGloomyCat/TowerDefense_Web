@@ -314,7 +314,7 @@ GameObject:
   - component: {fileID: 6908686812182125383}
   - component: {fileID: 6908686812182125380}
   - component: {fileID: 6908686812182125381}
-  - component: {fileID: 6459832624996478679}
+  - component: {fileID: 2757166752607757639}
   m_Layer: 5
   m_Name: SpawnProgress
   m_TagString: Untagged
@@ -331,7 +331,7 @@ RectTransform:
   m_GameObject: {fileID: 6908686812182125387}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.64648, y: 0.64648, z: 0.64648}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6908686812827356631}
@@ -434,7 +434,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &6459832624996478679
+--- !u!114 &2757166752607757639
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -443,7 +443,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6908686812182125387}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29d63e8d5ed26d041bc6199e302e684c, type: 3}
+  m_Script: {fileID: 11500000, guid: e9299c6262d1fec4ab90c5fc5412ecfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _slider: {fileID: 6908686812182125381}

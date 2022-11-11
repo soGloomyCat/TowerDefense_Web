@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7839297089210715433}
   - component: {fileID: 7839297089210715434}
   - component: {fileID: 7839297089210715435}
+  - component: {fileID: 8299751581479173675}
   m_Layer: 5
   m_Name: WavePartSlider
   m_TagString: Untagged
@@ -126,10 +127,25 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8299751581479173675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7839297089210715437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 291bb148dc0d77f4295abbc0ffdbe198, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _slider: {fileID: 7839297089210715435}
+  _doneIcon: {fileID: 7839297090135441728}
+  _waveNumber: {fileID: 7839297090980611283}
 --- !u!1 &7839297090135441728
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,7 +163,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7839297090135441791
 RectTransform:
   m_ObjectHideFlags: 0
@@ -241,8 +257,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 2.5}
-  m_SizeDelta: {x: -6, y: -11}
+  m_AnchoredPosition: {x: 0, y: 2.7000008}
+  m_SizeDelta: {x: 0, y: -11}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7839297090566592217
 CanvasRenderer:

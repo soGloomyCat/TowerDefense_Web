@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,8 +14,9 @@ public class CastleBar : MonoBehaviour
     }
 
     public void OnTakeDamage(float currentValue)
-    { 
-        _slider.value = currentValue;
+    {
+        //_slider.value = currentValue;
+        _slider.DOValue(currentValue, 0.2f);
         _icon.React();
     }
 }

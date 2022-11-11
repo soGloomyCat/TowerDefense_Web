@@ -14,7 +14,9 @@ public class EnemySpawner : MonoBehaviour
     //[SerializeField] private Button _battleButton;
     [SerializeField] private TMP_Text _waveInfo;
     [SerializeField] private EnemySquad _enemySquad;
-    [SerializeField] private Slider _slider;
+    //[SerializeField] private Slider _slider;
+    [SerializeField] private SliderHandler _slider;
+    [SerializeField] private WavesSlider _wavesSlider;
     //[SerializeField] private Transform _targetCastle;
 
     private Dictionary<float, bool> _points = new Dictionary<float, bool>();
@@ -45,6 +47,7 @@ public class EnemySpawner : MonoBehaviour
     private void Awake()
     {
         GeneratePoints();
+        _wavesSlider.Generate(_settings.Count);
         _waveInfo.text = $"Волна {WaveNumber}";
     }
 
@@ -66,8 +69,9 @@ public class EnemySpawner : MonoBehaviour
             _formationsDirector = new FormationsDirector(_waveSettings.Formations);
             _pointsDirector = new PointsDirector(_points);
             _enemySquad.OnWaveStart(WaveNumber);
-            _slider.maxValue = _formationsDirector.EnemiesCount;
-            _slider.value = 0;
+            _slider.Setup(_formationsDirector.EnemiesCount, 0);
+            //_slider.maxValue = _formationsDirector.EnemiesCount;
+            //_slider.value = 0;
             _isGoing = true;
             return;
         }
@@ -128,7 +132,8 @@ public class EnemySpawner : MonoBehaviour
         //enemy.Dead += OnEnemyDead;
         //_enemies.Add(enemy);
         _enemySquad.Add(enemy);
-        _slider.value++;
+        //_slider.value++;
+        _slider.Add(1);
 
         SetPosition(enemy, out float x);
         enemy.Move(GetDestination(enemy, x));

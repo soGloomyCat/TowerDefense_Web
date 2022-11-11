@@ -81,9 +81,10 @@ MonoBehaviour:
   _farPoint: {fileID: 2558232266714282934}
   _depthSpread: 1.2
   _settings: {fileID: 11400000, guid: 630c2846663fa674f9561a6305c6cec0, type: 2}
-  _battleButton: {fileID: 0}
   _waveInfo: {fileID: 0}
   _enemySquad: {fileID: 0}
+  _slider: {fileID: 0}
+  _wavesSlider: {fileID: 0}
 --- !u!1 &4401533870354258727
 GameObject:
   m_ObjectHideFlags: 0

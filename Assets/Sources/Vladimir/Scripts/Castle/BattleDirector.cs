@@ -10,6 +10,7 @@ public class BattleDirector : MonoBehaviour
     [SerializeField] private EnemySquad _enemySquad;
     [SerializeField] private Money _money;
     [SerializeField] private Button _battleButton;
+    [SerializeField] private WavesSlider _wavesSlider;
 
     private void OnEnable()
     {
@@ -56,6 +57,7 @@ public class BattleDirector : MonoBehaviour
         _battleCanvas.HideBar();
         _enemySquad.StopAttack();
         _castleTargets.ResetTargets();
+        _wavesSlider.Done();
     }
 
     private void OnPanelButtonClick()

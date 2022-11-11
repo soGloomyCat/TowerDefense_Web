@@ -10,6 +10,7 @@ public class BattleCanvas : MonoBehaviour
     [SerializeField] private ResultPanel _winPanel;
     [SerializeField] private ResultPanel _losePanel;
     [SerializeField] private Money _money;
+    [SerializeField] private WavesSlider _wavesSlider;
 
     private Transform _openedPanel;
     private int _reward;
@@ -30,6 +31,7 @@ public class BattleCanvas : MonoBehaviour
             _reward = money;
             _winPanel.SetMoney(money);
             _money.Deposit(_reward);
+            _wavesSlider.Show();
 
             if (callback != null)
                 callback();
@@ -45,6 +47,8 @@ public class BattleCanvas : MonoBehaviour
 
         _losePanel.transform.DOScale(Vector3.one, 0.3f).SetEase(Ease.OutBack).OnComplete(() =>
         {
+            _wavesSlider.Show();
+
             if (callback != null)
                 callback();
         });
@@ -54,6 +58,7 @@ public class BattleCanvas : MonoBehaviour
     {
         _openedPanel.transform.DOScale(Vector3.zero, 0.3f).OnComplete(() =>
         {
+            _wavesSlider.Hide();
             PanelButtonClicked?.Invoke();
         });
     }
