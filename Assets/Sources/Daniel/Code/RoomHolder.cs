@@ -13,11 +13,13 @@ namespace TowerDefense.Daniel
 
         [SerializeField] private SpriteRenderer _buildOverlay = null;
         [SerializeField] private Transform _background = null;
+        [SerializeField] private Room _concreteRoomType = null;
 
         private Room _room = null;
 
         public IReadOnlyRoom Room => _room;
         public bool IsEmpty => _room == null;
+        public bool AllowAnyType => _concreteRoomType == null;
 
         private void Awake()
         {
@@ -43,8 +45,18 @@ namespace TowerDefense.Daniel
             }
         }
 
-        public void BuildRoom(Room roomPrefab)
+        public bool CanBuild(Room roomPrefab)
         {
+            return !AllowAnyType && roomPrefab.GetType() == _concreteRoomType.GetType();
+        }
+
+        public bool TryBuildRoom(Room roomPrefab)
+        {
+            if (!AllowAnyType && roomPrefab.GetType() != _concreteRoomType.GetType())
+            {
+                return false;
+            }
+
             if (_room != null)
             {
                 _room.Upgraded -= OnRoomUpgraded;
@@ -57,6 +69,8 @@ namespace TowerDefense.Daniel
             _room.Upgraded += OnRoomUpgraded;
 
             UpdateBackground();
+
+            return true;
         }
 
         public void UpgradeRoom()

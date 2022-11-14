@@ -20,4 +20,9 @@ MonoBehaviour:
   <Description>k__BackingField: "\u0420\u0430\u0441\u0448\u0438\u0440\u044F\u0435\u0442
     \u0437\u0430\u043C\u043E\u043A"
   <BuyingPrices>k__BackingField: f4010000
-  <UpgradePrices>k__BackingField: 
+  <UpgradePrices>k__BackingField: e8030000d0070000
+  <Stats>k__BackingField:
+  - <Name>k__BackingField: "\u041A\u043E\u043C\u043D\u0430\u0442\u044B"
+    <Values>k__BackingField: 030000000600000007000000
+  - <Name>k__BackingField: "\u041C\u0430\u043A\u0441. \u041A\u0430\u0437\u043D\u0430"
+    <Values>k__BackingField: fa000000f4010000e8030000

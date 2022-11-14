@@ -47,7 +47,7 @@ namespace TowerDefense.Daniel
         {
             _linkedPanel.Show();
             //_inputPanel.gameObject.SetActive(false);
-            _castle.ShowEmptyHolders();
+            _castle.ShowEmptyHolders(_currentItem.Information.Prefab);
         }
 
         public void Deactivate()
@@ -78,10 +78,11 @@ namespace TowerDefense.Daniel
                 return;
             }
 
-            _currentItem.Information.Buy();
-            _currentItem.UpdateVisual();
-
-            holder.BuildRoom(_currentItem.Information.Prefab);
+            if (holder.TryBuildRoom(_currentItem.Information.Prefab))
+            {
+                _currentItem.Information.Buy();
+                _currentItem.UpdateVisual();
+            }
 
             _currentItem = null;
 

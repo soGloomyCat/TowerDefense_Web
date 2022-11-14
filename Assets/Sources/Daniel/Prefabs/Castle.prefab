@@ -140,8 +140,27 @@ MonoBehaviour:
   - {fileID: 7316023109169068699}
   - {fileID: 3887437803015511310}
   - {fileID: 4869879483339618148}
-  _upgradePanel: {fileID: 0}
-  _upgradeButton: {fileID: 0}
+  _upgrades:
+  - <Mesh>k__BackingField: {fileID: 5366039391917553228, guid: 628c0915f7b8cf84abf96bbf26f1fe93, type: 3}
+    <Holders>k__BackingField:
+    - {fileID: 8148719618315638847}
+    - {fileID: 7316023107703069697}
+    - {fileID: 7316023107326623621}
+  - <Mesh>k__BackingField: {fileID: 5366039391917553228, guid: 628c0915f7b8cf84abf96bbf26f1fe93, type: 3}
+    <Holders>k__BackingField:
+    - {fileID: 7316023107879294742}
+    - {fileID: 7316023107176289500}
+    - {fileID: 7316023107104614566}
+  - <Mesh>k__BackingField: {fileID: 5366039391917553228, guid: 628c0915f7b8cf84abf96bbf26f1fe93, type: 3}
+    <Holders>k__BackingField:
+    - {fileID: 7316023108669888402}
+    - {fileID: 7316023109169068699}
+    - {fileID: 3887437803015511310}
+  - <Mesh>k__BackingField: {fileID: 5366039391917553228, guid: 628c0915f7b8cf84abf96bbf26f1fe93, type: 3}
+    <Holders>k__BackingField:
+    - {fileID: 4869879483339618148}
+  _meshFilter: {fileID: 8148719619038304710}
+  _upgradePopup: {fileID: 0}
   _money: {fileID: 11400000, guid: bb9a8b4e1ee21cc4d8760834e29440f9, type: 2}
 --- !u!1001 &2405864504406938195
 PrefabInstance:
@@ -303,6 +322,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoomHolder (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 1482156040065617757, guid: ae83d1ed1d7a9f74cb2c4a2426b60fb9, type: 3}
+      propertyPath: _concreteRoomType
+      value: 
+      objectReference: {fileID: 5714660829908029752, guid: 2a21f7b99943b2d44b59155e8c4677c6, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae83d1ed1d7a9f74cb2c4a2426b60fb9, type: 3}
 --- !u!4 &4869879483339618145 stripped
@@ -1503,6 +1526,11 @@ PrefabInstance:
       objectReference: {fileID: 5366039391917553228, guid: 628c0915f7b8cf84abf96bbf26f1fe93, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 637b3bb1a53fd584b8b2f29eddb05290, type: 3}
+--- !u!33 &8148719619038304710 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: 3300000, guid: 637b3bb1a53fd584b8b2f29eddb05290, type: 3}
+  m_PrefabInstance: {fileID: 8148719619041559398}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8148719619041696230 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 637b3bb1a53fd584b8b2f29eddb05290, type: 3}

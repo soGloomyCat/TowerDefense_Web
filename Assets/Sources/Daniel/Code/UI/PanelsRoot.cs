@@ -116,6 +116,13 @@ namespace TowerDefense.Daniel.UI
                 return;
             }
 
+            if (this == null)
+            {
+                UnityEditor.Selection.selectionChanged -= OnSelectionChanged;
+
+                return;
+            }
+
             //var panels = UnityEditor.Selection.GetFiltered<Panel>(UnityEditor.SelectionMode.ExcludePrefab | UnityEditor.SelectionMode.Assets);
             var transforms = UnityEditor.Selection.GetTransforms(UnityEditor.SelectionMode.ExcludePrefab | UnityEditor.SelectionMode.Assets);
 

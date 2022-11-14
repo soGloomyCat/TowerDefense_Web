@@ -18,5 +18,8 @@ MonoBehaviour:
   <Preview>k__BackingField: {fileID: 21300000, guid: 3042b019b052942a1baf7aa49d7ca6bb, type: 3}
   <Description>k__BackingField: "\u0423\u0432\u0435\u043B\u0438\u0447\u0438\u0432\u0430\u0435\u0442
     \u043B\u0438\u043C\u0438\u0442 \u0437\u043E\u043B\u043E\u0442\u0430"
-  <BuyingPrices>k__BackingField: f4010000
-  <UpgradePrices>k__BackingField: e8030000d0070000
+  <BuyingPrices>k__BackingField: ee020000
+  <UpgradePrices>k__BackingField: dc050000b80b0000
+  <Stats>k__BackingField:
+  - <Name>k__BackingField: "\u041C\u0430\u043A\u0441. \u041A\u0430\u0437\u043D\u0430"
+    <Values>k__BackingField: ee020000dc050000b80b0000

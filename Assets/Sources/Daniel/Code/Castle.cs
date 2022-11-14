@@ -5,33 +5,39 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using TowerDefense.Daniel.Interfaces;
+using TowerDefense.Daniel.Rooms;
+using TowerDefense.Daniel.UI;
+using System.Collections;
 
 namespace TowerDefense.Daniel
 {
     public class Castle : MonoBehaviour
     {
-        private const float _UpgradePanelAnimationSpeed = 8;
+        [Serializable]
+        private class CastleUpgrade
+        {
+            [field: SerializeField] public Mesh Mesh { get; private set; } = null;
+            [field: SerializeField] public List<RoomHolder> Holders { get; private set; } = new List<RoomHolder>();
+        }
 
         public event Action<RoomHolder> ClickedOnEmptyHolder = null;
         public event Action<IReadOnlyRoom> RoomAdded = null;
         public event Action<IReadOnlyRoom> RoomUpgraded = null;
 
         [SerializeField, HideInInspector] private List<RoomHolder> _roomHolders = new List<RoomHolder>();
-        [SerializeField] private RectTransform _upgradePanel = null;
-        [SerializeField] private Button _upgradeButton = null;
+        [SerializeField] private List<CastleUpgrade> _upgrades = new List<CastleUpgrade>();
+        [SerializeField] private MeshFilter _meshFilter = null;
+        [SerializeField] private UpgradePopup _upgradePopup = null;
         [SerializeField] private Money _money = null;
 
         private RoomHolder _selectedHolder = null;
-        private bool _isUpgradePanelEnabled = false;
-
-        private void Awake()
-        {
-            _upgradePanel.localScale = Vector3.zero;
-        }
+        private int _maxMoney = 500;
 
         private void Start()
         {
             HideAllHolders();
+
+            UpdateVisual();
         }
 
         private void OnEnable()
@@ -43,7 +49,11 @@ namespace TowerDefense.Daniel
                 roomHolder.RoomUpgraded += OnRoomUpgraded;
             }
 
-            _upgradeButton.onClick.AddListener(UpgradeSelectedHolder);
+            _upgradePopup.Closed += CancelSelection;
+            _upgradePopup.UpgradeRequested += UpgradeSelectedHolder;
+            _money.ValueChanged += OnMoneyChanged;
+
+            OnMoneyChanged(0, _money.Value);
         }
 
         private void OnDisable()
@@ -55,7 +65,9 @@ namespace TowerDefense.Daniel
                 roomHolder.RoomUpgraded -= OnRoomUpgraded;
             }
 
-            _upgradeButton.onClick.RemoveListener(UpgradeSelectedHolder);
+            _upgradePopup.Closed -= CancelSelection;
+            _upgradePopup.UpgradeRequested -= UpgradeSelectedHolder;
+            _money.ValueChanged -= OnMoneyChanged;
         }
 
         private void OnValidate()
@@ -67,9 +79,7 @@ namespace TowerDefense.Daniel
         {
             _selectedHolder = null;
 
-            _isUpgradePanelEnabled = false;
-
-            _upgradePanel.DOScale(Vector3.zero, _UpgradePanelAnimationSpeed).SetSpeedBased();
+            _upgradePopup.Hide();
         }
 
         public void Select(RoomHolder holder)
@@ -80,23 +90,23 @@ namespace TowerDefense.Daniel
 
                 return;
             }
-
+             
             if (_selectedHolder == holder)
             {
-                _isUpgradePanelEnabled = !_isUpgradePanelEnabled;
+                _upgradePopup.Toggle();
+            }
+            else if (holder != null)
+            {
+                _upgradePopup.Show();
 
-                _upgradePanel.DOScale(_isUpgradePanelEnabled ? Vector3.one : Vector3.zero, _UpgradePanelAnimationSpeed).SetSpeedBased();
+                _upgradePopup.Initialize(holder.Room);
             }
             else
             {
-                _isUpgradePanelEnabled = true;
-
-                _upgradePanel.DOScale(Vector3.one, _UpgradePanelAnimationSpeed).SetSpeedBased();
+                _upgradePopup.Hide();
             }
 
             _selectedHolder = holder;
-
-            _upgradeButton.gameObject.SetActive(_selectedHolder.Room.Level < _selectedHolder.Room.Information.UpgradePrices.Count);
         }
 
         public IEnumerable<T> GetRoomsOfType<T>() where T : IReadOnlyRoom
@@ -104,11 +114,11 @@ namespace TowerDefense.Daniel
             return _roomHolders.Select(x => x.Room).Where(x => x != null).Where(x => x is T).Cast<T>();
         }
 
-        public void ShowEmptyHolders()
+        public void ShowEmptyHolders(Room roomPrefab)
         {
             foreach (var roomHolder in _roomHolders)
             {
-                if (!roomHolder.IsEmpty)
+                if (!roomHolder.IsEmpty || (roomPrefab.NeedConcreteHolder && !roomHolder.CanBuild(roomPrefab)))
                 {
                     continue;
                 }
@@ -142,14 +152,97 @@ namespace TowerDefense.Daniel
             }
         }
 
+        private void UpdateVisual()
+        {
+            var room = GetRoomsOfType<StrategyRoom>().FirstOrDefault();
+
+            var level = 0;
+            if (room != null)
+            {
+                level = room.Level + 1;
+            }
+
+            for (int i = 0; i < _upgrades.Count; i++)
+            {
+                var upgrade = _upgrades[i];
+                foreach (var holder in upgrade.Holders)
+                {
+                    holder.gameObject.SetActive(i <= level);
+                }
+
+                if (i == level)
+                {
+                    _meshFilter.mesh = upgrade.Mesh;
+                }
+            }
+        }
+
+        private void UpdateMoneyCapacity()
+        {
+            var sum = 0;
+
+            foreach (var holder in _roomHolders)
+            {
+                if (holder.Room is StrategyRoom strategyRoom)
+                {
+                    sum += strategyRoom.MoneyCapacity;
+                }
+                if (holder.Room is BankRoom bankRoom)
+                {
+                    sum += bankRoom.Capacity;
+                }
+            }
+
+            _maxMoney = 500 + sum;
+        }
+
+        private IEnumerator WithdrawLater(int amount)
+        {
+            yield return null;
+            yield return null;
+            yield return null;
+
+            _money.TryWithdraw(amount);
+        }
+
         private void OnRoomAdded(IReadOnlyRoom room)
         {
+            if (room is StrategyRoom strategyRoom)
+            {
+                strategyRoom.Initialize(_upgrades.Count - 1);
+
+                UpdateVisual();
+                UpdateMoneyCapacity();
+            }
+            if (room is BankRoom bankRoom)
+            {
+                UpdateMoneyCapacity();
+            }
+
             RoomAdded?.Invoke(room);
         }
 
         private void OnRoomUpgraded(IReadOnlyRoom room)
         {
+            if (room is StrategyRoom strategyRoom)
+            {
+                UpdateVisual();
+                UpdateMoneyCapacity();
+            }
+            if (room is BankRoom bankRoom)
+            {
+                UpdateMoneyCapacity();
+            }
+
             RoomUpgraded?.Invoke(room);
+        }
+
+        private void OnMoneyChanged(int oldValue, int newValue)
+        {
+            if (newValue > _maxMoney)
+            {
+                StartCoroutine(WithdrawLater(newValue - _maxMoney));
+            }
         }
     }
 }

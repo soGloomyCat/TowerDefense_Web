@@ -11,6 +11,7 @@ namespace TowerDefense.Daniel
 
         public event Action<IReadOnlyRoom> Upgraded = null;
 
+        [field: SerializeField] public bool NeedConcreteHolder { get; private set; } = false;
         public int Level { get; private set; } = 0;
         public RoomMarketInformation Information => _information;
 
@@ -32,8 +33,10 @@ namespace TowerDefense.Daniel
         public void Upgrade()
         {
             Level = Mathf.Clamp(Level + 1, 0, MaxLevel);
+
+            Upgraded?.Invoke(this);
         }
 
-        protected virtual int MaxLevel { get; } = 0;
+        protected virtual int MaxLevel => _information.UpgradePrices.Count;
     }
 }

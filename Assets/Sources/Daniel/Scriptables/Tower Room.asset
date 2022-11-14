@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e98b1953702a8b4a907e1ede149ec5b, type: 3}
+  m_Name: Tower Room
+  m_EditorClassIdentifier: 
+  _internalId: 0c6894aa-8132-4ca7-ad10-82cf1656956e
+  <Prefab>k__BackingField: {fileID: 5714660829908029752, guid: 2a21f7b99943b2d44b59155e8c4677c6, type: 3}
+  <Title>k__BackingField: "\u0411\u0430\u0448\u043D\u044F"
+  <Preview>k__BackingField: {fileID: 21300000, guid: 3042b019b052942a1baf7aa49d7ca6bb, type: 3}
+  <Description>k__BackingField: "\u041D\u0435\u0443\u044F\u0437\u0432\u0438\u043C\u043E\u0441\u0442\u044C
+    \u043D\u0430 5 \u0441\u0435\u043A"
+  <BuyingPrices>k__BackingField: 94110000
+  <UpgradePrices>k__BackingField: 
+  <Stats>k__BackingField: []

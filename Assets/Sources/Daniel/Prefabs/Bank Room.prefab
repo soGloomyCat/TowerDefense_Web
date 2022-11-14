@@ -230,8 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _information: {fileID: 11400000, guid: c38b7dbb0515bce489ab2a269d6e18a2, type: 2}
-  _money: {fileID: 11400000, guid: bb9a8b4e1ee21cc4d8760834e29440f9, type: 2}
-  _capacities: f4010000e8030000d0070000
+  _moneyCapacityName: "\u041C\u0430\u043A\u0441. \u041A\u0430\u0437\u043D\u0430"
 --- !u!1 &6200907703291286567
 GameObject:
   m_ObjectHideFlags: 0
