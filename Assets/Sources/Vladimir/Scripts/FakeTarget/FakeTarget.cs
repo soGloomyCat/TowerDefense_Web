@@ -1,15 +1,19 @@
 using UnityEngine;
 using UnityEngine.Events;
-using DG.Tweening;
 
 [RequireComponent(typeof(BoxCollider))]
+[RequireComponent(typeof(TargetShower))]
 public class FakeTarget : MonoBehaviour
 {
     [SerializeField] private float _startHealth;
     [SerializeField] private FakeTargetHealthHandler _healthHandler;
+    [SerializeField] private Transform _targetPoint;
 
     private float _currentHealth;
     private BoxCollider _collider;
+    private TargetShower _targetShower;
+
+    public Transform TargetPoint => _targetPoint;
 
     public event UnityAction<FakeTarget> TargetDestroyed;
 
@@ -17,7 +21,7 @@ public class FakeTarget : MonoBehaviour
     {
         _collider = GetComponent<BoxCollider>();
         _collider.isTrigger = true;
-        transform.localScale = Vector3.zero;
+        _targetShower = GetComponent<TargetShower>();
         _currentHealth = _startHealth;
     }
 
@@ -49,20 +53,17 @@ public class FakeTarget : MonoBehaviour
 
     public void Show()
     { 
-        gameObject.SetActive(true);
-        transform.DOScale(Vector3.one, 0.3f).SetEase(Ease.OutBack);
+        _targetShower.Show();
     }
 
     public void Hide()
     {
-        transform.DOScale(Vector3.zero, 0.3f).SetEase(Ease.InBack).OnComplete(() =>
-        {
-            gameObject.SetActive(false);
-        });
+        _targetShower.Hide();  
     }
 
     public void ResetTarget()
     {
         gameObject.SetActive(false);
+        _targetShower.ResetShower();
     }
 }

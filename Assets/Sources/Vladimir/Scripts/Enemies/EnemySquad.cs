@@ -157,24 +157,24 @@ public class EnemySquad : MonoBehaviour
                 closeTarget.TargetDestroyed += OnCloseTargetDestroy;
 
                 foreach (Enemy enemy in _closeEnemies)
-                    enemy.SetTarget(closeTarget.transform.position);
+                    enemy.SetTarget(closeTarget.TargetPoint.position);
             }
             else if (fakeTarget.TryGetComponent(out FarTarget farTarget))
             {
                 farTarget.TargetDestroyed += OnFarTargetDestroy;
 
                 foreach (Enemy enemy in _farEnemies)
-                    enemy.SetTarget(farTarget.transform.position);
+                    enemy.SetTarget(farTarget.TargetPoint.position);
             }
             else if (fakeTarget.TryGetComponent(out BothTarget bothTarget))
             {
                 bothTarget.TargetDestroyed += OnBothTargetDestroy;
 
                 foreach (Enemy enemy in _farEnemies)
-                    enemy.SetTarget(bothTarget.transform.position);
+                    enemy.SetTarget(bothTarget.TargetPoint.position);
 
                 foreach (Enemy enemy in _closeEnemies)
-                    enemy.SetTarget(bothTarget.transform.position);
+                    enemy.SetTarget(bothTarget.TargetPoint.position);
             }
         }
 
