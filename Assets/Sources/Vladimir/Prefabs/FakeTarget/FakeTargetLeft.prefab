@@ -166,8 +166,28 @@ PrefabInstance:
       propertyPath: m_Name
       value: FakeTargetLeft
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4580905719959448593, guid: fb03f61fea4b29f498d730986a9dcf04, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fb03f61fea4b29f498d730986a9dcf04, type: 3}
+--- !u!1 &4289941761814801023 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6529827542762437126, guid: fb03f61fea4b29f498d730986a9dcf04, type: 3}
+  m_PrefabInstance: {fileID: 6995907439669219449}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2484948460364173475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4289941761814801023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83aaf83233531ae47b15479630ff624e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startHealth: 10
+  _healthHandler: {fileID: 0}
 --- !u!4 &4756918293432516434 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2528071059817967403, guid: fb03f61fea4b29f498d730986a9dcf04, type: 3}

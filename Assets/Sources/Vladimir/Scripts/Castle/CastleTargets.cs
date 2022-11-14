@@ -10,7 +10,7 @@ public class CastleTargets : MonoBehaviour
 
     public Transform Castle => _castle;
 
-    public event UnityAction<Transform> TargetChanged;
+    public event UnityAction<FakeTarget> TargetChanged;
 
     public void EnableAnotherTarget()
     {
@@ -20,17 +20,17 @@ public class CastleTargets : MonoBehaviour
         _isAnyTargetActive = true;
         FakeTarget target = _targtes.EnableRandomTarget();
         target.TargetDestroyed += OnTargetDestroyed;
-        TargetChanged?.Invoke(target.transform);
+        TargetChanged?.Invoke(target);
     }
-
+    
     private void OnTargetDestroyed(FakeTarget target)
     { 
         target.TargetDestroyed -= OnTargetDestroyed;
         target.Hide();
         _isAnyTargetActive = false;
-        TargetChanged?.Invoke(_castle);
+        //TargetChanged?.Invoke(_castle);
     }
-
+    
     public void ResetTargets()
     { 
         _targtes.ResetTargetList();

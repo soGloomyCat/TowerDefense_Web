@@ -166,10 +166,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: FakeTargetWall
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4580905719959448593, guid: fb03f61fea4b29f498d730986a9dcf04, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fb03f61fea4b29f498d730986a9dcf04, type: 3}
 --- !u!4 &4257196070030637273 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2528071059817967403, guid: fb03f61fea4b29f498d730986a9dcf04, type: 3}
   m_PrefabInstance: {fileID: 1729692839588681714}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4800698615201983988 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6529827542762437126, guid: fb03f61fea4b29f498d730986a9dcf04, type: 3}
+  m_PrefabInstance: {fileID: 1729692839588681714}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7995619936536439716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4800698615201983988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24b680d8ba08e7b4abd846677f192181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startHealth: 15
+  _healthHandler: {fileID: 0}
