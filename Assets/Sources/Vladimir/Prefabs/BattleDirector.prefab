@@ -47,4 +47,8 @@ MonoBehaviour:
   _castleHealth: {fileID: 0}
   _battleCanvas: {fileID: 0}
   _enemySpawner: {fileID: 0}
+  _castleTargets: {fileID: 0}
+  _enemySquad: {fileID: 0}
   _money: {fileID: 11400000, guid: bb9a8b4e1ee21cc4d8760834e29440f9, type: 2}
+  _battleButton: {fileID: 0}
+  _wavesSlider: {fileID: 0}

@@ -6,9 +6,11 @@ using System;
 public class BattleCanvas : MonoBehaviour
 {
     [SerializeField] private RectTransform _castleBar;
+    [SerializeField] private RectTransform _spawnerBar;
     [SerializeField] private ResultPanel _winPanel;
     [SerializeField] private ResultPanel _losePanel;
     [SerializeField] private Money _money;
+    [SerializeField] private WavesSlider _wavesSlider;
 
     private Transform _openedPanel;
     private int _reward;
@@ -29,6 +31,7 @@ public class BattleCanvas : MonoBehaviour
             _reward = money;
             _winPanel.SetMoney(money);
             _money.Deposit(_reward);
+            _wavesSlider.Show();
 
             if (callback != null)
                 callback();
@@ -44,6 +47,8 @@ public class BattleCanvas : MonoBehaviour
 
         _losePanel.transform.DOScale(Vector3.one, 0.3f).SetEase(Ease.OutBack).OnComplete(() =>
         {
+            _wavesSlider.Show();
+
             if (callback != null)
                 callback();
         });
@@ -53,17 +58,20 @@ public class BattleCanvas : MonoBehaviour
     {
         _openedPanel.transform.DOScale(Vector3.zero, 0.3f).OnComplete(() =>
         {
+            _wavesSlider.Hide();
             PanelButtonClicked?.Invoke();
         });
     }
 
     public void ShowBar()
     {
-        _castleBar.DOAnchorPosY(-120, 0.5f).SetEase(Ease.OutBack);
+        _castleBar.DOAnchorPosX(90, 0.5f).SetEase(Ease.OutBack);
+        _spawnerBar.DOAnchorPosX(-90, 0.5f).SetEase(Ease.OutBack);
     }
 
     public void HideBar()
     {
-        _castleBar.DOAnchorPosY(120, 0.5f).SetEase(Ease.OutBack);
+        _castleBar.DOAnchorPosX(-90, 0.5f).SetEase(Ease.InBack);
+        _spawnerBar.DOAnchorPosX(90, 0.5f).SetEase(Ease.InBack);
     }
 }

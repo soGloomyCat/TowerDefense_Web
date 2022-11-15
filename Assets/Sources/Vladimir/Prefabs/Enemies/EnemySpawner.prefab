@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1068575645865899698}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 34}
+  m_LocalPosition: {x: -0, y: 0, z: 36.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -81,7 +81,10 @@ MonoBehaviour:
   _farPoint: {fileID: 2558232266714282934}
   _depthSpread: 1.2
   _settings: {fileID: 11400000, guid: 630c2846663fa674f9561a6305c6cec0, type: 2}
-  _targetCastle: {fileID: 0}
+  _waveInfo: {fileID: 0}
+  _enemySquad: {fileID: 0}
+  _slider: {fileID: 0}
+  _wavesSlider: {fileID: 0}
 --- !u!1 &4401533870354258727
 GameObject:
   m_ObjectHideFlags: 0
