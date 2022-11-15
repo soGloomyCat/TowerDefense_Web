@@ -6,6 +6,7 @@ using DG.Tweening;
 namespace TowerDefense.Daniel.UI
 {
     [RequireComponent(typeof(RectTransform))]
+    [RequireComponent(typeof(CanvasGroup))]
     [DisallowMultipleComponent]
     [ExecuteAlways]
     public class Panel : MonoBehaviour
@@ -20,6 +21,7 @@ namespace TowerDefense.Daniel.UI
         [SerializeField] private bool _isCurrent = false;
 
         private RectTransform _rectTransform = null;
+        private CanvasGroup _canvasGroup = null;
         private Vector2 _targetSize = Vector2.zero;
 
         public bool IsActive => true;
@@ -27,6 +29,7 @@ namespace TowerDefense.Daniel.UI
         protected virtual void Awake()
         {
             _rectTransform = GetComponent<RectTransform>();
+            _canvasGroup = GetComponent<CanvasGroup>();
         }
 
         protected virtual void Start()
@@ -74,6 +77,9 @@ namespace TowerDefense.Daniel.UI
 
             _targetSize = Vector2.zero;
 
+            _canvasGroup.interactable = true;
+            _canvasGroup.blocksRaycasts = true;
+
 #if UNITY_EDITOR
             if (!UnityEditor.EditorApplication.isPlaying)
             {
@@ -83,12 +89,15 @@ namespace TowerDefense.Daniel.UI
             }
 #endif
 
-            _rectTransform.DOSizeDelta(_targetSize, Mathf.Max(Screen.width, Screen.height) * 4).SetEase(Ease.InOutSine).SetSpeedBased();
+            _rectTransform.DOSizeDelta(_targetSize, Mathf.Max(Screen.width, Screen.height) * 8).SetEase(Ease.InOutSine).SetSpeedBased();
         }
 
         public void Hide()
         {
-            _targetSize = new Vector2(Screen.width, Screen.height);
+            _targetSize = new Vector2(Screen.width, Screen.height) * 2;
+
+            _canvasGroup.interactable = false;
+            _canvasGroup.blocksRaycasts = false;
 
 #if UNITY_EDITOR
             if (!UnityEditor.EditorApplication.isPlaying)
@@ -99,7 +108,7 @@ namespace TowerDefense.Daniel.UI
             }
 #endif
 
-            _rectTransform.DOSizeDelta(_targetSize, Mathf.Max(Screen.width, Screen.height) * 4).SetEase(Ease.InOutSine).SetSpeedBased();
+            _rectTransform.DOSizeDelta(_targetSize, Mathf.Max(Screen.width, Screen.height) * 8).SetEase(Ease.InOutSine).SetSpeedBased();
         }
 
         protected bool GetIsCurrent(Panel panel)

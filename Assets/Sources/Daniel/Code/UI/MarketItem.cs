@@ -27,6 +27,13 @@ namespace TowerDefense.Daniel.UI
 
         public void UpdateVisual()
         {
+            if (Information.CurrentPrice < 0)
+            {
+                Destroy(gameObject);
+
+                return;
+            }
+
             _title.text = Information.Title;
             _preview.sprite = Information.Preview;
             _description.text = Information.Description;
