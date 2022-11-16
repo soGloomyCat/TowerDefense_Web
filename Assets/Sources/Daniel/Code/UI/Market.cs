@@ -11,7 +11,7 @@ namespace TowerDefense.Daniel.UI
         public event Action<MarketItem> ItemSelected = null;
 
         [SerializeField] private List<RoomMarketInformation> _rooms = new List<RoomMarketInformation>();
-        [SerializeField] private Money _money = null;
+        [SerializeField] private MoneyWrapper _money = null;
         [SerializeField] private MarketItem _itemPrefab = null;
         [SerializeField] private RectTransform _itemsContainer = null;
 
@@ -54,7 +54,7 @@ namespace TowerDefense.Daniel.UI
 
         private void OnMarketItemClicked(MarketItem item)
         {
-            if (item.Information.CurrentPrice > 0 && _money.Value < item.Information.CurrentPrice)
+            if (item.Information.CurrentPrice > 0 && !_money.CanWithdraw(item.Information.CurrentPrice))
             {
                 return;
             }

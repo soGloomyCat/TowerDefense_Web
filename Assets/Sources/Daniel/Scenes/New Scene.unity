@@ -879,13 +879,21 @@ PrefabInstance:
       propertyPath: m_Size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8709520577268845284, guid: 7009f225f47f282418b8ddf28dd63232, type: 3}
+      propertyPath: _money
+      value: 
+      objectReference: {fileID: 8148719619651708845}
+    - target: {fileID: 8709520577268845284, guid: 7009f225f47f282418b8ddf28dd63232, type: 3}
+      propertyPath: _isAllFree
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8709520577268845286, guid: 7009f225f47f282418b8ddf28dd63232, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 2560
+      value: 5120
       objectReference: {fileID: 0}
     - target: {fileID: 8709520577268845286, guid: 7009f225f47f282418b8ddf28dd63232, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 1920
+      value: 2880
       objectReference: {fileID: 0}
     - target: {fileID: 8709520577409853352, guid: 7009f225f47f282418b8ddf28dd63232, type: 3}
       propertyPath: m_Size
@@ -1124,6 +1132,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4809196550301319859, guid: 681ac8623e39ba84d8383561e83cc205, type: 3}
+      propertyPath: _isAllFree
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6370211732044511790, guid: 681ac8623e39ba84d8383561e83cc205, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1190,3 +1202,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 681ac8623e39ba84d8383561e83cc205, type: 3}
+--- !u!114 &8148719619651708845 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4809196550301319859, guid: 681ac8623e39ba84d8383561e83cc205, type: 3}
+  m_PrefabInstance: {fileID: 8148719619651708844}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ad107840afcea440ac81be2f24123e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

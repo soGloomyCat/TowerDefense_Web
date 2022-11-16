@@ -47,12 +47,12 @@ namespace TowerDefense.Daniel
 
         public bool CanBuild(Room roomPrefab)
         {
-            return !AllowAnyType && roomPrefab.GetType() == _concreteRoomType.GetType();
+            return (AllowAnyType && !roomPrefab.NeedConcreteHolder) || (!AllowAnyType && roomPrefab.GetType() == _concreteRoomType.GetType());
         }
 
         public bool TryBuildRoom(Room roomPrefab)
         {
-            if (!AllowAnyType && roomPrefab.GetType() != _concreteRoomType.GetType())
+            if ((!AllowAnyType || roomPrefab.NeedConcreteHolder) && (AllowAnyType || roomPrefab.GetType() != _concreteRoomType.GetType()))
             {
                 return false;
             }
