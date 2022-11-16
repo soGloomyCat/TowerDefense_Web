@@ -9,6 +9,7 @@ public class Cleaner : MonoBehaviour
     [SerializeField] private Transform _container;
     [SerializeField] private List<Button> _finalButton;
     [SerializeField] private Transform _warriorsView;
+    [SerializeField] private EnemyDetector _enemyDetector;
 
     private void OnEnable()
     {
@@ -42,5 +43,7 @@ public class Cleaner : MonoBehaviour
         {
             Destroy(_warriorsView.GetChild(i).gameObject);
         }
+
+        _enemyDetector.Clean();
     }
 }

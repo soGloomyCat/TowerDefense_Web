@@ -6,7 +6,6 @@ using TMPro;
 using DG.Tweening;
 using TowerDefense.Daniel.Models;
 using TowerDefense.Daniel.Interfaces;
-using static UnityEditor.Recorder.OutputPath;
 
 namespace TowerDefense.Daniel.UI
 {

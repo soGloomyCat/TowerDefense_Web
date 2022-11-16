@@ -52,11 +52,6 @@ namespace TowerDefense.Daniel.UI
             return _money.TryWithdraw(amount);
         }
 
-        public MarketItem GetItem()
-        {
-            return _items[0];
-        }
-
         private void OnMarketItemClicked(MarketItem item)
         {
             if (item.Information.CurrentPrice > 0 && _money.Value < item.Information.CurrentPrice)

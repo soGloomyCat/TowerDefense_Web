@@ -9,12 +9,15 @@ public class Place : MonoBehaviour, IDropHandler
     [SerializeField] private GameObject _frame;
     [SerializeField] private Transform _spawnPoint;
 
+    private UltimateButton _ultimateButton;
     private Item _currentItem;
     private Transform _currentIcon;
     private Warrior _currentWarrior;
     private bool _isActive = false;
 
     public event Action Clicked;
+    public event Action<Sprite> NeedSetIcon;
+    public event Action NeedClean;
 
     public bool IsEmpty => _currentItem == null;
     public bool IsActive => _isActive;
@@ -26,7 +29,7 @@ public class Place : MonoBehaviour, IDropHandler
             Transform item = eventData.pointerDrag.transform;
             _currentIcon = Instantiate(item, transform);
             _currentIcon.localPosition = Vector3.zero;
-            _currentIcon.localScale = new Vector3(0.05f, 0.04f, 0.015f);
+            _currentIcon.localScale = new Vector3(0.025f, 0.025f, 0.025f);
             _currentIcon.localRotation = Quaternion.Euler(0, 0, 180);
             _currentItem = _currentIcon.GetComponent<Item>();
             DeactivateFrame();
@@ -34,16 +37,18 @@ public class Place : MonoBehaviour, IDropHandler
         }
     }
 
-    public void CreateWarrior(EnemyDetector enemyDetector)
+    public Warrior CreateWarrior()
     {
         _currentWarrior = Instantiate(_currentItem.GetWarrior(), _spawnPoint);
-        _currentWarrior.transform.localRotation = Quaternion.Euler(90, 0, 0);
-        _currentWarrior.Inizialize(enemyDetector);
+        _currentWarrior.Inizialize(_ultimateButton);
         Destroy(_currentIcon.gameObject);
+        NeedSetIcon?.Invoke(_currentWarrior.GetUltimateIcon());
+        return _currentWarrior;
     }
 
-    public void ChangeStatus()
+    public void ChangeStatus(UltimateButton ultimateButton)
     {
+        _ultimateButton = ultimateButton;
         _isActive = true;
     }
 
@@ -63,6 +68,7 @@ public class Place : MonoBehaviour, IDropHandler
         {
             Destroy(_currentWarrior.gameObject);
             _currentWarrior = null;
+            NeedClean?.Invoke();
         }
     }
 }

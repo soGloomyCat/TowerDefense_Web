@@ -7,10 +7,13 @@ using UnityEngine;
 
 public class WarriorsHandler : MonoBehaviour
 {
+    private const int ArcheryIndex = 0;
+    private const int WizardIndex = 1;
+    private const int GuardianIndex = 2;
+
     [SerializeField] private List<GameObject> _warriors;
     [SerializeField] private Castle _castle;
 
-    private int _currentWarriorsIndex;
     private List<GameObject> _activeWarriors;
 
     private void OnEnable()
@@ -20,9 +23,7 @@ public class WarriorsHandler : MonoBehaviour
 
     private void Awake()
     {
-        _currentWarriorsIndex = 0;
         _activeWarriors = new List<GameObject>();
-        _activeWarriors.Add(_warriors[_currentWarriorsIndex]);
     }
 
     public List<GameObject> GetActiveWarriors()
@@ -32,10 +33,11 @@ public class WarriorsHandler : MonoBehaviour
 
     private void ExpendWarriors(IReadOnlyRoom roomType)
     {
-        if (roomType is ForgeRoom)
-        {
-            _currentWarriorsIndex++;
-            _activeWarriors.Add(_warriors[_currentWarriorsIndex]);
-        }
+        if (roomType is ArcheryRoom)
+            _activeWarriors.Add(_warriors[ArcheryIndex]);
+        else if (roomType is LibraryRoom)
+            _activeWarriors.Add(_warriors[WizardIndex]);
+        else if (roomType is EngineeringRoom)
+            _activeWarriors.Add(_warriors[GuardianIndex]);
     }
 }

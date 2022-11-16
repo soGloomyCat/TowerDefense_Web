@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e98b1953702a8b4a907e1ede149ec5b, type: 3}
   m_Name: Engineering Room
   m_EditorClassIdentifier: 
-  _internalId: 63be8c01-a0b6-4681-9ca4-1d1afd5d3613
-  <Prefab>k__BackingField: {fileID: 5714660829908029752, guid: df2f812397c03da49870ca23c5da9c40, type: 3}
+  _internalId: 8c965129-31b4-4a84-b37b-823fb6546f0a
+  <Prefab>k__BackingField: {fileID: 7855119234558214877, guid: 9feff517af54f1c4faba3ad3b42a8e4d, type: 3}
   <Title>k__BackingField: "\u0418\u043D\u0436\u0435\u043D\u0435\u0440\u043D\u0430\u044F"
   <Preview>k__BackingField: {fileID: 21300000, guid: 3042b019b052942a1baf7aa49d7ca6bb, type: 3}
   <Description>k__BackingField: "\u0414\u043E\u0431\u0430\u0432\u043B\u044F\u0435\u0442
-    \u0438\u043D\u0436\u0435\u043D\u0435\u0440\u043E\u0432"
-  <BuyingPrices>k__BackingField: dc050000
+    \u0437\u0430\u0449\u0438\u0442\u043D\u0438\u043A\u0430"
+  <BuyingPrices>k__BackingField: 00000000
   <UpgradePrices>k__BackingField: 
+  <Stats>k__BackingField: []

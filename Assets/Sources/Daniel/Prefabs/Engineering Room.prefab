@@ -107,7 +107,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1482156040065617752}
-  - component: {fileID: 5714660829908029752}
+  - component: {fileID: 7855119234558214877}
   m_Layer: 31
   m_Name: Engineering Room
   m_TagString: Untagged
@@ -134,7 +134,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5714660829908029752
+--- !u!114 &7855119234558214877
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,10 +143,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1482156040065617756}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 443039b6314e54844ac1c67a097e77a0, type: 3}
+  m_Script: {fileID: 11500000, guid: c5ce1b687afdbbd40b327e7807e6ea23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _information: {fileID: 11400000, guid: 5d73f7e85e968ed47aa05fab15b92d7e, type: 2}
+  _information: {fileID: 11400000, guid: 5798b592757f0034684cd02f2d2f5377, type: 2}
+  <NeedConcreteHolder>k__BackingField: 0
 --- !u!1 &4977990617839987014
 GameObject:
   m_ObjectHideFlags: 0

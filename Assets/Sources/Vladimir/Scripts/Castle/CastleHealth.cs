@@ -6,6 +6,7 @@ public class CastleHealth : MonoBehaviour
 {
     [SerializeField] private float _startHealth;
     [SerializeField] private CastleBar _castleBar;
+    [SerializeField] private CastleBar _castleVerticalBar;
     [SerializeField] private Transform _target;
 
     private float _currentHealth;
@@ -38,9 +39,10 @@ public class CastleHealth : MonoBehaviour
 
         _currentHealth -= damage;
         _castleBar.OnTakeDamage(_currentHealth);
+        _castleVerticalBar.OnTakeDamage(_currentHealth);
 
         if (_currentHealth <= 0)
-        { 
+        {
             _currentHealth = 0;
             CastleDestroyed?.Invoke();
         }
@@ -50,5 +52,6 @@ public class CastleHealth : MonoBehaviour
     {
         _currentHealth = _startHealth;
         _castleBar.Init(_startHealth);
+        _castleVerticalBar.Init(_startHealth);
     }
 }

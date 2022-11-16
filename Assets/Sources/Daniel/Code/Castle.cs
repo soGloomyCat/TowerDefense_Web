@@ -159,7 +159,7 @@ namespace TowerDefense.Daniel
             var level = 0;
             if (room != null)
             {
-                level = room.Level + 1;
+                level = room.Level;
             }
 
             for (int i = 0; i < _upgrades.Count; i++)
@@ -211,7 +211,7 @@ namespace TowerDefense.Daniel
             {
                 strategyRoom.Initialize(_upgrades.Count - 1);
 
-                UpdateVisual();
+                //UpdateVisual();
                 UpdateMoneyCapacity();
             }
             if (room is BankRoom bankRoom)

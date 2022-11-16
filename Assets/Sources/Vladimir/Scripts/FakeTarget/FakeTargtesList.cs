@@ -11,12 +11,13 @@ public class FakeTargtesList : MonoBehaviour
         //_fakeTargets = GetComponentsInChildren<FakeTarget>();
 
         for (int i = 0; i < transform.childCount; i++)
-        { 
+        {
             Transform child = transform.GetChild(i);
 
             if (child.TryGetComponent(out FakeTarget fakeTarget))
             {
                 _fakeTargets.Add(fakeTarget);
+                fakeTarget.Inizialize();
                 fakeTarget.gameObject.SetActive(false);
             }
         }
@@ -29,7 +30,7 @@ public class FakeTargtesList : MonoBehaviour
     }
 
     public FakeTarget EnableRandomTarget()
-    { 
+    {
         FakeTarget fakeTarget = _fakeTargets[Random.Range(0, _fakeTargets.Count)];
         fakeTarget.Show();
         return fakeTarget;

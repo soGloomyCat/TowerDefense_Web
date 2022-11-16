@@ -17,14 +17,6 @@ public class FakeTarget : MonoBehaviour
 
     public event UnityAction<FakeTarget> TargetDestroyed;
 
-    private void OnEnable()
-    {
-        _collider = GetComponent<BoxCollider>();
-        _collider.isTrigger = true;
-        _targetShower = GetComponent<TargetShower>();
-        _currentHealth = _startHealth;
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out Projectile projectile))
@@ -35,6 +27,14 @@ public class FakeTarget : MonoBehaviour
             if (_healthHandler != null)
                 _healthHandler.OnHealthChange(_currentHealth);
         }
+    }
+
+    public void Inizialize()
+    {
+        _collider = GetComponent<BoxCollider>();
+        _collider.isTrigger = true;
+        _targetShower = GetComponent<TargetShower>();
+        _currentHealth = _startHealth;
     }
 
     private void ApplyDamage(float damage)
@@ -52,13 +52,13 @@ public class FakeTarget : MonoBehaviour
     }
 
     public void Show()
-    { 
+    {
         _targetShower.Show();
     }
 
     public void Hide()
     {
-        _targetShower.Hide();  
+        _targetShower.Hide();
     }
 
     public void ResetTarget()

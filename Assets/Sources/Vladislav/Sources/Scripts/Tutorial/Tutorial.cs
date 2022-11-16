@@ -1,97 +1,99 @@
+using TMPro;
 using TowerDefense.Daniel;
+using TowerDefense.Daniel.Interfaces;
 using TowerDefense.Daniel.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Tutorial : MonoBehaviour
 {
-    [SerializeField] private Transform _handler;
-    [SerializeField] private Animator _handlerAnimator;
+    private const string StartMessage = "Зайди в магазин, чтобы купить новую комнату";
+    private const string FirstMessage = "Возьми стрельбище и установи в свободную ячейку";
+    private const string SecondMessage = "В будущем, ты сможешь улучшать комнаты, а пока вернись в магазин";
+    private const string ThirdMessage = "Установи стратегический пункт, он будет улучшать замок";
+    private const string FourthMessage = "Вернись в магазин (в последний раз)";
+    private const string FifthMessage = "Возьми кузницу, она отвечает за кол-во башен";
+    private const string SixthMessage = "Теперь нажми кнопку 'В бой'";
+    private const string SeventhMessage = "Перетащи лучника на башню";
+    private const string EighthMessage = "Ты можешь поставить второго лучника и после отправляйся защищать замок";
+    private const string NinthMessage = "";
+    private const string TenthMessage = "";
+
+    [SerializeField] private TMP_Text _info;
     [SerializeField] private Button _marketButton;
-    [SerializeField] private Market _marketItem;
-    [SerializeField] private RoomHolder _roomHolder;
+    [SerializeField] private Castle _castle;
     [SerializeField] private Button _prepairButton;
-    [SerializeField] private PlaceHandler _warriors;
-    [SerializeField] private Place _place;
+    [SerializeField] private PlaceHandler _placeHandler;
     [SerializeField] private Button _battleButton;
 
-    private MarketItem _item;
+    private bool _isFirstPurchase = true;
+    private bool _isSecondPurchase = true;
+    private bool _isThirdPurchase = true;
 
     private void OnEnable()
     {
-        _marketButton.onClick.AddListener(ActivateSecondTutorial);
-        _roomHolder.Clicked += ActivateFourthTutorial;
-        _prepairButton.onClick.AddListener(PrepairActivateFifthTutorial);
-        _place.Clicked += ActivateSeventhTutorial;
-        _battleButton.onClick.AddListener(OverTutorial);
+        _marketButton.onClick.AddListener(ActivateCastleTutorial);
+        _castle.RoomAdded += ChangeText;
+        _prepairButton.onClick.AddListener(ActivatePrepairTutorial);
+        _placeHandler.BattleButtonActivated += ActivateFinalMessage;
+        _battleButton.onClick.AddListener(DeactivateTutorial);
     }
 
     private void Awake()
     {
-        _handler.transform.parent = _marketButton.transform;
-        _handler.transform.localPosition = Vector3.zero;
-        _handler.transform.localScale = Vector3.one;
+        _info.text = StartMessage;
     }
 
     private void OnDisable()
     {
-        _marketButton.onClick.RemoveListener(ActivateSecondTutorial);
-        _roomHolder.Clicked -= ActivateFourthTutorial;
-        _prepairButton.onClick.RemoveListener(PrepairActivateFifthTutorial);
-        _place.Clicked -= ActivateSeventhTutorial;
-        _battleButton.onClick.RemoveListener(OverTutorial);
-        _item.Clicked -= ActivateThirdTutorial;
+        _marketButton.onClick.RemoveListener(ActivateCastleTutorial);
+        _castle.RoomAdded -= ChangeText;
+        _prepairButton.onClick.RemoveListener(ActivatePrepairTutorial);
+        _placeHandler.BattleButtonActivated -= ActivateFinalMessage;
+        _battleButton.onClick.RemoveListener(DeactivateTutorial);
     }
 
-    private void ActivateSecondTutorial()
+    private void ActivateCastleTutorial()
     {
-        _item = _marketItem.GetItem();
-        _item.Clicked += ActivateThirdTutorial;
-        _handler.transform.parent = _marketItem.transform;
-        _handler.transform.localPosition = new Vector3(-850, -500, 0);
-        _handler.transform.localScale = Vector3.one;
+        if (_isFirstPurchase)
+            _info.text = FirstMessage;
+        else if (_isSecondPurchase)
+            _info.text = ThirdMessage;
+        else if (_isThirdPurchase)
+            _info.text = FifthMessage;
     }
 
-    private void ActivateThirdTutorial(MarketItem marketItem)
+    private void ChangeText(IReadOnlyRoom readOnlyRoom)
     {
-        _handler.transform.parent = transform;
-        _handler.transform.localPosition = new Vector3(650, -50, 0);
-        _handler.transform.localScale = Vector3.one;
+        if (_isFirstPurchase)
+        {
+            _isFirstPurchase = false;
+            _info.text = SecondMessage;
+        }
+        else if (_isSecondPurchase)
+        {
+            _isSecondPurchase = false;
+            _info.text = FourthMessage;
+        }
+        else if (_isThirdPurchase)
+        {
+            _isThirdPurchase = false;
+            _info.text = SixthMessage;
+        }
     }
 
-    private void ActivateFourthTutorial(RoomHolder roomHolder)
+    private void ActivatePrepairTutorial()
     {
-        _handler.transform.parent = _prepairButton.transform;
-        _handler.transform.localPosition = Vector3.zero;
-        _handler.transform.localScale = Vector3.one;
+        _info.text = SeventhMessage;
     }
 
-    private void PrepairActivateFifthTutorial()
+    private void ActivateFinalMessage()
     {
-        Invoke("ActivateFifthTutorial", 0.5f);
+        _info.text = EighthMessage;
     }
 
-    private void ActivateFifthTutorial()
+    private void DeactivateTutorial()
     {
-        _handler.transform.parent = _warriors.transform;
-        _handler.transform.localPosition = new Vector3(-620, 250, 0);
-        _handler.transform.localScale = Vector3.one;
-        _handlerAnimator.SetBool("Slide", true);
-    }
-
-    private void ActivateSeventhTutorial()
-    {
-        _handlerAnimator.SetBool("Slide", false);
-        _handler.transform.parent = _battleButton.transform;
-        _handler.transform.localPosition = new Vector3(0, -75, 0);
-        _handler.transform.localScale = Vector3.one;
-        _handler.transform.localRotation = Quaternion.Euler(0, 0, 0);
-    }
-
-    private void OverTutorial()
-    {
-        _handler.transform.parent = transform;
-        _handler.transform.localPosition = Vector3.zero;
         gameObject.SetActive(false);
     }
 }

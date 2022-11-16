@@ -16,6 +16,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private EnemySquad _enemySquad;
     //[SerializeField] private Slider _slider;
     [SerializeField] private SliderHandler _slider;
+    [SerializeField] private SliderHandler _verticalSlider;
     [SerializeField] private WavesSlider _wavesSlider;
     //[SerializeField] private Transform _targetCastle;
 
@@ -70,6 +71,7 @@ public class EnemySpawner : MonoBehaviour
             _pointsDirector = new PointsDirector(_points);
             _enemySquad.OnWaveStart(WaveNumber);
             _slider.Setup(_formationsDirector.EnemiesCount, 0);
+            _verticalSlider.Setup(_formationsDirector.EnemiesCount, 0);
             //_slider.maxValue = _formationsDirector.EnemiesCount;
             //_slider.value = 0;
             _isGoing = true;
@@ -134,6 +136,7 @@ public class EnemySpawner : MonoBehaviour
         _enemySquad.Add(enemy);
         //_slider.value++;
         _slider.Add(1);
+        _verticalSlider.Add(1);
 
         SetPosition(enemy, out float x);
         enemy.Move(GetDestination(enemy, x));

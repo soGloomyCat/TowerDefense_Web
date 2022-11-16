@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class SwitchHandler : MonoBehaviour
 {
     [SerializeField] private Button _prepairButton;
+    [SerializeField] private PlaceHandler _placeHandler;
     [SerializeField] private Camera _castleCamera;
     [SerializeField] private Canvas _castleCanvas;
     [SerializeField] private Camera _prepairCamera;
@@ -18,6 +19,7 @@ public class SwitchHandler : MonoBehaviour
     private void OnEnable()
     {
         _prepairButton.onClick.AddListener(SwitchCamera);
+        _placeHandler.BattleStarted += OnBattleStarted;
 
         foreach (var finalButton in _finalButtons)
         {
@@ -28,6 +30,7 @@ public class SwitchHandler : MonoBehaviour
     private void OnDisable()
     {
         _prepairButton.onClick.RemoveListener(SwitchCamera);
+        _placeHandler.BattleStarted -= OnBattleStarted;
 
         foreach (var finalButton in _finalButtons)
         {
@@ -49,5 +52,13 @@ public class SwitchHandler : MonoBehaviour
         _battleCanvas.gameObject.SetActive(false);
         _castleCamera.gameObject.SetActive(true);
         _castleCanvas.gameObject.SetActive(true);
+    }
+
+    private void OnBattleStarted()
+    {
+        _prepairCamera.gameObject.SetActive(false);
+        _prepairCanvas.gameObject.SetActive(false);
+        _battleCamera.gameObject.SetActive(true);
+        _battleCanvas.gameObject.SetActive(true);
     }
 }

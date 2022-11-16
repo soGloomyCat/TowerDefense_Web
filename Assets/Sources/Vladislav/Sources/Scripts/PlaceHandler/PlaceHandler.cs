@@ -8,34 +8,49 @@ public class PlaceHandler : MonoBehaviour
 {
     [SerializeField] private List<Place> _places;
     [SerializeField] private WarriorsHandler _warriorsHandler;
-    [SerializeField] private GridLayoutGroup _warriorsPanel;
-    [SerializeField] private Button _startButton;
-    [SerializeField] private Camera _startCamera;
-    [SerializeField] private Camera _mainCamera;
+    [SerializeField] private GridLayoutGroup _warriorsHorizontalPanel;
+    [SerializeField] private GridLayoutGroup _warriorsVerticalPanel;
+    [SerializeField] private Button _battleButton;
     [SerializeField] private EnemyDetector _enemyDetector;
-    [SerializeField] private Canvas _prepairCanvas;
-    [SerializeField] private Canvas _battleCanvas;
 
     private List<Place> _activePlaces;
     private List<GameObject> _activeView;
+    private bool _needCheck;
+
+    public event Action BattleStarted;
+    public event Action BattleButtonActivated;
 
     private void OnEnable()
     {
-        _startButton.onClick.AddListener(StartGame);
+        _battleButton.onClick.AddListener(StartGame);
         _activeView = _warriorsHandler.GetActiveWarriors();
         _activePlaces = GetActivePlaces();
-        _warriorsPanel.enabled = true;
+        _warriorsHorizontalPanel.enabled = true;
+        _warriorsVerticalPanel.enabled = true;
+        _needCheck = true;
     }
 
     private void Update()
     {
-        if (CheckPlaces())
-            _startButton.gameObject.SetActive(true);
+        if (_needCheck && CheckPlaces())
+            _battleButton.gameObject.SetActive(true);
     }
 
     private void OnDisable()
     {
-        _startButton.onClick.RemoveListener(StartGame);
+        _battleButton.onClick.RemoveListener(StartGame);
+    }
+
+    public void ActivateHorizontalPanel()
+    {
+        _warriorsHorizontalPanel.gameObject.SetActive(true);
+        _warriorsVerticalPanel.gameObject.SetActive(false);
+    }
+
+    public void ActivateVerticalPanel()
+    {
+        _warriorsVerticalPanel.gameObject.SetActive(true);
+        _warriorsHorizontalPanel.gameObject.SetActive(false);
     }
 
     private bool CheckPlaces()
@@ -43,7 +58,11 @@ public class PlaceHandler : MonoBehaviour
         foreach (var place in _activePlaces)
         {
             if (place.IsEmpty == false)
+            {
+                _needCheck = false;
+                BattleButtonActivated?.Invoke();
                 return true;
+            }
         }
 
         return false;
@@ -51,15 +70,12 @@ public class PlaceHandler : MonoBehaviour
 
     private void StartGame()
     {
-        _startCamera.gameObject.SetActive(false);
-        _mainCamera.gameObject.SetActive(true);
-        _prepairCanvas.gameObject.SetActive(false);
-        _battleCanvas.gameObject.SetActive(true);
+        BattleStarted?.Invoke();
 
         foreach (var place in _activePlaces)
         {
             if (place.IsEmpty == false)
-                place.CreateWarrior(_enemyDetector);
+                _enemyDetector.AddNewWarrior(place.CreateWarrior());
         }
     }
 
@@ -77,7 +93,8 @@ public class PlaceHandler : MonoBehaviour
 
         for (int i = 0; i < _activeView.Count; i++)
         {
-            Instantiate(_activeView[i], _warriorsPanel.transform);
+            Instantiate(_activeView[i], _warriorsHorizontalPanel.transform);
+            Instantiate(_activeView[i], _warriorsVerticalPanel.transform);
         }
 
         Invoke("Deactivate", 0.1f);
@@ -86,6 +103,7 @@ public class PlaceHandler : MonoBehaviour
 
     private void Deactivate()
     {
-        _warriorsPanel.enabled = false;
+        _warriorsHorizontalPanel.enabled = false;
+        _warriorsVerticalPanel.enabled = false;
     }
 }
