@@ -10,9 +10,9 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private Transform _closePoint;
     [SerializeField] private Transform _farPoint;
     [SerializeField] private float _depthSpread;
-    [SerializeField] private EnemySpawnerSettings _settings;
+    //[SerializeField] private EnemySpawnerSettings _settings;
     //[SerializeField] private Button _battleButton;
-    [SerializeField] private TMP_Text _waveInfo;
+    //[SerializeField] private TMP_Text _waveInfo;
     [SerializeField] private EnemySquad _enemySquad;
     //[SerializeField] private Slider _slider;
     [SerializeField] private SliderHandler _slider;
@@ -20,18 +20,27 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private WavesSlider _wavesSlider;
     //[SerializeField] private Transform _targetCastle;
 
+    private EnemySpawnerSettings _settings;
     private Dictionary<float, bool> _points = new Dictionary<float, bool>();
     //private List<Enemy> _enemies = new List<Enemy>();
     private float _timeBuffer;
     private bool _isGoing;
-    private int _wavesIndex;
+    //private int _wavesIndex;
     private WaveSettings _waveSettings;
     private FormationsDirector _formationsDirector;
     private PointsDirector _pointsDirector;
 
-    public int WaveNumber => _wavesIndex + 1;
+    //public int WaveNumber => _wavesIndex + 1;
+    public int WaveNumber { get; private set; }
     //public IReadOnlyList<Enemy> Enemies => _enemies;
     public WaveSettings WaveSettings => _waveSettings;
+    public bool HasNextWave
+    {
+        get
+        {
+            return _settings[WaveNumber - 1] != null;
+        }
+    }
 
     //public event UnityAction<int> AllEnemiesKilled;
     /*
@@ -45,11 +54,22 @@ public class EnemySpawner : MonoBehaviour
         _battleButton.onClick.RemoveListener(TryNextWave);
     }
     */
+    /*
     private void Awake()
     {
         GeneratePoints();
+    }
+
+    private void Start()
+    {
         _wavesSlider.Generate(_settings.Count);
         _waveInfo.text = $"Волна {WaveNumber}";
+    }
+    */
+    public void Init()
+    {
+        GeneratePoints();
+        //_waveInfo.text = $"Волна {WaveNumber}";
     }
 
     private void Update()
@@ -62,7 +82,7 @@ public class EnemySpawner : MonoBehaviour
         if (_isGoing)
             return;
 
-        _waveSettings = _settings[_wavesIndex];
+        _waveSettings = _settings[WaveNumber - 1];
 
         if (_waveSettings != null)
         {
@@ -72,6 +92,7 @@ public class EnemySpawner : MonoBehaviour
             _enemySquad.OnWaveStart(WaveNumber);
             _slider.Setup(_formationsDirector.EnemiesCount, 0);
             _verticalSlider.Setup(_formationsDirector.EnemiesCount, 0);
+            _wavesSlider.Generate(_settings.Count);
             //_slider.maxValue = _formationsDirector.EnemiesCount;
             //_slider.value = 0;
             _isGoing = true;
@@ -83,10 +104,17 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    public void SetLevelSettings(EnemySpawnerSettings settings, int waveNumber)
+    { 
+        _settings = settings;
+        WaveNumber = waveNumber;
+        //_waveInfo.text = $"Волна {WaveNumber}";
+    }
+
     private void StopSpawn()
     {
-        _wavesIndex++;
-        _waveInfo.text = $"Волна {WaveNumber}";
+        //_wavesIndex++;
+        //_waveInfo.text = $"Волна {WaveNumber}";
         _isGoing = false;
     }
 
@@ -190,6 +218,12 @@ public class EnemySpawner : MonoBehaviour
             current += gap;
             _points.Add(current, true);
         }
+    }
+
+    public void OnWaveDone()
+    {
+        WaveNumber++;
+        
     }
 
     /*

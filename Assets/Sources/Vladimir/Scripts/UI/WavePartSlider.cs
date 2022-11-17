@@ -10,14 +10,18 @@ public class WavePartSlider : MonoBehaviour
 
     public void Init(int number)
     { 
-        _slider.value = 0;
+        if (_slider != null)
+            _slider.value = 0;
+
         _waveNumber.text = number.ToString();
         _doneIcon.SetActive(false);
     }
 
     public void Done()
     {
-        _slider.value = 1;
+        if (_slider != null)
+            _slider.value = 1;
+
         _doneIcon.SetActive(true);
     }
 
