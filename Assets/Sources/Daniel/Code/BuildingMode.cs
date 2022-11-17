@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 using TowerDefense.Daniel.Interfaces;
+using TowerDefense.Daniel.Rooms;
 using TowerDefense.Daniel.UI;
 using UnityEngine;
-//using static UnityEditor.Progress;
 
 namespace TowerDefense.Daniel
 {
     [RequireComponent(typeof(Panel))]
+    [DefaultExecutionOrder(1)]
     public class BuildingMode : MonoBehaviour
     {
         [SerializeField] private Panel _mainPanel = null;
@@ -23,6 +24,11 @@ namespace TowerDefense.Daniel
             _linkedPanel = GetComponent<Panel>();
         }
 
+        private void Start()
+        {
+            _market.UpdateVisual(_castle.MaxRoomsCount);
+        }
+
         private void Update()
         {
             if (!_mainPanel.IsActive && Input.GetKeyDown(KeyCode.Escape))
@@ -35,12 +41,14 @@ namespace TowerDefense.Daniel
         {
             _market.ItemSelected += OnMarketItemSelected;
             _castle.ClickedOnEmptyHolder += OnEmptyHolderClicked;
+            _castle.RoomUpgraded += OnRoomUpgraded;
         }
 
         private void OnDisable()
         {
             _market.ItemSelected -= OnMarketItemSelected;
             _castle.ClickedOnEmptyHolder -= OnEmptyHolderClicked;
+            _castle.RoomUpgraded -= OnRoomUpgraded;
         }
 
         public void Activate()
@@ -86,6 +94,14 @@ namespace TowerDefense.Daniel
                 _currentItem = null;
 
                 Deactivate();
+            }
+        }
+
+        private void OnRoomUpgraded(IReadOnlyRoom room)
+        {
+            if (room is StrategyRoom)
+            {
+                _market.UpdateVisual(_castle.MaxRoomsCount);
             }
         }
     }

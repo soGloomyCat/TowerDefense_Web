@@ -27,9 +27,9 @@ namespace TowerDefense.Daniel.UI
 
         public void UpdateVisual()
         {
-            if (Information.CurrentPrice < 0)
+            if (Information == null || Information.CurrentPrice < 0)
             {
-                Destroy(gameObject);
+                gameObject.SetActive(false);
 
                 return;
             }

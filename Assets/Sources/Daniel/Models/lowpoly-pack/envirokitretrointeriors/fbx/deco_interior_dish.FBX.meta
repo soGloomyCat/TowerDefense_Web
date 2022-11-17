@@ -3,7 +3,12 @@ guid: dd1df8120e3152a41b7cdde515ed9aa6
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: retroInteriors_props
+    second: {fileID: 2100000, guid: 3875e89a4c178294bb5340ec71f39832, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -47,6 +47,17 @@ namespace TowerDefense.Daniel.UI
             }
         }
 
+        public void UpdateVisual(int maxItemsCount)
+        {
+            for (int i = 0; i < _items.Count; i++)
+            {
+                var item = _items[i];
+
+                item.gameObject.SetActive(i < maxItemsCount);
+                item.UpdateVisual();
+            }
+        }
+
         public bool TryWithdraw(int amount)
         {
             return _money.TryWithdraw(amount);

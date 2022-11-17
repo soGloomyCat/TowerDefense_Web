@@ -29,9 +29,11 @@ namespace TowerDefense.Daniel
         [SerializeField] private MeshFilter _meshFilter = null;
         [SerializeField] private UpgradePopup _upgradePopup = null;
         [SerializeField] private MoneyWrapper _money = null;
+        [SerializeField] private int _baseMaxMoney = 500;
 
         private RoomHolder _selectedHolder = null;
-        private int _maxMoney = 500;
+
+        public int MaxRoomsCount => _roomHolders.Count(x => x.gameObject.activeSelf);
 
         private void Start()
         {
@@ -51,9 +53,6 @@ namespace TowerDefense.Daniel
 
             _upgradePopup.Closed += CancelSelection;
             _upgradePopup.UpgradeRequested += UpgradeSelectedHolder;
-            _money.ValueChanged += OnMoneyChanged;
-
-            OnMoneyChanged(0, _money.Value);
         }
 
         private void OnDisable()
@@ -67,7 +66,6 @@ namespace TowerDefense.Daniel
 
             _upgradePopup.Closed -= CancelSelection;
             _upgradePopup.UpgradeRequested -= UpgradeSelectedHolder;
-            _money.ValueChanged -= OnMoneyChanged;
         }
 
         private void OnValidate()
@@ -193,16 +191,7 @@ namespace TowerDefense.Daniel
                 }
             }
 
-            _maxMoney = 500 + sum;
-        }
-
-        private IEnumerator WithdrawLater(int amount)
-        {
-            yield return null;
-            yield return null;
-            yield return null;
-
-            _money.TryWithdraw(amount);
+            _money.SetMaxValue(_baseMaxMoney + sum);
         }
 
         private void OnRoomAdded(IReadOnlyRoom room)
@@ -235,14 +224,6 @@ namespace TowerDefense.Daniel
             }
 
             RoomUpgraded?.Invoke(room);
-        }
-
-        private void OnMoneyChanged(int oldValue, int newValue)
-        {
-            if (newValue > _maxMoney)
-            {
-                StartCoroutine(WithdrawLater(newValue - _maxMoney));
-            }
         }
     }
 }
