@@ -33,13 +33,3 @@ MonoBehaviour:
     _gap: 0.5
     _winMoney: 300
     _loseMoney: 50
-  - _formations:
-    - _enemyTemplate: {fileID: 2095690484339277924, guid: ed525e7e2c0e89649a057e073a5fb3d3, type: 3}
-      _count: 2
-    - _enemyTemplate: {fileID: 1867990732151823423, guid: d79ac406dc8c93d4f9010916ecfa57c8, type: 3}
-      _count: 2
-    _tick: 0.3
-    _width: 10
-    _gap: 0.5
-    _winMoney: 300
-    _loseMoney: 50

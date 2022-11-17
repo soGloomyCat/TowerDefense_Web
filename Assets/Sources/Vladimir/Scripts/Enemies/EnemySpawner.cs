@@ -107,6 +107,10 @@ public class EnemySpawner : MonoBehaviour
     public void SetLevelSettings(EnemySpawnerSettings settings, int waveNumber)
     { 
         _settings = settings;
+
+        if (_settings is EnemySpawnerSettingsRandom)
+            _settings.Generate();
+        
         WaveNumber = waveNumber;
         //_waveInfo.text = $"Волна {WaveNumber}";
     }

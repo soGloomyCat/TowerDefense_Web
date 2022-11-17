@@ -5,7 +5,7 @@ using System.Collections.Generic;
 [CreateAssetMenu(fileName = "EnemySpawnerSettings", menuName = "GameAssets/EnemySpawnerSettings")]
 public class EnemySpawnerSettings : ScriptableObject
 {
-    [SerializeField] private WaveSettings[] _waves;
+    [SerializeField] protected WaveSettings[] _waves;
 
     public int Count => _waves.Length;
     public WaveSettings this[int index]
@@ -22,6 +22,8 @@ public class EnemySpawnerSettings : ScriptableObject
             }
         }
     }
+
+    public virtual void Generate() { }
 }
 
 [Serializable]
@@ -55,6 +57,20 @@ public class WaveSettings
             return result;
         }
     }
+
+    public void SetProps(float tick, float width, float gap, int winMoney, int loseMoney)
+    {
+        _tick = tick;
+        _width = width;
+        _gap = gap;
+        _winMoney = winMoney;
+        _loseMoney = loseMoney;
+    }
+
+    public void SetFormations(WaveFormation[] waveFormations)
+    { 
+        _formations = waveFormations;
+    }
 }
 
 [Serializable]
@@ -65,4 +81,10 @@ public class WaveFormation
 
     public Enemy Template => _enemyTemplate;
     public int Count => _count;
+
+    public void SetFormation(Enemy template, int count)
+    { 
+        _enemyTemplate = template;
+        _count = count;
+    }
 }

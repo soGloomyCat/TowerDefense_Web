@@ -585,6 +585,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 219586694, guid: 31ab8d2c846a3684b9da18c2458de3e3, type: 3}
+      propertyPath: _settingsList.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 630c2846663fa674f9561a6305c6cec0, type: 2}
+    - target: {fileID: 219586694, guid: 31ab8d2c846a3684b9da18c2458de3e3, type: 3}
+      propertyPath: _settingsList.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 935d18fb7242e4343901dcda6d4f79d6, type: 2}
     - target: {fileID: 709867453478386324, guid: 31ab8d2c846a3684b9da18c2458de3e3, type: 3}
       propertyPath: m_Name
       value: BattleDirector
