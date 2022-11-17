@@ -93,6 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8148719618829311390}
   - component: {fileID: 8148719618829311391}
+  - component: {fileID: 4809196550301319859}
   m_Layer: 0
   m_Name: Castle
   m_TagString: Untagged
@@ -161,7 +162,21 @@ MonoBehaviour:
     - {fileID: 4869879483339618148}
   _meshFilter: {fileID: 8148719619038304710}
   _upgradePopup: {fileID: 0}
+  _money: {fileID: 4809196550301319859}
+--- !u!114 &4809196550301319859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8148719618829311389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ad107840afcea440ac81be2f24123e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _money: {fileID: 11400000, guid: bb9a8b4e1ee21cc4d8760834e29440f9, type: 2}
+  _isAllFree: 0
 --- !u!1001 &2405864504406938195
 PrefabInstance:
   m_ObjectHideFlags: 0

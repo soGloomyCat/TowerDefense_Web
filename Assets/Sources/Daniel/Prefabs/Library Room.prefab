@@ -243,6 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _information: {fileID: 11400000, guid: 911daa06b97090b4a970a52a33767835, type: 2}
+  <NeedConcreteHolder>k__BackingField: 0
 --- !u!1 &6200907703291286567
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,7 +305,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7291d23162d79f340a9592fd01132a26, type: 2}
+  - {fileID: 2100000, guid: a283d4bf20f563546aba6fbb570f4a7c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

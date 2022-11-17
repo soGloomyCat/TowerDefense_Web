@@ -28,7 +28,7 @@ namespace TowerDefense.Daniel
         [SerializeField] private List<CastleUpgrade> _upgrades = new List<CastleUpgrade>();
         [SerializeField] private MeshFilter _meshFilter = null;
         [SerializeField] private UpgradePopup _upgradePopup = null;
-        [SerializeField] private Money _money = null;
+        [SerializeField] private MoneyWrapper _money = null;
 
         private RoomHolder _selectedHolder = null;
         private int _maxMoney = 500;
@@ -118,7 +118,7 @@ namespace TowerDefense.Daniel
         {
             foreach (var roomHolder in _roomHolders)
             {
-                if (!roomHolder.IsEmpty || (roomPrefab.NeedConcreteHolder && !roomHolder.CanBuild(roomPrefab)))
+                if (!roomHolder.IsEmpty || !roomHolder.CanBuild(roomPrefab))
                 {
                     continue;
                 }
@@ -144,7 +144,7 @@ namespace TowerDefense.Daniel
 
             var price = _selectedHolder.Room.Information.UpgradePrices[_selectedHolder.Room.Level];
 
-            if (price <= _money.Value)
+            if (_money.CanWithdraw(price))
             {
                 _money.TryWithdraw(price);
 

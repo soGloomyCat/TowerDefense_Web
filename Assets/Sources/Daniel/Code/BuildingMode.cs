@@ -82,11 +82,11 @@ namespace TowerDefense.Daniel
             {
                 _currentItem.Information.Buy();
                 _currentItem.UpdateVisual();
+
+                _currentItem = null;
+
+                Deactivate();
             }
-
-            _currentItem = null;
-
-            Deactivate();
         }
     }
 }
