@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _internalId: ef6c22d7-aec2-417c-99cc-2f80d278eeac
   <Prefab>k__BackingField: {fileID: 5714660829908029752, guid: 654147a0f5b3dab458f7758e3552c134, type: 3}
-  <Title>k__BackingField: "\u041A\u0443\u0437\u043D\u0438\u0446\u0430"
+  <Title>k__BackingField: Forge
   <Preview>k__BackingField: {fileID: 21300000, guid: 3042b019b052942a1baf7aa49d7ca6bb, type: 3}
-  <Description>k__BackingField: "\u0423\u0432\u0435\u043B\u0438\u0447\u0438\u0442\u044C
+  <Description>k__BackingField: "\u0423\u0432\u0435\u043B\u0438\u0447\u0438\u0432\u0430\u0435\u0442
     \u043A\u043E\u043B-\u0432\u043E \u0431\u0430\u0448\u0435\u043D"
   <BuyingPrices>k__BackingField: 00000000
   <UpgradePrices>k__BackingField: f4010000e8030000d0070000
   <Stats>k__BackingField:
-  - <Name>k__BackingField: "\u0411\u0430\u0448\u043D\u0438"
+  - <Name>k__BackingField: Stat_Towers
     <Values>k__BackingField: 02000000040000000600000008000000

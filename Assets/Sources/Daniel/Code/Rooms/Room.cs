@@ -1,3 +1,5 @@
+#define DEBUG_BOUNDS
+
 using UnityEngine;
 using TowerDefense.Daniel.Interfaces;
 using System;
@@ -8,6 +10,7 @@ namespace TowerDefense.Daniel
     public abstract class Room : MonoBehaviour, IReadOnlyRoom
     {
         [SerializeField] private RoomMarketInformation _information = null;
+        [SerializeField] private float _previewPadding = 0;
 
         public event Action<IReadOnlyRoom> Upgraded = null;
 
@@ -28,6 +31,16 @@ namespace TowerDefense.Daniel
         public void Accept(IUnit unit)
         {
 
+        }
+        
+        public Sprite GetPreview(Vector2Int size)
+        {
+            RuntimePreviewGenerator.PreviewDirection = Vector3.forward;
+
+            RuntimePreviewGenerator.Padding = _previewPadding;
+            var preview = RuntimePreviewGenerator.GenerateModelPreview(transform, size.x, size.y, true);
+
+            return Sprite.Create(preview, new Rect(0, 0, size.x, size.y), new Vector2(0.5f, 0.5f));
         }
 
         public void Upgrade()

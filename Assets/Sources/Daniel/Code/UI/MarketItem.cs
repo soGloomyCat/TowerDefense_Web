@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
+using Lean.Localization;
 using TowerDefense.Daniel.Models;
 
 namespace TowerDefense.Daniel.UI
@@ -11,6 +12,7 @@ namespace TowerDefense.Daniel.UI
     {
         public event Action<MarketItem> Clicked = null;
 
+        [SerializeField] private Vector2Int _previewSize = new Vector2Int(240, 160);
         [SerializeField] private TMP_Text _title = null;
         [SerializeField] private Image _preview = null;
         [SerializeField] private TMP_Text _description = null;
@@ -34,9 +36,9 @@ namespace TowerDefense.Daniel.UI
                 return;
             }
 
-            _title.text = Information.Title;
-            _preview.sprite = Information.Preview;
-            _description.text = Information.Description;
+            _title.text = LeanLocalization.GetTranslationText(Information.Title);
+            _preview.sprite = Information.Prefab.GetPreview(_previewSize); //Information.Preview;
+            _description.text = LeanLocalization.GetTranslationText($"{Information.Title}_Description");//Information.Description;
 
             _price.text = Information.CurrentPrice < 0 ? "Недоступно" :
                           $"{Information.CurrentPrice}$";

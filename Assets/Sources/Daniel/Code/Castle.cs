@@ -33,7 +33,7 @@ namespace TowerDefense.Daniel
 
         private RoomHolder _selectedHolder = null;
 
-        public int MaxRoomsCount => _roomHolders.Count(x => x.gameObject.activeSelf);
+        public int MaxRoomsCount => _roomHolders.Count(x => x.IsAvailable);
 
         private void Start()
         {
@@ -116,7 +116,7 @@ namespace TowerDefense.Daniel
         {
             foreach (var roomHolder in _roomHolders)
             {
-                if (!roomHolder.IsEmpty || !roomHolder.CanBuild(roomPrefab))
+                if (!roomHolder.CanBuild(roomPrefab))
                 {
                     continue;
                 }
@@ -162,15 +162,18 @@ namespace TowerDefense.Daniel
 
             for (int i = 0; i < _upgrades.Count; i++)
             {
-                var upgrade = _upgrades[i];
-                foreach (var holder in upgrade.Holders)
+                if (i <= level)
                 {
-                    holder.gameObject.SetActive(i <= level);
-                }
+                    var upgrade = _upgrades[i];
+                    foreach (var holder in upgrade.Holders)
+                    {
+                        holder.Activate();
+                    }
 
-                if (i == level)
-                {
-                    _meshFilter.mesh = upgrade.Mesh;
+                    if (i == level)
+                    {
+                        _meshFilter.mesh = upgrade.Mesh;
+                    }
                 }
             }
         }

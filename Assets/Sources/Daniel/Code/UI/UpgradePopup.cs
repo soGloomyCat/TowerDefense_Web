@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 using DG.Tweening;
+using Lean.Localization;
 using TowerDefense.Daniel.Models;
 using TowerDefense.Daniel.Interfaces;
 
@@ -85,8 +86,8 @@ namespace TowerDefense.Daniel.UI
 
         private void UpdateVisual()
         {
-            _title.text =$"{_currentRoom.Information.Title} (Уровень {_currentRoom.Level + 1})";
-            _description.text = _currentRoom.Information.Description;
+            _title.text =$"{LeanLocalization.GetTranslationText(_currentRoom.Information.Title)} ({LeanLocalization.GetTranslationText("Level")} {_currentRoom.Level + 1})";
+            _description.text = LeanLocalization.GetTranslationText($"{_currentRoom.Information.Title}_Description"); //_currentRoom.Information.Description;
 
             foreach (RectTransform statView in _statsContainer)
             {

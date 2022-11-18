@@ -502,6 +502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33c643faf7777c4489b676823f5982c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _previewSize: {x: 960, y: 640}
   _title: {fileID: 7073546691882007760}
   _preview: {fileID: 3081169114991004675}
   _description: {fileID: 7011726779058231418}

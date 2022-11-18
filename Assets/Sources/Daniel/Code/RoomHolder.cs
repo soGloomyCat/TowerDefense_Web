@@ -12,14 +12,18 @@ namespace TowerDefense.Daniel
         public event Action<IReadOnlyRoom> RoomUpgraded = null;
 
         [SerializeField] private SpriteRenderer _buildOverlay = null;
-        [SerializeField] private Transform _background = null;
+        [SerializeField] private Transform _unvailableBackground = null;
+        [SerializeField] private Transform _availableBackground = null;
+        [SerializeField] private ParticleSystem _buildParticles = null;
         [SerializeField] private Room _concreteRoomType = null;
 
         private Room _room = null;
+        private bool _isAvailable = false;
 
         public IReadOnlyRoom Room => _room;
         public bool IsEmpty => _room == null;
         public bool AllowAnyType => _concreteRoomType == null;
+        public bool IsAvailable => _isAvailable;
 
         private void Awake()
         {
@@ -45,14 +49,22 @@ namespace TowerDefense.Daniel
             }
         }
 
+        public void Activate()
+        {
+            _isAvailable = true;
+
+            UpdateBackground();
+        }
+
         public bool CanBuild(Room roomPrefab)
         {
-            return (AllowAnyType && !roomPrefab.NeedConcreteHolder) || (!AllowAnyType && roomPrefab.GetType() == _concreteRoomType.GetType());
+            return IsAvailable && IsEmpty && ((AllowAnyType && !roomPrefab.NeedConcreteHolder) || (!AllowAnyType && roomPrefab.GetType() == _concreteRoomType.GetType()));
         }
 
         public bool TryBuildRoom(Room roomPrefab)
         {
-            if ((!AllowAnyType || roomPrefab.NeedConcreteHolder) && (AllowAnyType || roomPrefab.GetType() != _concreteRoomType.GetType()))
+            //if ((!AllowAnyType || roomPrefab.NeedConcreteHolder) && (AllowAnyType || roomPrefab.GetType() != _concreteRoomType.GetType()))
+            if (!CanBuild(roomPrefab))
             {
                 return false;
             }
@@ -69,6 +81,8 @@ namespace TowerDefense.Daniel
             _room.Upgraded += OnRoomUpgraded;
 
             UpdateBackground();
+
+            _buildParticles.Play();
 
             return true;
         }
@@ -102,7 +116,8 @@ namespace TowerDefense.Daniel
 
         private void UpdateBackground()
         {
-            _background.gameObject.SetActive(_room == null);
+            _unvailableBackground.gameObject.SetActive(!_isAvailable && _room == null);
+            _availableBackground.gameObject.SetActive(_isAvailable && _room == null);
         }
 
         private void OnRoomUpgraded(IReadOnlyRoom room)
