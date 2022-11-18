@@ -182,7 +182,12 @@ public class EnemySpawner : MonoBehaviour
             //x = _points[Random.Range(0, _points.Count)];
             x = _pointsDirector.GetPoint();
 
-        enemy.transform.localPosition = new Vector3(x, 0, 0);
+        Vector3 startPosition = new Vector3(x, 0, 0);
+
+        if (enemy.TryGetComponent(out EnemyFlyer enemyFlyer))
+            startPosition = new Vector3(x, enemyFlyer.Altitude, 0);
+
+        enemy.transform.localPosition = startPosition;
     }
 
     private Vector3 GetDestination(Enemy enemy, float x)
@@ -198,9 +203,12 @@ public class EnemySpawner : MonoBehaviour
             z = _closePoint.localPosition.z;
         }
 
-        //enemy.SetTarget(_targetCastle.position);
+        Vector3 destination = new Vector3(x, 0, z + Random.Range(-_depthSpread, _depthSpread));
 
-        return new Vector3(x, 0, z + Random.Range(-_depthSpread, _depthSpread));
+        if (enemy.TryGetComponent(out EnemyFlyer enemyFlyer))
+            destination = new Vector3(x, enemyFlyer.Altitude, z + Random.Range(-_depthSpread, _depthSpread));
+
+        return destination;
     }
 
     private void GeneratePoints()

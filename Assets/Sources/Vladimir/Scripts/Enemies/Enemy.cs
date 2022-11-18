@@ -62,6 +62,11 @@ public abstract class Enemy : MonoBehaviour
         AnimatedModel.Death();
         Destroy(gameObject, 2f);
         _enemyMover.StopMove();
+
+        if (TryGetComponent(out EnemyFlyer enemyFlyer))
+        {
+            enemyFlyer.Fall();
+        }
     }
 
     protected abstract void OnDestinationReach();

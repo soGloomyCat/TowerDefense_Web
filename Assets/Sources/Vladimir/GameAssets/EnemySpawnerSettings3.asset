@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _waves:
   - _formations:
-    - _enemyTemplate: {fileID: 2095690484339277924, guid: ed525e7e2c0e89649a057e073a5fb3d3, type: 3}
-      _count: 1
-    - _enemyTemplate: {fileID: 1867990732151823423, guid: d79ac406dc8c93d4f9010916ecfa57c8, type: 3}
-      _count: 1
+    - _enemyTemplate: {fileID: 8896363695526643952, guid: d53d76ee364fad5469ef6261d96bb39d, type: 3}
+      _count: 10
+    - _enemyTemplate: {fileID: 1923027934, guid: 0d30386bd59373a4fbac54ac95c3feec, type: 3}
+      _count: 10
     _tick: 0.3
     _width: 10
     _gap: 0.25
@@ -25,19 +25,19 @@ MonoBehaviour:
     _loseMoney: 50
   - _formations:
     - _enemyTemplate: {fileID: 2095690484339277924, guid: ed525e7e2c0e89649a057e073a5fb3d3, type: 3}
-      _count: 1
-    - _enemyTemplate: {fileID: 1867990732151823423, guid: d79ac406dc8c93d4f9010916ecfa57c8, type: 3}
-      _count: 1
+      _count: 10
+    - _enemyTemplate: {fileID: 397553666, guid: 54b4b80ab2a618940be7235ab813cc95, type: 3}
+      _count: 10
     _tick: 0.3
     _width: 10
     _gap: 0.5
     _winMoney: 300
     _loseMoney: 50
   - _formations:
-    - _enemyTemplate: {fileID: 2095690484339277924, guid: ed525e7e2c0e89649a057e073a5fb3d3, type: 3}
-      _count: 1
-    - _enemyTemplate: {fileID: 1867990732151823423, guid: d79ac406dc8c93d4f9010916ecfa57c8, type: 3}
-      _count: 1
+    - _enemyTemplate: {fileID: 3032576864558969005, guid: 973f75e33f24635469d49ac2efcd87fc, type: 3}
+      _count: 10
+    - _enemyTemplate: {fileID: 1374758303, guid: 622c8aac233795b4e81fb5d9e3f4e756, type: 3}
+      _count: 10
     _tick: 0.3
     _width: 10
     _gap: 0.5

@@ -14,20 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _waves:
   - _formations:
-    - _enemyTemplate: {fileID: 2095690484339277924, guid: ed525e7e2c0e89649a057e073a5fb3d3, type: 3}
-      _count: 1
-    - _enemyTemplate: {fileID: 1867990732151823423, guid: d79ac406dc8c93d4f9010916ecfa57c8, type: 3}
-      _count: 1
+    - _enemyTemplate: {fileID: 7582059900426508531, guid: 8cec6b4444bfc51478ca62b88ca4e9b7, type: 3}
+      _count: 7
+    - _enemyTemplate: {fileID: 367951600, guid: 896e52c1ee002d34885ae4ae8c18f9f7, type: 3}
+      _count: 7
     _tick: 0.3
     _width: 10
     _gap: 0.25
     _winMoney: 300
     _loseMoney: 50
   - _formations:
-    - _enemyTemplate: {fileID: 2095690484339277924, guid: ed525e7e2c0e89649a057e073a5fb3d3, type: 3}
-      _count: 2
-    - _enemyTemplate: {fileID: 1867990732151823423, guid: d79ac406dc8c93d4f9010916ecfa57c8, type: 3}
-      _count: 2
+    - _enemyTemplate: {fileID: 914574667, guid: 55c2b16b554450948b5327d59931423b, type: 3}
+      _count: 7
+    - _enemyTemplate: {fileID: 713125905, guid: 7cb37736b14d5c44882128045d2652aa, type: 3}
+      _count: 7
     _tick: 0.3
     _width: 10
     _gap: 0.5

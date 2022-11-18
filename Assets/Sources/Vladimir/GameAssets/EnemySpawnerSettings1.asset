@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _waves:
   - _formations:
-    - _enemyTemplate: {fileID: 1867990732151823423, guid: d79ac406dc8c93d4f9010916ecfa57c8, type: 3}
-      _count: 2
+    - _enemyTemplate: {fileID: 367951600, guid: 896e52c1ee002d34885ae4ae8c18f9f7, type: 3}
+      _count: 5
+    - _enemyTemplate: {fileID: 713125905, guid: 7cb37736b14d5c44882128045d2652aa, type: 3}
+      _count: 5
     _tick: 0.3
     _width: 10
     _gap: 0.25
