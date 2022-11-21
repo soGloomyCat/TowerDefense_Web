@@ -38,7 +38,6 @@ namespace TowerDefense.Daniel
             {
                 _room.Upgraded += OnRoomUpgraded;
             }
-
         }
 
         private void OnDisable()
@@ -61,12 +60,17 @@ namespace TowerDefense.Daniel
             return IsAvailable && IsEmpty && ((AllowAnyType && !roomPrefab.NeedConcreteHolder) || (!AllowAnyType && roomPrefab.GetType() == _concreteRoomType.GetType()));
         }
 
-        public bool TryBuildRoom(Room roomPrefab)
+        public bool TryBuildRoom(Room roomPrefab, bool isForce = false)
         {
             //if ((!AllowAnyType || roomPrefab.NeedConcreteHolder) && (AllowAnyType || roomPrefab.GetType() != _concreteRoomType.GetType()))
             if (!CanBuild(roomPrefab))
             {
-                return false;
+                if (!isForce)
+                {
+                    return false;
+                }
+
+                Activate();
             }
 
             if (_room != null)
@@ -82,7 +86,10 @@ namespace TowerDefense.Daniel
 
             UpdateBackground();
 
-            _buildParticles.Play();
+            if (!isForce)
+            {
+                _buildParticles.Play();
+            }
 
             return true;
         }

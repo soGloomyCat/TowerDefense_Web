@@ -8,6 +8,8 @@ namespace TowerDefense.Daniel
 {
     public class MoneyWrapper : MonoBehaviour
     {
+        private const string _LatestMaxValueKey = "LatestMaxValue";
+
         public event Action<int, int> ValueChanged = null;
 
         [SerializeField] private Money _money = null;
@@ -16,6 +18,11 @@ namespace TowerDefense.Daniel
         private int _maxValue = 500;
 
         public int Value => _money.Value;
+
+        private void Awake()
+        {
+            _maxValue = PlayerPrefs.GetInt(_LatestMaxValueKey);
+        }
 
         private void OnEnable()
         {
@@ -32,6 +39,8 @@ namespace TowerDefense.Daniel
         public void SetMaxValue(int maxValue)
         {
             _maxValue = maxValue;
+
+            PlayerPrefs.SetInt(_LatestMaxValueKey, _maxValue);
         }
 
         public void Deposit(int amount)

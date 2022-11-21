@@ -100,7 +100,7 @@ namespace TowerDefense.Daniel.UI
 
         private void OnChildShowed(Panel child)
         {
-            if (_current != null)
+            if (_current != null && child != _current)
             {
                 _current.Hide();
             }

@@ -41,6 +41,7 @@ namespace TowerDefense.Daniel
         {
             _market.ItemSelected += OnMarketItemSelected;
             _castle.ClickedOnEmptyHolder += OnEmptyHolderClicked;
+            _castle.Loading += OnCastleLoading;
             _castle.RoomUpgraded += OnRoomUpgraded;
         }
 
@@ -48,6 +49,7 @@ namespace TowerDefense.Daniel
         {
             _market.ItemSelected -= OnMarketItemSelected;
             _castle.ClickedOnEmptyHolder -= OnEmptyHolderClicked;
+            _castle.Loading -= OnCastleLoading;
             _castle.RoomUpgraded -= OnRoomUpgraded;
         }
 
@@ -63,6 +65,21 @@ namespace TowerDefense.Daniel
             _mainPanel.Show();
             //_inputPanel.gameObject.SetActive(true);
             _castle.HideAllHolders();
+        }
+
+        private bool TryBuildRoom(RoomHolder holder, MarketItem item, bool isForce = false)
+        {
+            if (holder.TryBuildRoom(item.Information.Prefab, isForce))
+            {
+                item.Information.Buy();
+                item.UpdateVisual();
+
+                Deactivate();
+
+                return true;
+            }
+
+            return false;
         }
 
         private void OnMarketItemSelected(MarketItem item)
@@ -86,14 +103,25 @@ namespace TowerDefense.Daniel
                 return;
             }
 
-            if (holder.TryBuildRoom(_currentItem.Information.Prefab))
+            if (TryBuildRoom(holder, _currentItem))
             {
-                _currentItem.Information.Buy();
-                _currentItem.UpdateVisual();
-
                 _currentItem = null;
+            }
+        }
 
-                Deactivate();
+        private void OnCastleLoading(Dictionary<int, (string id, int level)> rooms)
+        {
+            foreach (var room in rooms)
+            {
+                var holder = _castle.RoomHolders[room.Key];
+
+                if (TryBuildRoom(holder, _market.GetItem(room.Value.id), true))
+                {
+                    while (holder.Room.Level < room.Value.level)
+                    {
+                        holder.UpgradeRoom();
+                    }
+                }
             }
         }
 

@@ -5,7 +5,6 @@ using TowerDefense.Daniel.Models;
 
 namespace TowerDefense.Daniel.UI
 {
-    [RequireComponent(typeof(Panel))]
     public class Market : MonoBehaviour
     {
         public event Action<MarketItem> ItemSelected = null;
@@ -15,13 +14,10 @@ namespace TowerDefense.Daniel.UI
         [SerializeField] private MarketItem _itemPrefab = null;
         [SerializeField] private RectTransform _itemsContainer = null;
 
-        private Panel _panel = null;
         private List<MarketItem> _items = new List<MarketItem>();
 
         private void Awake()
         {
-            _panel = GetComponent<Panel>();
-
             foreach (var room in _rooms)
             {
                 var item = Instantiate(_itemPrefab, _itemsContainer);
@@ -45,6 +41,11 @@ namespace TowerDefense.Daniel.UI
             {
                 item.Clicked -= OnMarketItemClicked;
             }
+        }
+
+        public MarketItem GetItem(string id)
+        {
+            return _items.Find(x => x.Information != null && x.Information.InternalID == id);
         }
 
         public void UpdateVisual(int maxItemsCount)

@@ -2951,6 +2951,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _information: {fileID: 11400000, guid: 95357bd3c6d65fc499e2d3fe0b234053, type: 2}
+  _previewPadding: 0
   <NeedConcreteHolder>k__BackingField: 1
 --- !u!1 &1732199672627923193
 GameObject:
@@ -3085,7 +3086,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -3174,12 +3175,12 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 0.5, b: 0.5, a: 1}
   m_Intensity: 4
-  m_Range: 2
+  m_Range: 3
   m_SpotAngle: 120
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
