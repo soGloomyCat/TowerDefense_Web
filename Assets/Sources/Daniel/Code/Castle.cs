@@ -211,7 +211,7 @@ namespace TowerDefense.Daniel
 
         private void LoadState()
         {
-            var state = JsonConvert.DeserializeObject<CastleState>(PlayerPrefs.GetString(_CastleKey));
+            var state = JsonConvert.DeserializeObject<CastleState>(PlayerPrefs.GetString(_CastleKey, "{}"));
 
             /*foreach (var room in state.Rooms)
             {

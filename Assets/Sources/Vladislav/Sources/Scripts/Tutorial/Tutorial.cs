@@ -40,11 +40,6 @@ public class Tutorial : MonoBehaviour
         _battleButton.onClick.AddListener(DeactivateTutorial);
     }
 
-    private void Awake()
-    {
-        _info.text = LeanLocalization.GetTranslationText(nameof(StartMessage));
-    }
-
     private void OnDisable()
     {
         _marketButton.onClick.RemoveListener(ActivateCastleTutorial);
@@ -52,6 +47,11 @@ public class Tutorial : MonoBehaviour
         _prepairButton.onClick.RemoveListener(ActivatePrepairTutorial);
         _placeHandler.BattleButtonActivated -= ActivateFinalMessage;
         _battleButton.onClick.RemoveListener(DeactivateTutorial);
+    }
+
+    private void Start()
+    {
+        _info.text = LeanLocalization.GetTranslationText(nameof(StartMessage));
     }
 
     private void ActivateCastleTutorial()
