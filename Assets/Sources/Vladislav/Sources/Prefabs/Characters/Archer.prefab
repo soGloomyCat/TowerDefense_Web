@@ -1360,7 +1360,7 @@ Animator:
   m_GameObject: {fileID: 1039622553458869469}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: f6605568d3cd20e4db1a0b19cfe83787, type: 3}
-  m_Controller: {fileID: 9100000, guid: 64fd59c6cc7683745aa13ac92c67fc59, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3dc67cd541ea236478913c17dedbb659, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1551,7 +1551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20aafbb73785044aa656a687a6e235e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weaponPrefab: {fileID: 2569470654422615193, guid: 3750ae015fbf2bc4da1daecdafc652ee, type: 3}
+  _weaponPrefab: {fileID: 2569470654422615193, guid: 6ed4f9f2d5c014d4b9abe30436f02a60, type: 3}
   _spawnPosition: {fileID: 1039622553458514085}
   _animationHandler: {fileID: 347835499388501916}
   _rotator: {fileID: 2315347935141531906}

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c36004bf5c6514f814ec0cc619faa9, type: 3}
+  m_Name: EnemySpawnerSettings2
+  m_EditorClassIdentifier: 
+  _waves:
+  - _formations:
+    - _enemyTemplate: {fileID: 7582059900426508531, guid: 8cec6b4444bfc51478ca62b88ca4e9b7, type: 3}
+      _count: 7
+    - _enemyTemplate: {fileID: 367951600, guid: 896e52c1ee002d34885ae4ae8c18f9f7, type: 3}
+      _count: 7
+    _tick: 0.3
+    _width: 10
+    _gap: 0.25
+    _winMoney: 300
+    _loseMoney: 50
+  - _formations:
+    - _enemyTemplate: {fileID: 914574667, guid: 55c2b16b554450948b5327d59931423b, type: 3}
+      _count: 7
+    - _enemyTemplate: {fileID: 713125905, guid: 7cb37736b14d5c44882128045d2652aa, type: 3}
+      _count: 7
+    _tick: 0.3
+    _width: 10
+    _gap: 0.5
+    _winMoney: 300
+    _loseMoney: 50

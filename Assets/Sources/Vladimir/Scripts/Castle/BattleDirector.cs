@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
+using TMPro;
 
 public class BattleDirector : MonoBehaviour
 {
@@ -11,6 +13,12 @@ public class BattleDirector : MonoBehaviour
     [SerializeField] private Money _money;
     [SerializeField] private Button _battleButton;
     [SerializeField] private WavesSlider _wavesSlider;
+    [SerializeField] private SettingsStorage _settingsStorage;
+    [SerializeField] private LevelsHandler _levelsHandler;
+    [SerializeField] private TMP_Text _waveInfo;
+
+    public event UnityAction LevelFinished;
+    public event UnityAction<int> WaveFinished;
 
     private void OnEnable()
     {
@@ -27,11 +35,22 @@ public class BattleDirector : MonoBehaviour
         _battleCanvas.PanelButtonClicked -= OnPanelButtonClick;
         _battleButton.onClick.RemoveListener(OnNewWave);
     }
-
-    private void Start()
+    /*
+    private void Awake(int levelNumber, int waveNumber)
     {
         _money.Init();
+        _enemySpawner.Init();
         //OnNewWave();
+    }
+    */
+
+    private void Awake()
+    {
+        _levelsHandler.Init();
+        _money.Init();
+        SetupSpawner();
+        _enemySpawner.Init();
+        _waveInfo.text = $"Волна {_levelsHandler.CurrentWaveNumber}";
     }
 
     public void OnNewWave()
@@ -57,12 +76,27 @@ public class BattleDirector : MonoBehaviour
         _battleCanvas.HideBar();
         _enemySquad.StopAttack();
         _castleTargets.ResetTargets();
-        _wavesSlider.Done();
+        _wavesSlider.Done(_levelsHandler.CurrentWaveNumber);
+        _enemySpawner.OnWaveDone();
+        _levelsHandler.OnWaveFinish(_enemySpawner.WaveNumber);
+
+        if (!_enemySpawner.HasNextWave)
+        {
+            _levelsHandler.OnLevelFinish();
+            SetupSpawner();
+        }
+
+        _waveInfo.text = $"Волна {_levelsHandler.CurrentWaveNumber}";
     }
 
     private void OnPanelButtonClick()
     {
         _enemySquad.Clear();
         _castleHealth.ResetCastle();
+    }
+
+    private void SetupSpawner()
+    {
+        _enemySpawner.SetLevelSettings(_settingsStorage.GetSettings(_levelsHandler.CurrentLevelNumber), _levelsHandler.CurrentWaveNumber);
     }
 }

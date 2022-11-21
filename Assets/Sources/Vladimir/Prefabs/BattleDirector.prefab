@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4479488301363812372}
   - component: {fileID: 7710635934324130716}
+  - component: {fileID: 219586694}
+  - component: {fileID: 219586695}
   m_Layer: 0
   m_Name: BattleDirector
   m_TagString: Untagged
@@ -52,3 +54,36 @@ MonoBehaviour:
   _money: {fileID: 11400000, guid: bb9a8b4e1ee21cc4d8760834e29440f9, type: 2}
   _battleButton: {fileID: 0}
   _wavesSlider: {fileID: 0}
+  _settingsStorage: {fileID: 219586694}
+  _levelsHandler: {fileID: 219586695}
+  _waveInfo: {fileID: 0}
+--- !u!114 &219586694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709867453478386324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de2b786e195430d49a9acdd941ba6b55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _settingsList:
+  - {fileID: 11400000, guid: 630c2846663fa674f9561a6305c6cec0, type: 2}
+  - {fileID: 11400000, guid: 93a41782ca5448d4cad82c8338e84091, type: 2}
+  - {fileID: 11400000, guid: cf131d198dc7fca4ea653d3710ac7f96, type: 2}
+  - {fileID: 11400000, guid: 2604d2f9257b6f344b0592b521769e70, type: 2}
+--- !u!114 &219586695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709867453478386324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ca2daaf69f5aee47ba931b609e7f3cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _battleDirector: {fileID: 7710635934324130716}

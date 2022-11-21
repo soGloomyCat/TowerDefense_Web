@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e441bafc27945442b37c80cf79830fe, type: 3}
+  m_Name: EnemySpawnerSettingsRandom
+  m_EditorClassIdentifier: 
+  _waves:
+  - _formations:
+    - _enemyTemplate: {fileID: 3829799950838337243, guid: fdc78b94973b2a648b1008b743ab3541, type: 3}
+      _count: 4
+    _tick: 0.3
+    _width: 10
+    _gap: 0.25
+    _winMoney: 300
+    _loseMoney: 50
+  - _formations:
+    - _enemyTemplate: {fileID: 1867990732151823423, guid: d79ac406dc8c93d4f9010916ecfa57c8, type: 3}
+      _count: 7
+    _tick: 0.3
+    _width: 10
+    _gap: 0.25
+    _winMoney: 300
+    _loseMoney: 50
+  - _formations:
+    - _enemyTemplate: {fileID: 2095690484339277924, guid: ed525e7e2c0e89649a057e073a5fb3d3, type: 3}
+      _count: 3
+    - _enemyTemplate: {fileID: 3829799950838337243, guid: fdc78b94973b2a648b1008b743ab3541, type: 3}
+      _count: 3
+    _tick: 0.3
+    _width: 10
+    _gap: 0.25
+    _winMoney: 300
+    _loseMoney: 50
+  _wavesCount: 3
+  _formationCountRange: {x: 1, y: 3}
+  _formationEnemiesCountRange: {x: 3, y: 10}
+  _enemyTemplatesHolder: {fileID: 11400000, guid: 490a1c7cd431d914695a81e93242fb97, type: 2}
+  _tick: 0.3
+  _width: 10
+  _gap: 0.25
+  _winMoney: 300
+  _loseMoney: 50

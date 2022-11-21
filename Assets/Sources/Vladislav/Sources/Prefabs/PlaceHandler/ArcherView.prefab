@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1382690b8ae12d4fb9eb26df7d0d9f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 8560947533659318431, guid: a9966c7e36e8dad44a198a0804861e19, type: 3}
+  _prefab: {fileID: 8560947533659318431, guid: 87a388c86af8acc4498fb59c803368c5, type: 3}
 --- !u!225 &3122162053536600643
 CanvasGroup:
   m_ObjectHideFlags: 0

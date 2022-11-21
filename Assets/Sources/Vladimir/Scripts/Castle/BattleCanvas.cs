@@ -13,6 +13,7 @@ public class BattleCanvas : MonoBehaviour
     [SerializeField] private ResultPanel _losePanel;
     [SerializeField] private Money _money;
     [SerializeField] private WavesSlider _wavesSlider;
+    [SerializeField] private LevelsHandler _levelsHandler;
 
     private Transform _openedPanel;
     private int _reward;
@@ -27,12 +28,14 @@ public class BattleCanvas : MonoBehaviour
 
     public void ShowWinPanel(int money, Action callback = null)
     {
+        _openedPanel = _winPanel.transform;
+        _reward = money;
+        _winPanel.SetMoney(money);
+        _money.Deposit(_reward);
+        _winPanel.SetLevel(_levelsHandler.CurrentLevelNumber);
+
         _winPanel.transform.DOScale(Vector3.one, 0.3f).SetEase(Ease.OutBack).OnComplete(() =>
         {
-            _openedPanel = _winPanel.transform;
-            _reward = money;
-            _winPanel.SetMoney(money);
-            _money.Deposit(_reward);
             _wavesSlider.Show();
 
             if (callback != null)
@@ -46,6 +49,7 @@ public class BattleCanvas : MonoBehaviour
         _reward = money;
         _losePanel.SetMoney(money);
         _money.Deposit(_reward);
+        _losePanel.SetLevel(_levelsHandler.CurrentLevelNumber);
 
         _losePanel.transform.DOScale(Vector3.one, 0.3f).SetEase(Ease.OutBack).OnComplete(() =>
         {
