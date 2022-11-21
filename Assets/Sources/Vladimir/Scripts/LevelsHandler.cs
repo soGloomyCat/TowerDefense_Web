@@ -1,14 +1,22 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LevelsHandler : MonoBehaviour
 {
     public const string LEVEL_NUMBER_KEY = "towerDefense/LevelNumber";
     public const string WAVE_NUMBER_KEY = "towerDefense/WaveNumber";
 
-    [SerializeField] private BattleDirector _battleDirector;
+    //[SerializeField] private BattleDirector _battleDirector;
 
     public int CurrentLevelNumber { get; private set; }
     public int CurrentWaveNumber { get; private set; }
+
+    public event UnityAction<int> LevelChanged;
+
+    private void Start()
+    {
+        LevelChanged?.Invoke(CurrentLevelNumber);
+    }
 
     public void Init()
     {
@@ -32,7 +40,8 @@ public class LevelsHandler : MonoBehaviour
     {
         CurrentLevelNumber++;
         PlayerPrefs.SetInt(LEVEL_NUMBER_KEY, CurrentLevelNumber);
-        
+        LevelChanged?.Invoke(CurrentLevelNumber);
+
         CurrentWaveNumber = 1;
         PlayerPrefs.SetInt(WAVE_NUMBER_KEY, CurrentWaveNumber);
     }
