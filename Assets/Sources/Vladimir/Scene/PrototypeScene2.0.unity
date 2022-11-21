@@ -2149,7 +2149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa1d060df020a8344a34094229c05d59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startHealth: 10
+  _startHealth: 1000
   _castleBar: {fileID: 2042082973}
   _castleVerticalBar: {fileID: 1879213635}
   _target: {fileID: 942996762}

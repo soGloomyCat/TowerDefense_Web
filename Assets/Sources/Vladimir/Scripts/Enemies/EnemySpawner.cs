@@ -32,7 +32,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void OnDisable()
     {
-        _settings.Save();
+        //_settings.Save();
     }
 
     //public int WaveNumber => _wavesIndex + 1;
@@ -115,8 +115,11 @@ public class EnemySpawner : MonoBehaviour
         _settings = settings;
 
         if (_settings is EnemySpawnerSettingsRandom && !isStart)
+        { 
             _settings.Generate();
-        
+            _settings.Save();
+        }
+
         WaveNumber = waveNumber;
         //_waveInfo.text = $"Волна {WaveNumber}";
     }

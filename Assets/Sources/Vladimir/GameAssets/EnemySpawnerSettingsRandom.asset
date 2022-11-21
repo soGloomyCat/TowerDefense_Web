@@ -14,31 +14,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _waves:
   - _formations:
-    - _enemyTemplate: {fileID: 2095690484339277924, guid: ed525e7e2c0e89649a057e073a5fb3d3, type: 3}
+    - _enemyTemplate: {fileID: 957708520288980526, guid: 1a68c5fc4793c234d8313c0256e85b11, type: 3}
       _count: 4
-    _tick: 0.3
-    _width: 10
-    _gap: 0.25
-    _winMoney: 300
-    _loseMoney: 50
-  - _formations:
-    - _enemyTemplate: {fileID: 6969779309938259547, guid: 38b828cb36da0e74096c53f9ae9fe0ed, type: 3}
-      _count: 9
-    _tick: 0.3
-    _width: 10
-    _gap: 0.25
-    _winMoney: 300
-    _loseMoney: 50
-  - _formations:
     - _enemyTemplate: {fileID: 914574667, guid: 55c2b16b554450948b5327d59931423b, type: 3}
-      _count: 8
-    - _enemyTemplate: {fileID: 2760280285635015807, guid: 78217df99453856469facf8c22789a7f, type: 3}
-      _count: 9
-    - _enemyTemplate: {fileID: 367951600, guid: 896e52c1ee002d34885ae4ae8c18f9f7, type: 3}
-      _count: 5
-    _tick: 0.3
+      _count: 4
+    _tick: 0.25
     _width: 10
-    _gap: 0.25
+    _gap: 0.3
+    _winMoney: 300
+    _loseMoney: 50
+  - _formations:
+    - _enemyTemplate: {fileID: 1923027934, guid: 0d30386bd59373a4fbac54ac95c3feec, type: 3}
+      _count: 5
+    - _enemyTemplate: {fileID: 8250608601517459440, guid: 29ee4a43c109dd9428fde82388541510, type: 3}
+      _count: 5
+    _tick: 0.25
+    _width: 10
+    _gap: 0.3
+    _winMoney: 300
+    _loseMoney: 50
+  - _formations:
+    - _enemyTemplate: {fileID: 7582059900426508531, guid: 8cec6b4444bfc51478ca62b88ca4e9b7, type: 3}
+      _count: 6
+    - _enemyTemplate: {fileID: 2760280285635015807, guid: 78217df99453856469facf8c22789a7f, type: 3}
+      _count: 1
+    _tick: 0.25
+    _width: 10
+    _gap: 0.3
     _winMoney: 300
     _loseMoney: 50
   _wavesCount: 3
