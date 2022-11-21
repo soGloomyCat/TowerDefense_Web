@@ -30,6 +30,11 @@ public class EnemySpawner : MonoBehaviour
     private FormationsDirector _formationsDirector;
     private PointsDirector _pointsDirector;
 
+    private void OnDisable()
+    {
+        _settings.Save();
+    }
+
     //public int WaveNumber => _wavesIndex + 1;
     public int WaveNumber { get; private set; }
     //public IReadOnlyList<Enemy> Enemies => _enemies;
@@ -68,6 +73,7 @@ public class EnemySpawner : MonoBehaviour
     */
     public void Init()
     {
+        _settings.Load();
         GeneratePoints();
         //_waveInfo.text = $"Волна {WaveNumber}";
     }
@@ -104,11 +110,11 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    public void SetLevelSettings(EnemySpawnerSettings settings, int waveNumber)
+    public void SetLevelSettings(EnemySpawnerSettings settings, int waveNumber, bool isStart = false)
     { 
         _settings = settings;
 
-        if (_settings is EnemySpawnerSettingsRandom)
+        if (_settings is EnemySpawnerSettingsRandom && !isStart)
             _settings.Generate();
         
         WaveNumber = waveNumber;
@@ -235,7 +241,6 @@ public class EnemySpawner : MonoBehaviour
     public void OnWaveDone()
     {
         WaveNumber++;
-        
     }
 
     /*

@@ -2149,7 +2149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa1d060df020a8344a34094229c05d59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startHealth: 1000
+  _startHealth: 10
   _castleBar: {fileID: 2042082973}
   _castleVerticalBar: {fileID: 1879213635}
   _target: {fileID: 942996762}
@@ -2737,11 +2737,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 29868240400640932, guid: 7009f225f47f282418b8ddf28dd63232, type: 3}
       propertyPath: m_Interactable
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 29868240400640932, guid: 7009f225f47f282418b8ddf28dd63232, type: 3}
       propertyPath: m_BlocksRaycasts
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 395511300027239322, guid: 7009f225f47f282418b8ddf28dd63232, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2865,11 +2865,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8709520576329471353, guid: 7009f225f47f282418b8ddf28dd63232, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 7680
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8709520576329471353, guid: 7009f225f47f282418b8ddf28dd63232, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 4320
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8709520576868775834, guid: 7009f225f47f282418b8ddf28dd63232, type: 3}
       propertyPath: m_Pivot.x

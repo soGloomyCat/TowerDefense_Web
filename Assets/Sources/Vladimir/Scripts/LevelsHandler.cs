@@ -28,7 +28,7 @@ public class LevelsHandler : MonoBehaviour
         _battleDirector.WaveFinished -= OnWaveFinish;
     }
     */
-    public void OnLevelFinish()
+    public void OnLevelFinishWin()
     {
         CurrentLevelNumber++;
         PlayerPrefs.SetInt(LEVEL_NUMBER_KEY, CurrentLevelNumber);

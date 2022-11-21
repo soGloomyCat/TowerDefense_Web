@@ -1,10 +1,13 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using UnityEditor;
 
 [CreateAssetMenu(fileName = "EnemySpawnerSettings", menuName = "GameAssets/EnemySpawnerSettings")]
 public class EnemySpawnerSettings : ScriptableObject
 {
+    public const string SETTINGS_KEY = "towerDefense/LevelSettings";
+
     [SerializeField] protected WaveSettings[] _waves;
 
     public int Count => _waves.Length;
@@ -24,6 +27,23 @@ public class EnemySpawnerSettings : ScriptableObject
     }
 
     public virtual void Generate() { }
+
+    public void Save()
+    {
+        var jsonString = JsonUtility.ToJson(new SettingsModel(_waves));
+        PlayerPrefs.SetString(SETTINGS_KEY, jsonString);
+    }
+
+    public void Load()
+    {
+        if (PlayerPrefs.HasKey(SETTINGS_KEY) == false)
+            return;
+
+        var jsonString = PlayerPrefs.GetString(SETTINGS_KEY);
+        //Debug.Log(jsonString);
+        SettingsModel loadedObject = JsonUtility.FromJson(jsonString, typeof(SettingsModel)) as SettingsModel;
+        _waves = loadedObject.Waves;
+    }
 }
 
 [Serializable]
@@ -87,4 +107,17 @@ public class WaveFormation
         _enemyTemplate = template;
         _count = count;
     }
+}
+
+[Serializable]
+public class SettingsModel
+{
+    public SettingsModel(WaveSettings[] waves)
+    { 
+        _waves = waves;
+    }
+
+    [SerializeField] protected WaveSettings[] _waves;
+
+    public WaveSettings[] Waves => _waves;  
 }
