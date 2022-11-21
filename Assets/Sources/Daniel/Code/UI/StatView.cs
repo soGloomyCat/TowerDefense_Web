@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using TowerDefense.Daniel.Models;
 using System.Linq;
+using Lean.Localization;
 
 namespace TowerDefense.Daniel.UI
 {
@@ -14,7 +15,7 @@ namespace TowerDefense.Daniel.UI
 
         public void Initialize(int level, RoomMarketInformation.Stat stat)
         {
-            _name.text = stat.Name;
+            _name.text = LeanLocalization.GetTranslationText(stat.Name);
 
             /*var result = 0;
             for (int i = 0; i < stat.Values.Count && i <= level; i++)

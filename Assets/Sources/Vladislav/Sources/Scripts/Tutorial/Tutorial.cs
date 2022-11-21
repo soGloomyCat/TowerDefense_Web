@@ -4,6 +4,7 @@ using TowerDefense.Daniel.Interfaces;
 using TowerDefense.Daniel.UI;
 using UnityEngine;
 using UnityEngine.UI;
+using Lean.Localization;
 
 public class Tutorial : MonoBehaviour
 {
@@ -39,11 +40,6 @@ public class Tutorial : MonoBehaviour
         _battleButton.onClick.AddListener(DeactivateTutorial);
     }
 
-    private void Awake()
-    {
-        _info.text = StartMessage;
-    }
-
     private void OnDisable()
     {
         _marketButton.onClick.RemoveListener(ActivateCastleTutorial);
@@ -53,14 +49,19 @@ public class Tutorial : MonoBehaviour
         _battleButton.onClick.RemoveListener(DeactivateTutorial);
     }
 
+    private void Start()
+    {
+        _info.text = LeanLocalization.GetTranslationText(nameof(StartMessage));
+    }
+
     private void ActivateCastleTutorial()
     {
         if (_isFirstPurchase)
-            _info.text = FirstMessage;
+            _info.text = LeanLocalization.GetTranslationText(nameof(FirstMessage));
         else if (_isSecondPurchase)
-            _info.text = ThirdMessage;
+            _info.text = LeanLocalization.GetTranslationText(nameof(ThirdMessage));
         else if (_isThirdPurchase)
-            _info.text = FifthMessage;
+            _info.text = LeanLocalization.GetTranslationText(nameof(FifthMessage));
     }
 
     private void ChangeText(IReadOnlyRoom readOnlyRoom)
@@ -68,28 +69,28 @@ public class Tutorial : MonoBehaviour
         if (_isFirstPurchase)
         {
             _isFirstPurchase = false;
-            _info.text = SecondMessage;
+            _info.text = LeanLocalization.GetTranslationText(nameof(SecondMessage));
         }
         else if (_isSecondPurchase)
         {
             _isSecondPurchase = false;
-            _info.text = FourthMessage;
+            _info.text = LeanLocalization.GetTranslationText(nameof(FourthMessage));
         }
         else if (_isThirdPurchase)
         {
             _isThirdPurchase = false;
-            _info.text = SixthMessage;
+            _info.text = LeanLocalization.GetTranslationText(nameof(SixthMessage));
         }
     }
 
     private void ActivatePrepairTutorial()
     {
-        _info.text = SeventhMessage;
+        _info.text = LeanLocalization.GetTranslationText(nameof(SeventhMessage));
     }
 
     private void ActivateFinalMessage()
     {
-        _info.text = EighthMessage;
+        _info.text = LeanLocalization.GetTranslationText(nameof(EighthMessage));
     }
 
     private void DeactivateTutorial()

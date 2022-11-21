@@ -27,6 +27,7 @@ TagManager:
   - 
   - 
   - 
+  - Preview
   - 
   - 
   - 
@@ -35,8 +36,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Room
   m_SortingLayers:
   - name: Default
     uniqueID: 0

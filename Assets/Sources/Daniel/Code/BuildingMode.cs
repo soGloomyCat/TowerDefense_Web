@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 using TowerDefense.Daniel.Interfaces;
+using TowerDefense.Daniel.Rooms;
 using TowerDefense.Daniel.UI;
 using UnityEngine;
-//using static UnityEditor.Progress;
 
 namespace TowerDefense.Daniel
 {
     [RequireComponent(typeof(Panel))]
+    [DefaultExecutionOrder(1)]
     public class BuildingMode : MonoBehaviour
     {
         [SerializeField] private Panel _mainPanel = null;
@@ -23,6 +24,11 @@ namespace TowerDefense.Daniel
             _linkedPanel = GetComponent<Panel>();
         }
 
+        private void Start()
+        {
+            _market.UpdateVisual(_castle.MaxRoomsCount);
+        }
+
         private void Update()
         {
             if (!_mainPanel.IsActive && Input.GetKeyDown(KeyCode.Escape))
@@ -35,12 +41,16 @@ namespace TowerDefense.Daniel
         {
             _market.ItemSelected += OnMarketItemSelected;
             _castle.ClickedOnEmptyHolder += OnEmptyHolderClicked;
+            _castle.Loading += OnCastleLoading;
+            _castle.RoomUpgraded += OnRoomUpgraded;
         }
 
         private void OnDisable()
         {
             _market.ItemSelected -= OnMarketItemSelected;
             _castle.ClickedOnEmptyHolder -= OnEmptyHolderClicked;
+            _castle.Loading -= OnCastleLoading;
+            _castle.RoomUpgraded -= OnRoomUpgraded;
         }
 
         public void Activate()
@@ -55,6 +65,21 @@ namespace TowerDefense.Daniel
             _mainPanel.Show();
             //_inputPanel.gameObject.SetActive(true);
             _castle.HideAllHolders();
+        }
+
+        private bool TryBuildRoom(RoomHolder holder, MarketItem item, bool isForce = false)
+        {
+            if (holder.TryBuildRoom(item.Information.Prefab, isForce))
+            {
+                item.Information.Buy();
+                item.UpdateVisual();
+
+                Deactivate();
+
+                return true;
+            }
+
+            return false;
         }
 
         private void OnMarketItemSelected(MarketItem item)
@@ -78,14 +103,33 @@ namespace TowerDefense.Daniel
                 return;
             }
 
-            if (holder.TryBuildRoom(_currentItem.Information.Prefab))
+            if (TryBuildRoom(holder, _currentItem))
             {
-                _currentItem.Information.Buy();
-                _currentItem.UpdateVisual();
-
                 _currentItem = null;
+            }
+        }
 
-                Deactivate();
+        private void OnCastleLoading(Dictionary<int, (string id, int level)> rooms)
+        {
+            foreach (var room in rooms)
+            {
+                var holder = _castle.RoomHolders[room.Key];
+
+                if (TryBuildRoom(holder, _market.GetItem(room.Value.id), true))
+                {
+                    while (holder.Room.Level < room.Value.level)
+                    {
+                        holder.UpgradeRoom();
+                    }
+                }
+            }
+        }
+
+        private void OnRoomUpgraded(IReadOnlyRoom room)
+        {
+            if (room is StrategyRoom)
+            {
+                _market.UpdateVisual(_castle.MaxRoomsCount);
             }
         }
     }
