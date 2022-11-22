@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Lean.Localization;
 using TowerDefense.Daniel.Models;
 
 namespace TowerDefense.Daniel.UI
@@ -15,6 +16,7 @@ namespace TowerDefense.Daniel.UI
         [SerializeField] private RectTransform _itemsContainer = null;
 
         private List<MarketItem> _items = new List<MarketItem>();
+        private int _maxItemsCount = 0;
 
         private void Awake()
         {
@@ -25,6 +27,15 @@ namespace TowerDefense.Daniel.UI
 
                 _items.Add(item);
             }
+            _maxItemsCount = _items.Count;
+        }
+
+        private void Start()
+        {
+            foreach (var item in _items)
+            {
+                item.UpdateVisual();
+            }
         }
 
         private void OnEnable()
@@ -33,6 +44,7 @@ namespace TowerDefense.Daniel.UI
             {
                 item.Clicked += OnMarketItemClicked;
             }
+            LeanLocalization.OnLocalizationChanged += UpdateVisual;
         }
 
         private void OnDisable()
@@ -41,6 +53,7 @@ namespace TowerDefense.Daniel.UI
             {
                 item.Clicked -= OnMarketItemClicked;
             }
+            LeanLocalization.OnLocalizationChanged -= UpdateVisual;
         }
 
         public MarketItem GetItem(string id)
@@ -50,6 +63,7 @@ namespace TowerDefense.Daniel.UI
 
         public void UpdateVisual(int maxItemsCount)
         {
+            _maxItemsCount = maxItemsCount;
             for (int i = 0; i < _items.Count; i++)
             {
                 var item = _items[i];
@@ -62,6 +76,11 @@ namespace TowerDefense.Daniel.UI
         public bool TryWithdraw(int amount)
         {
             return _money.TryWithdraw(amount);
+        }
+
+        private void UpdateVisual()
+        {
+            UpdateVisual(_maxItemsCount);
         }
 
         private void OnMarketItemClicked(MarketItem item)
