@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using AYellowpaper;
-using TowerDefense.Daniel.Interfaces;
 
 namespace TowerDefense.Daniel.Models
 {

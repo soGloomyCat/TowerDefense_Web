@@ -1,5 +1,3 @@
-#define DEBUG_BOUNDS
-
 using UnityEngine;
 using TowerDefense.Daniel.Interfaces;
 using System;

@@ -21,6 +21,7 @@ public class Warrior : MonoBehaviour
     private UltimateButton _ultimateButton;
 
     public event Action NeedActivateAbility;
+    public event Action<Weapon> Shot;
     public Func<Sprite> NeedIcon;
 
     public bool IsBusy => _currentEnemy != null;
@@ -107,6 +108,8 @@ public class Warrior : MonoBehaviour
             Weapon tempWeapon = Instantiate(_weaponPrefab);
             tempWeapon.transform.position = _spawnPosition.position;
             tempWeapon.PrepairFly(_currentEnemy);
+
+            Shot?.Invoke(tempWeapon);
         }
     }
 

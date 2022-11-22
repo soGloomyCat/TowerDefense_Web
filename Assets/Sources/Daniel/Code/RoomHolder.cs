@@ -15,9 +15,11 @@ namespace TowerDefense.Daniel
         [SerializeField] private Transform _unvailableBackground = null;
         [SerializeField] private Transform _availableBackground = null;
         [SerializeField] private ParticleSystem _buildParticles = null;
+        [SerializeField] private BuildAudioSource _audio = null;
         [SerializeField] private Room _concreteRoomType = null;
 
         private Room _room = null;
+        private MusicPlayer _musicPlayer = null;
         private bool _isAvailable = false;
 
         public IReadOnlyRoom Room => _room;
@@ -88,15 +90,20 @@ namespace TowerDefense.Daniel
 
             if (!isForce)
             {
-                _buildParticles.Play();
+                PlaySFX();
             }
 
             return true;
         }
 
-        public void UpgradeRoom()
+        public void UpgradeRoom(bool disableSFX = false)
         {
             _room.Upgrade();
+
+            if (!disableSFX)
+            {
+                PlaySFX();
+            }
         }
 
         public void DestroyRoom()
@@ -125,6 +132,13 @@ namespace TowerDefense.Daniel
         {
             _unvailableBackground.gameObject.SetActive(!_isAvailable && _room == null);
             _availableBackground.gameObject.SetActive(_isAvailable && _room == null);
+        }
+
+        private void PlaySFX()
+        {
+            _buildParticles.Play();
+
+            _audio.Play();
         }
 
         private void OnRoomUpgraded(IReadOnlyRoom room)
