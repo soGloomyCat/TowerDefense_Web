@@ -16,6 +16,9 @@ public class BattleDirector : MonoBehaviour
     [SerializeField] private SettingsStorage _settingsStorage;
     [SerializeField] private LevelsHandler _levelsHandler;
     [SerializeField] private TMP_Text _waveInfo;
+    [SerializeField] private EnvironmentChanger _environmentChanger;
+
+    private bool _levelJustFinished;
 
     public event UnityAction LevelFinished;
     public event UnityAction<int> WaveFinished;
@@ -75,6 +78,7 @@ public class BattleDirector : MonoBehaviour
 
         if (!_enemySpawner.HasNextWave)
         {
+            _levelJustFinished = true;
             _levelsHandler.OnLevelFinishWin();
             SetupSpawner();
         }
@@ -102,6 +106,12 @@ public class BattleDirector : MonoBehaviour
 
     private void OnPanelButtonClick()
     {
+        if (_levelJustFinished)
+        {
+            _levelJustFinished = false;
+            _environmentChanger.ChangeModel();
+        }
+
         _enemySquad.Clear();
         _castleHealth.ResetCastle();
     }

@@ -13,11 +13,6 @@ public class LevelsHandler : MonoBehaviour
 
     public event UnityAction<int> LevelChanged;
 
-    private void Start()
-    {
-        LevelChanged?.Invoke(CurrentLevelNumber);
-    }
-
     public void Init()
     {
         CurrentLevelNumber = PlayerPrefs.GetInt(LEVEL_NUMBER_KEY, 1);
