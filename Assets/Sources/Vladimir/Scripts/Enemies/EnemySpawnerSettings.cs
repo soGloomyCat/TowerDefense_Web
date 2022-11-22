@@ -27,23 +27,6 @@ public class EnemySpawnerSettings : ScriptableObject
     }
 
     public virtual void Generate() { }
-
-    public void Save()
-    {
-        var jsonString = JsonUtility.ToJson(new SettingsModel(_waves));
-        PlayerPrefs.SetString(SETTINGS_KEY, jsonString);
-    }
-
-    public void Load()
-    {
-        if (PlayerPrefs.HasKey(SETTINGS_KEY) == false)
-            return;
-
-        var jsonString = PlayerPrefs.GetString(SETTINGS_KEY);
-        //Debug.Log(jsonString);
-        SettingsModel loadedObject = JsonUtility.FromJson(jsonString, typeof(SettingsModel)) as SettingsModel;
-        _waves = loadedObject.Waves;
-    }
 }
 
 [Serializable]

@@ -73,7 +73,7 @@ public class EnemySpawner : MonoBehaviour
     */
     public void Init()
     {
-        _settings.Load();
+        //_settings.Load();
         GeneratePoints();
         //_waveInfo.text = $"Волна {WaveNumber}";
     }
@@ -114,10 +114,11 @@ public class EnemySpawner : MonoBehaviour
     { 
         _settings = settings;
 
-        if (_settings is EnemySpawnerSettingsRandom && !isStart)
+        //if (_settings is EnemySpawnerSettingsRandom && !isStart)
+        if (_settings is EnemySpawnerSettingsRandom)
         { 
             _settings.Generate();
-            _settings.Save();
+            //_settings.Save();
         }
 
         WaveNumber = waveNumber;
