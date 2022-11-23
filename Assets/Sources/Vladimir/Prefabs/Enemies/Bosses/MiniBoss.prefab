@@ -307,6 +307,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ArcherModel
       objectReference: {fileID: 0}
+    - target: {fileID: 2614033486317323558, guid: bd2583af0711528449bdaf63b21e016f, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3109638103451587052, guid: bd2583af0711528449bdaf63b21e016f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 40c00e84e4a068e47a730966fc3be7cc, type: 2}
     - target: {fileID: 4774072990565638872, guid: bd2583af0711528449bdaf63b21e016f, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -362,6 +370,14 @@ PrefabInstance:
     - target: {fileID: 4774072990565638872, guid: bd2583af0711528449bdaf63b21e016f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663273603472969174, guid: bd2583af0711528449bdaf63b21e016f, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7678181053505455896, guid: bd2583af0711528449bdaf63b21e016f, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd2583af0711528449bdaf63b21e016f, type: 3}

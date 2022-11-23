@@ -14,6 +14,7 @@ public abstract class Enemy : MonoBehaviour
     private EnemyHealth _enemyHealth;
     private HazardHandlersList _hazardHandlersList;
     private Collider _collider;
+    private float _randomizeRatio = .3f;
 
     //protected bool HasTargets;
     protected Vector3 Target;
@@ -28,6 +29,7 @@ public abstract class Enemy : MonoBehaviour
         _enemyHealth = GetComponent<EnemyHealth>();
         _hazardHandlersList = GetComponent<HazardHandlersList>();
         _collider = GetComponent<Collider>();
+        RandomizeSize();
         //HasTargets = true;
     }
 
@@ -71,6 +73,13 @@ public abstract class Enemy : MonoBehaviour
         {
             enemyFlyer.Fall();
         }
+    }
+
+    private void RandomizeSize()
+    {
+        Vector3 origin = AnimatedModel.transform.localScale;
+        Vector3 randomScale = origin + (Vector3.one * (Random.Range(-_randomizeRatio, _randomizeRatio)));
+        AnimatedModel.transform.localScale = randomScale;
     }
 
     protected abstract void OnDestinationReach();

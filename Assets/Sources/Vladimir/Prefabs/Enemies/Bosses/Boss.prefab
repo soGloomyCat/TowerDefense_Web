@@ -160,6 +160,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WarriorModel
       objectReference: {fileID: 0}
+    - target: {fileID: 2447278422722664019, guid: 243080d35b22de344ae2892fd72a990c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 40c00e84e4a068e47a730966fc3be7cc, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 243080d35b22de344ae2892fd72a990c, type: 3}
 --- !u!114 &889949008012103043 stripped
