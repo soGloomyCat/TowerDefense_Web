@@ -10,7 +10,6 @@ public abstract class Enemy : MonoBehaviour
 {
     [SerializeField] protected EnemyAnimatedModel AnimatedModel;
     [SerializeField] protected float AttackPower;
-    [SerializeField] private AudioClip _attackSound = null;
 
     private EnemyMover _enemyMover;
     private EnemyHealth _enemyHealth;
@@ -35,14 +34,12 @@ public abstract class Enemy : MonoBehaviour
 
     protected void OnEnable()
     {
-        AnimatedModel.ShootPointReached += OnShootPointReached;
         _enemyMover.DestinationReached += OnDestinationReach;
         _enemyHealth.Dead += OnDead;
     }
 
     protected void OnDisable()
     {
-        AnimatedModel.ShootPointReached -= OnShootPointReached;
         _enemyMover.DestinationReached -= OnDestinationReach;
         _enemyHealth.Dead -= OnDead;
     }
@@ -62,11 +59,6 @@ public abstract class Enemy : MonoBehaviour
     public void TakeDamage(float amount) => _enemyHealth.TakeDamage(amount);
 
     public void StopAttack() => AnimatedModel.Idle();
-
-    private void OnShootPointReached()
-    {
-        MusicPlayer.TryPlaySFX(_attackSound);
-    }
 
     private void OnDead()
     {

@@ -24,16 +24,22 @@ public class BattleCanvas : MonoBehaviour
 
     public event UnityAction PanelButtonClicked;
 
+    private void Awake()
+    {
+        _winPanel.transform.localScale = Vector3.zero;
+        _losePanel.transform.localScale = Vector3.zero;
+    }
+
     private void OnEnable()
     {
         _adHandler.AdFinished += OnAdFinished;
         _adHandler.RewardAdFinished += OnRewardedAdFinished;
     }
 
-    private void Awake()
+    private void OnDisable()
     {
-        _winPanel.transform.localScale = Vector3.zero;
-        _losePanel.transform.localScale = Vector3.zero;
+        _adHandler.AdFinished -= OnAdFinished;
+        _adHandler.RewardAdFinished -= OnRewardedAdFinished;
     }
 
     public void ShowWinPanel(int money, Action callback = null)
