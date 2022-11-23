@@ -43,7 +43,7 @@ MonoBehaviour:
     _gap: 0.3
     _winMoney: 300
     _loseMoney: 50
-  _wavesCount: 3
+  _wavesCount: 10
   _formationCountRange: {x: 1, y: 3}
   _formationEnemiesCountRange: {x: 3, y: 10}
   _enemyTemplatesHolder: {fileID: 11400000, guid: 490a1c7cd431d914695a81e93242fb97, type: 2}

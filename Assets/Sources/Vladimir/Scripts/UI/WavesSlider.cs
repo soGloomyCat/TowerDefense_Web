@@ -5,6 +5,7 @@ using UnityEngine;
 public class WavesSlider : MonoBehaviour
 {
     [SerializeField] private WavePartSlider _wavePartSliderTemplate;
+    [SerializeField] private WavePartSlider _wavePartSliderTemplateBoss;
     [SerializeField] private WavePartSlider _last;
 
     private List<WavePartSlider> _parts = new List<WavePartSlider>();
@@ -17,7 +18,13 @@ public class WavesSlider : MonoBehaviour
 
         for (int i = 0; i < wavesCount; i++)
         {
-            WavePartSlider part = Instantiate(_wavePartSliderTemplate, transform);
+            WavePartSlider part = null;
+
+            if (i == 5)
+                part = Instantiate(_wavePartSliderTemplateBoss, transform);
+            else
+                part = Instantiate(_wavePartSliderTemplate, transform);
+
             part.Init(i);
             _parts.Add(part);
         }
