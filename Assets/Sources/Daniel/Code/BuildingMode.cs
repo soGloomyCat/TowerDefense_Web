@@ -91,7 +91,7 @@ namespace TowerDefense.Daniel
 
         private void OnEmptyHolderClicked(RoomHolder holder)
         {
-            if (_currentItem == null)
+            if (!_mainPanel.IsActive || _currentItem == null)
             {
                 return;
             }
@@ -119,7 +119,7 @@ namespace TowerDefense.Daniel
                 {
                     while (holder.Room.Level < room.Value.level)
                     {
-                        holder.UpgradeRoom();
+                        holder.UpgradeRoom(true);
                     }
                 }
             }

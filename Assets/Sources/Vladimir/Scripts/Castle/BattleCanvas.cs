@@ -3,6 +3,7 @@ using UnityEngine.Events;
 using DG.Tweening;
 using System;
 using UnityEngine.UI;
+using TowerDefense.Daniel;
 
 public class BattleCanvas : MonoBehaviour
 {
@@ -23,16 +24,22 @@ public class BattleCanvas : MonoBehaviour
 
     public event UnityAction PanelButtonClicked;
 
+    private void Awake()
+    {
+        _winPanel.transform.localScale = Vector3.zero;
+        _losePanel.transform.localScale = Vector3.zero;
+    }
+
     private void OnEnable()
     {
         _adHandler.AdFinished += OnAdFinished;
         _adHandler.RewardAdFinished += OnRewardedAdFinished;
     }
 
-    private void Awake()
+    private void OnDisable()
     {
-        _winPanel.transform.localScale = Vector3.zero;
-        _losePanel.transform.localScale = Vector3.zero;
+        _adHandler.AdFinished -= OnAdFinished;
+        _adHandler.RewardAdFinished -= OnRewardedAdFinished;
     }
 
     public void ShowWinPanel(int money, Action callback = null)
@@ -69,11 +76,15 @@ public class BattleCanvas : MonoBehaviour
 
     public void OnNextButtonClicked()
     {
+        AudioController.TryPlayUIClick();
+
         _adHandler.ShowInterstitialAd();
     }
 
     public void OnAdButtonClicked()
     {
+        AudioController.TryPlayUIClick();
+
         _adHandler.ShowRewardedAd();
     }
 

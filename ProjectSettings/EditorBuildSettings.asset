@@ -5,10 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Sources/Vladislav/Scene/PrototypeScene2.0.unity
-    guid: 3f12dfb6c0f242548a76d87c1bab061c
   - enabled: 0
-    path: Assets/Samples/Yandex Metrica/1.1.0/Playtesting Sample/PlaytestingScene.unity
-    guid: 8b577d8dcd838fe4ba0c812a9c7efdb6
+    path: Assets/Sources/Daniel/Scenes/New Scene.unity
+    guid: a66a09502633a904181771c3b0c5835e
+  - enabled: 0
+    path: Assets/Sources/Daniel/Scenes/PrototypeScene2.0.unity
+    guid: 8f05599e88a3da341849510eba24eeed
+  - enabled: 1
+    path: Assets/Sources/Daniel/Scenes/PrototypeScene3.0.unity
+    guid: 19aab8efff6cec241887ef99c883e70a
   m_configObjects: {}

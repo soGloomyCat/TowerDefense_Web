@@ -22,7 +22,12 @@ public class AdHandler : MonoBehaviour
         {
             AdFinished?.Invoke();
         });
+
+        return;
 #endif
+
+        AdStarted?.Invoke();
+        AdFinished?.Invoke();
     }
 
     public void ShowRewardedAd()
@@ -38,6 +43,11 @@ public class AdHandler : MonoBehaviour
          {
              AdFinished?.Invoke();
          });
+
+         return;
 #endif
+
+        RewardAdStarted?.Invoke();
+        RewardAdFinished?.Invoke();
     }
 }

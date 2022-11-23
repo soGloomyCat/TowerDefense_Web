@@ -990,3 +990,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _abilityIcon: {fileID: 21300000, guid: b3d8dbe835c404179842f9f9595f2bf0, type: 3}
+  _useAudio: {fileID: 8300000, guid: fec7273763e892942ae44d40318277b9, type: 3}

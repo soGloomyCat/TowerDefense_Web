@@ -45,11 +45,11 @@ namespace TowerDefense.Daniel
 
         public void Deposit(int amount)
         {
-            if (_money.Value + amount > _maxValue)
+            /*if (_money.Value + amount > _maxValue)
             {
                 amount = _maxValue - amount;
             }
-
+*/
             _money.Deposit(amount);
         }
 
@@ -63,23 +63,23 @@ namespace TowerDefense.Daniel
             return _isAllFree || _money.TryWithdraw(amount);
         }
 
-        private IEnumerator WithdrawLater(int amount)
+        /*private IEnumerator WithdrawLater(int amount)
         {
             yield return null;
             yield return null;
             yield return null;
 
             _money.TryWithdraw(amount);
-        }
+        }*/
 
         private void OnValueChanged(int oldValue, int newValue)
         {
-            if (newValue > _maxValue)
+            /*if (newValue > _maxValue)
             {
                 StartCoroutine(WithdrawLater(newValue - _maxValue));
 
                 return;
-            }
+            }*/
 
             ValueChanged?.Invoke(oldValue, newValue);
         }

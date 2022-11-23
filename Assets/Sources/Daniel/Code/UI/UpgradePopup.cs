@@ -103,7 +103,7 @@ namespace TowerDefense.Daniel.UI
 
             _upgradeButton.gameObject.SetActive(_currentRoom.Level < _currentRoom.Information.UpgradePrices.Count);
 
-            _priceText.text = _upgradeButton.gameObject.activeSelf ? $"{_currentRoom.Information.UpgradePrices[_currentRoom.Level]}$" : "";
+            _priceText.text = _upgradeButton.gameObject.activeSelf ? $"{_currentRoom.Information.UpgradePrices[_currentRoom.Level]}" : "";
         }
 
         private void OnUpgradeButtonClicked()

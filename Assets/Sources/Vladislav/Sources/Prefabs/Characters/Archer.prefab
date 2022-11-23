@@ -5017,6 +5017,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _abilityIcon: {fileID: 21300000, guid: 8aab0f8961b0147e495a46b3bb275442, type: 3}
+  _useAudio: {fileID: 8300000, guid: 7d7c5c5822999fe439b0bf7affa58bf6, type: 3}
   _duration: 10
   _tempCooldown: 0.5
 --- !u!1001 &21412527146144087

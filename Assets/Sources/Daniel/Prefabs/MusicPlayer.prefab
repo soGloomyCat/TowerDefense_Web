@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2498281059319603683
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2498281059319603682}
+  - component: {fileID: 2498281059319603681}
+  m_Layer: 0
+  m_Name: MusicPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2498281059319603682
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2498281059319603683}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2498281059319603681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2498281059319603683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 349b3f01a9f72ab4c8ce619e534062e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxVolume: 0.75
+  _castleMusic: {fileID: 8300000, guid: 24bea010411ced44b95096e33d165c01, type: 3}
+  _prepareMusic: {fileID: 8300000, guid: c5b3208f62b4aac4891bc8c7ebd80f6c, type: 3}
+  _battleMusic: {fileID: 8300000, guid: 62e1428ff57bd4b4ab7f2928a732743a, type: 3}
+  _winSound: {fileID: 8300000, guid: eee22b2be2ac7de44b48ff639e2173d3, type: 3}
+  _loseSound: {fileID: 8300000, guid: c093fffdce7780944b5ca52a40a22ec6, type: 3}
+  _placeSound: {fileID: 8300000, guid: b0c20f5ef6e3fdd4b96d27ffc013373f, type: 3}
+  _uiClickSound: {fileID: 8300000, guid: 2d210f898bb06de4ebde8c940f375059, type: 3}
+  _arrowSound: {fileID: 8300000, guid: 5b008d580c612c84182e7ed896486836, type: 3}
+  _magicBallSound: {fileID: 8300000, guid: 54918bb6ce0794e419ed6989098be465, type: 3}
+  _spearSound: {fileID: 8300000, guid: 5b008d580c612c84182e7ed896486836, type: 3}
+  _prepareButton: {fileID: 0}
+  _battleButton: {fileID: 0}
+  _castleHealth: {fileID: 0}
+  _enemySquad: {fileID: 0}
+  _battleCanvas: {fileID: 0}

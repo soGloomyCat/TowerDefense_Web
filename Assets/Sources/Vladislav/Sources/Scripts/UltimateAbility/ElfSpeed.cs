@@ -11,6 +11,8 @@ public class ElfSpeed : UltimateAbility
 
     public override void Use(Warrior warrior)
     {
+        base.Use(warrior);
+
         if (_coroutine != null)
             StopCoroutine(_coroutine);
 

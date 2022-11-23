@@ -80,6 +80,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _abilityIcon: {fileID: 21300000, guid: 3c6f5b7a54bd84489ba7d655c5b7b812, type: 3}
+  _useAudio: {fileID: 8300000, guid: 12bcaf212ea7c8b4d98e58ca2a873e4e, type: 3}
   _meteorite: {fileID: 6774883153094623678, guid: 012a4bdec106ab74da240a339827f0ed, type: 3}
 --- !u!1 &3501555875286370897
 GameObject:

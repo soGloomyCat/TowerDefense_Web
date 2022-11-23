@@ -12,7 +12,7 @@ namespace TowerDefense.Daniel.Rooms
 
         private int _maxLevel = 0;
 
-        public int MoneyCapacity => Information.Stats.First(x => x.Name == _moneyCapacityName).Values[Level];
+        public int MoneyCapacity => 0;//Information.Stats.First(x => x.Name == _moneyCapacityName).Values[Level];
         protected override int MaxLevel => _maxLevel;
 
         public void Initialize(int maxLevel)
