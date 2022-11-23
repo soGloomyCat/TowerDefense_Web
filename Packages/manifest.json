@@ -1,8 +1,8 @@
 {
   "dependencies": {
-    "com.agava.webutility": "file:C:/Users/tonyh/Desktop/GamDev/Add-Ons/Unity/com.agava.webutility-master",
-    "com.agava.yandexgames": "file:C:/Users/tonyh/Desktop/GamDev/Add-Ons/Unity/com.agava.yandexgames-master",
-    "com.agava.yandexmetrica": "file:C:/Users/tonyh/Desktop/GamDev/Add-Ons/Unity/com.agava.yandexmetrica-master",
+    "com.agava.webutility": "https://github.com/forcepusher/com.agava.webutility.git",
+    "com.agava.yandexgames": "https://github.com/forcepusher/com.agava.yandexgames.git",
+    "com.agava.yandexmetrica": "https://github.com/forcepusher/com.agava.yandexmetrica.git",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.cinemachine": "2.8.9",
     "com.unity.collab-proxy": "1.17.2",
