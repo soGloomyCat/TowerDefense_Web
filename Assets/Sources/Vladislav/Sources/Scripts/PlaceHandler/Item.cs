@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -11,12 +8,14 @@ public class Item : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     private Canvas _canvas;
     private CanvasGroup _canvasGroup;
     private RectTransform _position;
+    private Vector3 _startPosition;
 
     private void Awake()
     {
         _canvas = GetComponentInParent<Canvas>();
         _canvasGroup = GetComponentInParent<CanvasGroup>();
         _position = GetComponent<RectTransform>();
+        _startPosition = transform.localPosition;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -38,7 +37,7 @@ public class Item : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        transform.localPosition = Vector3.zero;
+        transform.localPosition = _startPosition;
 
         //if (transform.parent.TryGetComponent(out Place place))
         //    _canvasGroup.blocksRaycasts = false;

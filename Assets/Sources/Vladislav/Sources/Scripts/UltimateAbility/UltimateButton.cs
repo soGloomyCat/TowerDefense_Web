@@ -10,8 +10,15 @@ public class UltimateButton : MonoBehaviour
 
     public event Action ButtonClicked;
 
+    private void OnEnable()
+    {
+        _ultimateButton.onClick.AddListener(OnButtonClicked);
+        _reloader.TimerCompleted += OnTimerComleted;
+    }
+
     private void OnDisable()
     {
+        _reloader.ResetData();
         _ultimateButton.onClick.RemoveListener(OnButtonClicked);
         _reloader.TimerCompleted -= OnTimerComleted;
     }
@@ -19,9 +26,7 @@ public class UltimateButton : MonoBehaviour
     public void Inizialize(Sprite icon)
     {
         _abilityIcon.sprite = icon;
-        _ultimateButton.onClick.AddListener(OnButtonClicked);
         _reloader.Inizialize(icon);
-        _reloader.TimerCompleted += OnTimerComleted;
     }
 
     private void OnButtonClicked()

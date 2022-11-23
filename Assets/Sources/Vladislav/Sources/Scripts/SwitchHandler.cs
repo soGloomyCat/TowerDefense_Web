@@ -14,28 +14,22 @@ public class SwitchHandler : MonoBehaviour
     [SerializeField] private Canvas _prepairCanvas;
     [SerializeField] private Camera _battleCamera;
     [SerializeField] private Canvas _battleCanvas;
-    [SerializeField] private List<Button> _finalButtons;
+    [SerializeField] private AdHandler _adHandler;
 
     private void OnEnable()
     {
         _prepairButton.onClick.AddListener(SwitchCamera);
         _placeHandler.BattleStarted += OnBattleStarted;
-
-        foreach (var finalButton in _finalButtons)
-        {
-            finalButton.onClick.AddListener(Return);
-        }
+        _adHandler.AdFinished += Return;
+        _adHandler.RewardAdFinished += Return;
     }
 
     private void OnDisable()
     {
         _prepairButton.onClick.RemoveListener(SwitchCamera);
         _placeHandler.BattleStarted -= OnBattleStarted;
-
-        foreach (var finalButton in _finalButtons)
-        {
-            finalButton.onClick.RemoveListener(Return);
-        }
+        _adHandler.AdFinished -= Return;
+        _adHandler.RewardAdFinished -= Return;
     }
 
     private void SwitchCamera()

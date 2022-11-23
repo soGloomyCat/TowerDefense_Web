@@ -13,7 +13,7 @@ public class TowersHandler : MonoBehaviour
     [SerializeField] private Castle _castle;
     [SerializeField] private Button _prepairButton;
     [SerializeField] private Button _battleButton;
-    [SerializeField] private List<Button> _finalButtons;
+    [SerializeField] private AdHandler _adHandler;
 
     private void OnEnable()
     {
@@ -21,11 +21,8 @@ public class TowersHandler : MonoBehaviour
         _castle.RoomUpgraded += PrepairActivateTowers;
         _battleButton.onClick.AddListener(DeactivateEmptyFrame);
         _prepairButton.onClick.AddListener(ActivateTowers);
-
-        foreach (var finalButton in _finalButtons)
-        {
-            finalButton.onClick.AddListener(DeactivateTowers);
-        }
+        _adHandler.AdFinished += DeactivateTowers;
+        _adHandler.RewardAdFinished += DeactivateTowers;
     }
 
     private void OnDisable()
@@ -33,11 +30,8 @@ public class TowersHandler : MonoBehaviour
         _castle.RoomAdded -= PrepairActivateTowers;
         _battleButton.onClick.RemoveListener(DeactivateEmptyFrame);
         _prepairButton.onClick.RemoveListener(ActivateTowers);
-
-        foreach (var finalButton in _finalButtons)
-        {
-            finalButton.onClick.RemoveListener(DeactivateTowers);
-        }
+        _adHandler.AdFinished -= DeactivateTowers;
+        _adHandler.RewardAdFinished -= DeactivateTowers;
     }
 
     private void PrepairActivateTowers(IReadOnlyRoom roomType)

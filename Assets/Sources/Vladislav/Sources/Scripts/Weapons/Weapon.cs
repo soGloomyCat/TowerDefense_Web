@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
@@ -12,11 +11,23 @@ public abstract class Weapon : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out Enemy enemy))
-            enemy.TakeDamage(Damage);
+        {
+            if (this is MagicBall == false)
+            {
+                enemy.TakeDamage(Damage);
+                Destroy(gameObject);
+            }
+            else if (this is MagicBall && MagicBall.Check(enemy))
+            {
+                enemy.TakeDamage(Damage);
+            }
+        }
     }
 
-    public void PrepairFly(Enemy enemy)
+    public void PrepairFly(Enemy enemy, float damageMultiplier)
     {
+        Damage *= damageMultiplier;
+
         if (_coroutine != null)
             StopCoroutine(_coroutine);
 

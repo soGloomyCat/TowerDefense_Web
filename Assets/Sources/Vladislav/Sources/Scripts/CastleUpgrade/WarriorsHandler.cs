@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TowerDefense.Daniel;
 using TowerDefense.Daniel.Interfaces;
 using TowerDefense.Daniel.Rooms;
@@ -7,37 +5,28 @@ using UnityEngine;
 
 public class WarriorsHandler : MonoBehaviour
 {
-    private const int ArcheryIndex = 0;
-    private const int WizardIndex = 1;
-    private const int GuardianIndex = 2;
-
-    [SerializeField] private List<GameObject> _warriors;
     [SerializeField] private Castle _castle;
-
-    private List<GameObject> _activeWarriors;
+    [SerializeField] private Warrior _archer;
+    [SerializeField] private Warrior _wizard;
+    [SerializeField] private Warrior _guardian;
 
     private void OnEnable()
     {
-        _castle.RoomAdded += ExpendWarriors;
+        _castle.RoomUpgraded += UpgradeWarrior;
     }
 
-    private void Awake()
+    private void OnDisable()
     {
-        _activeWarriors = new List<GameObject>();
+        _castle.RoomUpgraded -= UpgradeWarrior;
     }
 
-    public List<GameObject> GetActiveWarriors()
-    {
-        return _activeWarriors;
-    }
-
-    private void ExpendWarriors(IReadOnlyRoom roomType)
+    private void UpgradeWarrior(IReadOnlyRoom roomType)
     {
         if (roomType is ArcheryRoom)
-            _activeWarriors.Add(_warriors[ArcheryIndex]);
+            _archer.UpgradeParameters();
         else if (roomType is LibraryRoom)
-            _activeWarriors.Add(_warriors[WizardIndex]);
+            _wizard.UpgradeParameters();
         else if (roomType is EngineeringRoom)
-            _activeWarriors.Add(_warriors[GuardianIndex]);
+            _guardian.UpgradeParameters();
     }
 }

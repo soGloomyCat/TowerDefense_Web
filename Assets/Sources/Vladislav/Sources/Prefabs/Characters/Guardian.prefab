@@ -959,10 +959,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _weaponPrefab: {fileID: 366370235722048926, guid: a129a4b63b9f5034689b419a71f7612c, type: 3}
   _spawnPosition: {fileID: 5629289038107321672}
-  _animationHandler: {fileID: 5629289038107321703}
+  _animationHandlers:
+  - {fileID: 5629289038107321703}
   _rotator: {fileID: 6128180488649178800}
-  _cooldown: 1.5
-  _ultimateTime: 0
+  _ultimateAbility: {fileID: -1727425765503204788}
+  _levelStats: {fileID: 11400000, guid: 6990e5310719b254fb12ac7abe4b20e5, type: 2}
 --- !u!114 &6128180488649178800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -988,5 +989,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b5ec287debdc0549a4cb8420237ac98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _abilityIcon: {fileID: 21300000, guid: b72cef693a9c5490b89da90e2b65005e, type: 3}
-  Warrior: {fileID: 6128180488649178801}
+  _abilityIcon: {fileID: 21300000, guid: b3d8dbe835c404179842f9f9595f2bf0, type: 3}

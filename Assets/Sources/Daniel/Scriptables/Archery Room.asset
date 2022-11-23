@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Archery Room
   m_EditorClassIdentifier: 
   _internalId: 0141df48-684b-4861-833a-ffed2421bf47
-  <Prefab>k__BackingField: {fileID: 5714660829908029752, guid: 9ae47b69f4471c643949ba98b5751f47, type: 3}
+  <Prefab>k__BackingField: {fileID: 5714660829908029752, guid: 9fddf9bbf440dce47b3a92a367991888, type: 3}
   <Title>k__BackingField: Archery
   <Preview>k__BackingField: {fileID: 21300000, guid: 3042b019b052942a1baf7aa49d7ca6bb, type: 3}
   <Description>k__BackingField: "\u0414\u043E\u0431\u0430\u0432\u043B\u044F\u0435\u0442

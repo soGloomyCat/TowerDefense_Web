@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32cca4566b1da8847862c5f77fee6626, type: 3}
+  m_Name: GuardianStats
+  m_EditorClassIdentifier: 
+  _stats:
+  - Level: 1
+    Cooldown: 5
+    DamageMultiplier: 1
+    SkinIndex: 0
+  - Level: 2
+    Cooldown: 4.8
+    DamageMultiplier: 1.1
+    SkinIndex: 0
+  - Level: 3
+    Cooldown: 4.6
+    DamageMultiplier: 1.2
+    SkinIndex: 0
+  - Level: 4
+    Cooldown: 4.4
+    DamageMultiplier: 1.3
+    SkinIndex: 0
+  - Level: 5
+    Cooldown: 4.2
+    DamageMultiplier: 1.4
+    SkinIndex: 0
+  - Level: 6
+    Cooldown: 4
+    DamageMultiplier: 1.5
+    SkinIndex: 0
+  - Level: 7
+    Cooldown: 3.8
+    DamageMultiplier: 1.6
+    SkinIndex: 0
+  - Level: 8
+    Cooldown: 3.6
+    DamageMultiplier: 1.7
+    SkinIndex: 0
+  - Level: 9
+    Cooldown: 3.4
+    DamageMultiplier: 1.8
+    SkinIndex: 0
+  - Level: 10
+    Cooldown: 3.2
+    DamageMultiplier: 1.9
+    SkinIndex: 0
+  - Level: 11
+    Cooldown: 3
+    DamageMultiplier: 2
+    SkinIndex: 0
+  - Level: 12
+    Cooldown: 2.8
+    DamageMultiplier: 2.1
+    SkinIndex: 0
+  - Level: 13
+    Cooldown: 2.6
+    DamageMultiplier: 2.2
+    SkinIndex: 0
+  - Level: 14
+    Cooldown: 2.4
+    DamageMultiplier: 2.3
+    SkinIndex: 0
+  - Level: 15
+    Cooldown: 2
+    DamageMultiplier: 2.5
+    SkinIndex: 0

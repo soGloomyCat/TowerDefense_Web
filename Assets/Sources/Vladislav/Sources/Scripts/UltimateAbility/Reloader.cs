@@ -42,6 +42,12 @@ public class Reloader : MonoBehaviour
         _timer.StartCountdown();
     }
 
+    public void ResetData()
+    {
+        _fillIcon.fillAmount = 0;
+        OnTimerCompleted();
+    }
+
     private void OnTimerStart()
     {
         _fillIcon.gameObject.SetActive(true);

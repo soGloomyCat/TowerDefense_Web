@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MagicBall : Weapon
@@ -7,7 +6,7 @@ public class MagicBall : Weapon
     [SerializeField] private TargetSearcher _searchCollider;
     [SerializeField] private int _chainCount;
 
-    private Enemy _currentEnemy;
+    private static Enemy _currentEnemy;
     private int _currentChainCount = 1;
 
     private void OnEnable()
@@ -20,16 +19,26 @@ public class MagicBall : Weapon
         _searchCollider.TargetFounded -= ChangeTarget;
     }
 
+    public static bool Check(Enemy enemy)
+    {
+        if (_currentEnemy == enemy)
+            return true;
+
+        return false;
+    }
+
     protected override IEnumerator Fly(Enemy enemy)
     {
         _currentEnemy = enemy;
+        Vector3 tempDirection = new Vector3(_currentEnemy.transform.position.x, _currentEnemy.transform.position.y + 1f, _currentEnemy.transform.position.z);
 
         while (_currentEnemy != null)
         {
-            transform.position = Vector3.MoveTowards(transform.position, _currentEnemy.transform.position, Speed * Time.deltaTime);
-            transform.LookAt(_currentEnemy.transform);
+            tempDirection = new Vector3(_currentEnemy.transform.position.x, _currentEnemy.transform.position.y + 1f, _currentEnemy.transform.position.z);
+            transform.position = Vector3.MoveTowards(transform.position, tempDirection, Speed * Time.deltaTime);
+            transform.LookAt(tempDirection);
 
-            if (Vector3.Distance(transform.position, _currentEnemy.transform.position) <= 0.1f)
+            if (Vector3.Distance(transform.position, tempDirection) <= 0.1f)
                 yield return OnWait();
 
             if (_currentChainCount > _chainCount)

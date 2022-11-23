@@ -1,30 +1,26 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Cleaner : MonoBehaviour
 {
     [SerializeField] private List<Place> _places;
     [SerializeField] private Transform _container;
-    [SerializeField] private List<Button> _finalButton;
     [SerializeField] private Transform _warriorsView;
     [SerializeField] private EnemyDetector _enemyDetector;
+    [SerializeField] private Transform _trashBox;
+    [SerializeField] private EnemySpawner _enemySpawner;
+    [SerializeField] private AdHandler _adHandler;
 
     private void OnEnable()
     {
-        foreach (var button in _finalButton)
-        {
-            button.onClick.AddListener(Clean);
-        }
+        _adHandler.AdFinished += Clean;
+        _adHandler.RewardAdFinished += Clean;
     }
 
     private void OnDisable()
     {
-        foreach (var button in _finalButton)
-        {
-            button.onClick.RemoveListener(Clean);
-        }
+        _adHandler.AdFinished -= Clean;
+        _adHandler.RewardAdFinished -= Clean;
     }
 
     private void Clean()
@@ -45,5 +41,12 @@ public class Cleaner : MonoBehaviour
         }
 
         _enemyDetector.Clean();
+
+        for (int i = 0; i < _trashBox.childCount; i++)
+        {
+            Destroy(_trashBox.GetChild(i).gameObject);
+        }
+
+        _enemySpawner.Clean();
     }
 }

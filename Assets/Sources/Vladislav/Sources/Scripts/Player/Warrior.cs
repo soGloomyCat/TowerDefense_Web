@@ -1,35 +1,44 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using static WarriorLevelStats;
 
 public class Warrior : MonoBehaviour
 {
     [SerializeField] private Weapon _weaponPrefab;
     [SerializeField] private Transform _spawnPosition;
-    [SerializeField] private AnimationHandler _animationHandler;
+    [SerializeField] private List<AnimationHandler> _animationHandlers;
     [SerializeField] private Rotator _rotator;
-    [SerializeField] private float _cooldown;
-    [SerializeField] private float _ultimateTime;
+    [SerializeField] private UltimateAbility _ultimateAbility;
+    [SerializeField] private WarriorLevelStats _levelStats;
 
+    private AnimationHandler _currentHandler;
     private float _currentCooldown;
-    private float _currentUltimateTime;
+    private float _tempCooldown;
+    private float _currentTime;
+    private float _currentDamageMultiplier;
     private Enemy _currentEnemy;
     private bool _canAttack;
-    private float _currentTime;
     private UltimateButton _ultimateButton;
-
-    public event Action NeedActivateAbility;
-    public event Action<Weapon> Shot;
-    public Func<Sprite> NeedIcon;
+    private Holder _currentHolder;
 
     public bool IsBusy => _currentEnemy != null;
 
     private void OnEnable()
     {
-        _animationHandler.NeedShoot += Shoot;
-        _currentCooldown = _cooldown;
+        foreach (var handler in _animationHandlers)
+            handler.NeedShoot += Shoot;
+
+        if (_levelStats != null)
+        {
+            _levelStats.Inizialize();
+            SetParameters(_levelStats.GetCurrentLevelStats());
+        }
+        else
+        {
+            _currentHandler = _animationHandlers[0];
+            _currentCooldown = 1;
+            _currentDamageMultiplier = 1;
+        }
     }
 
     private void Update()
@@ -43,25 +52,23 @@ public class Warrior : MonoBehaviour
                 Attack(_currentEnemy);
         }
 
-        if (_currentUltimateTime >= _ultimateTime)
-            _currentCooldown = _cooldown;
-
         _currentTime += Time.deltaTime;
-        _currentUltimateTime += Time.deltaTime;
     }
 
     private void OnDisable()
     {
-        _animationHandler.NeedShoot -= Shoot;
+        foreach (var handler in _animationHandlers)
+            handler.NeedShoot -= Shoot;
+
         _ultimateButton.ButtonClicked -= ActivateAbility;
     }
 
-    public void Inizialize(UltimateButton ultimateButton)
+    public void Inizialize(UltimateButton ultimateButton, Holder holder)
     {
         _canAttack = true;
-        _currentTime = _currentCooldown;
         _ultimateButton = ultimateButton;
         _ultimateButton.ButtonClicked += ActivateAbility;
+        _currentHolder = holder;
     }
 
     public void Attack(Enemy enemy)
@@ -72,19 +79,30 @@ public class Warrior : MonoBehaviour
             _currentEnemy = enemy;
             _currentEnemy.Dead += OnEnemyDead;
             _rotator.PrepairRotate(_currentEnemy.transform.position);
-            _animationHandler.ActivateAttackAnimation();
+            _currentHandler.ActivateAttackAnimation();
         }
     }
 
     public Sprite GetUltimateIcon()
     {
-        return NeedIcon?.Invoke();
+        return _ultimateAbility.GetIcon();
     }
 
-    public void ActivateUltimate(bool isParametersChange)
+    public void UpgradeParameters()
     {
-        if (isParametersChange)
-            ChangeParameters();
+        _levelStats.LevelUp();
+        SetParameters(_levelStats.GetCurrentLevelStats());
+    }
+
+    public void AccelerateAttackSpeed(float currentCooldown)
+    {
+        _tempCooldown = _currentCooldown;
+        _currentCooldown = currentCooldown;
+    }
+
+    public void ResumeAttackSpeed()
+    {
+        _currentCooldown = _tempCooldown;
     }
 
     private void OnEnemyDead(Enemy enemy)
@@ -94,27 +112,46 @@ public class Warrior : MonoBehaviour
         _canAttack = false;
     }
 
-    private void ChangeParameters()
-    {
-        _currentCooldown = 1;
-        _currentUltimateTime = 0;
-        _currentTime = _currentCooldown;
-    }
-
     private void Shoot()
     {
         if (_currentEnemy != null)
         {
-            Weapon tempWeapon = Instantiate(_weaponPrefab);
+            Weapon tempWeapon = Instantiate(_weaponPrefab, _currentHolder.TrashBox);
             tempWeapon.transform.position = _spawnPosition.position;
-            tempWeapon.PrepairFly(_currentEnemy);
-
-            Shot?.Invoke(tempWeapon);
+            tempWeapon.PrepairFly(_currentEnemy, _currentDamageMultiplier);
         }
     }
 
     private void ActivateAbility()
     {
-        NeedActivateAbility?.Invoke();
+        if (_ultimateAbility is ElfSpeed)
+            _ultimateAbility.Use(this);
+        else if (_ultimateAbility is WallCreator)
+            _ultimateAbility.Use(_currentHolder.CurrentCastleTarget);
+        else if (_ultimateAbility is MeteoriteCreator)
+            _ultimateAbility.Use(_currentHolder.MeteoriteSpawnPoint, _currentHolder.TrashBox);
+    }
+
+    private void SetParameters(Stats levelStats)
+    {
+        _currentCooldown = levelStats.Cooldown;
+        _currentDamageMultiplier = levelStats.DamageMultiplier;
+        ChangeSkin(levelStats.SkinIndex);
+    }
+
+    private void ChangeSkin(int skinIndex)
+    {
+        for (int i = 0; i < _animationHandlers.Count; i++)
+        {
+            if (i == skinIndex)
+            {
+                _animationHandlers[i].gameObject.SetActive(true);
+                _currentHandler = _animationHandlers[i];
+            }
+            else
+            {
+                _animationHandlers[i].gameObject.SetActive(false);
+            }
+        }
     }
 }

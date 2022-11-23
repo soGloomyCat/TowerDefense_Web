@@ -8,19 +8,34 @@ public class CastleHealth : MonoBehaviour
     [SerializeField] private CastleBar _castleBar;
     [SerializeField] private CastleBar _castleVerticalBar;
     [SerializeField] private Transform _target;
+    [SerializeField] private SpireAbility _ability;
 
     private float _currentHealth;
     private BoxCollider _collider;
+    private bool _isInvincible;
 
     public Transform Target => _target;
 
     public event UnityAction CastleDestroyed;
 
+    private void OnEnable()
+    {
+        _ability.SpellActivated += ActivateInvincible;
+        _ability.SpellOvered += DeactivateInvincible;
+    }
+
     private void Awake()
     {
         _collider = GetComponent<BoxCollider>();
         _collider.isTrigger = true;
+        _isInvincible = false;
         ResetCastle();
+    }
+
+    private void OnDisable()
+    {
+        _ability.SpellActivated -= ActivateInvincible;
+        _ability.SpellOvered -= DeactivateInvincible;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -32,9 +47,16 @@ public class CastleHealth : MonoBehaviour
         }
     }
 
+    public void ResetCastle()
+    {
+        _currentHealth = _startHealth;
+        _castleBar.Init(_startHealth);
+        _castleVerticalBar.Init(_startHealth);
+    }
+
     private void ApplyDamage(float damage)
     {
-        if (_currentHealth == 0)
+        if (_currentHealth == 0 || _isInvincible)
             return;
 
         _currentHealth -= damage;
@@ -48,10 +70,13 @@ public class CastleHealth : MonoBehaviour
         }
     }
 
-    public void ResetCastle()
+    private void ActivateInvincible()
     {
-        _currentHealth = _startHealth;
-        _castleBar.Init(_startHealth);
-        _castleVerticalBar.Init(_startHealth);
+        _isInvincible = true;
+    }
+
+    private void DeactivateInvincible()
+    {
+        _isInvincible = false;
     }
 }

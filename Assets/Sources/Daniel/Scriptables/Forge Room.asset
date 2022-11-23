@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Forge Room
   m_EditorClassIdentifier: 
   _internalId: ef6c22d7-aec2-417c-99cc-2f80d278eeac
-  <Prefab>k__BackingField: {fileID: 5714660829908029752, guid: 654147a0f5b3dab458f7758e3552c134, type: 3}
+  <Prefab>k__BackingField: {fileID: 5714660829908029752, guid: 13aa7e23c14ac1d4881c05d42ccbe6c7, type: 3}
   <Title>k__BackingField: Forge
   <Preview>k__BackingField: {fileID: 21300000, guid: 3042b019b052942a1baf7aa49d7ca6bb, type: 3}
   <Description>k__BackingField: "\u0423\u0432\u0435\u043B\u0438\u0447\u0438\u0432\u0430\u0435\u0442

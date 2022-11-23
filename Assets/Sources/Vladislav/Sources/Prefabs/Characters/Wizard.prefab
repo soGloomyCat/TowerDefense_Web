@@ -47,12 +47,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20aafbb73785044aa656a687a6e235e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weaponPrefab: {fileID: 6664669128919137835, guid: cfdc510df0c6bbd48b960c6032137e0e, type: 3}
+  _weaponPrefab: {fileID: 6664669128919137835, guid: e953975466379d647992d069a581bc5e, type: 3}
   _spawnPosition: {fileID: 1230071461104736152}
-  _animationHandler: {fileID: 3149488038043618194}
+  _animationHandlers:
+  - {fileID: 3149488038043618194}
   _rotator: {fileID: 1146634594729785147}
-  _cooldown: 1.5
-  _ultimateTime: 0
+  _ultimateAbility: {fileID: 7504968059425152387}
+  _levelStats: {fileID: 11400000, guid: 41b0ce3638722fb43a699c5d183f24cc, type: 2}
 --- !u!114 &1146634594729785147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,7 +80,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _abilityIcon: {fileID: 21300000, guid: 3c6f5b7a54bd84489ba7d655c5b7b812, type: 3}
-  Warrior: {fileID: 786147963506911336}
   _meteorite: {fileID: 6774883153094623678, guid: 012a4bdec106ab74da240a339827f0ed, type: 3}
 --- !u!1 &3501555875286370897
 GameObject:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tower Room
   m_EditorClassIdentifier: 
   _internalId: 0c6894aa-8132-4ca7-ad10-82cf1656956e
-  <Prefab>k__BackingField: {fileID: 5714660829908029752, guid: 2a21f7b99943b2d44b59155e8c4677c6, type: 3}
+  <Prefab>k__BackingField: {fileID: 5714660829908029752, guid: 62621e094d863fb45a1e7f984fbd0b88, type: 3}
   <Title>k__BackingField: Tower
   <Preview>k__BackingField: {fileID: 21300000, guid: 3042b019b052942a1baf7aa49d7ca6bb, type: 3}
   <Description>k__BackingField: "\u0414\u0430\u0451\u0442 \u0432\u0440\u0435\u043C\u0435\u043D\u043D\u0443\u044E
