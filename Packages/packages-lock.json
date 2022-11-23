@@ -1,22 +1,25 @@
 {
   "dependencies": {
     "com.agava.webutility": {
-      "version": "file:C:/Users/tonyh/Desktop/GamDev/Add-Ons/Unity/com.agava.webutility-master",
+      "version": "https://github.com/forcepusher/com.agava.webutility.git",
       "depth": 0,
-      "source": "local",
-      "dependencies": {}
+      "source": "git",
+      "dependencies": {},
+      "hash": "97e107965fd41cc7092dde52668c70c897b4da98"
     },
     "com.agava.yandexgames": {
-      "version": "file:C:/Users/tonyh/Desktop/GamDev/Add-Ons/Unity/com.agava.yandexgames-master",
+      "version": "https://github.com/forcepusher/com.agava.yandexgames.git",
       "depth": 0,
-      "source": "local",
-      "dependencies": {}
+      "source": "git",
+      "dependencies": {},
+      "hash": "5872935aa08bf35f86dd3ad008efc223b96e6ca8"
     },
     "com.agava.yandexmetrica": {
-      "version": "file:C:/Users/tonyh/Desktop/GamDev/Add-Ons/Unity/com.agava.yandexmetrica-master",
+      "version": "https://github.com/forcepusher/com.agava.yandexmetrica.git",
       "depth": 0,
-      "source": "local",
-      "dependencies": {}
+      "source": "git",
+      "dependencies": {},
+      "hash": "2937380390844fc76ae88d6cd570a19ee86ac2e2"
     },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
@@ -109,6 +112,17 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "com.unity.probuilder": {
+      "version": "5.0.6",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.settings-manager": "1.0.3",
+        "com.unity.modules.physics": "1.0.0",
+        "com.unity.modules.imgui": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.recorder": {
       "version": "3.0.3",
       "depth": 0,
@@ -131,7 +145,7 @@
     },
     "com.unity.settings-manager": {
       "version": "1.0.3",
-      "depth": 2,
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
@@ -196,6 +210,13 @@
         "com.unity.modules.jsonserialize": "1.0.0"
       },
       "url": "https://packages.unity.com"
+    },
+    "com.yasirkula.runtimepreviewgenerator": {
+      "version": "https://github.com/yasirkula/UnityRuntimePreviewGenerator.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "368e314a9b534d7a6263fd8eafefcd108736e5cb"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

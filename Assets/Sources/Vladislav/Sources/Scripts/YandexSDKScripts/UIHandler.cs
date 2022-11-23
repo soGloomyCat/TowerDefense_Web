@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Agava.WebUtility;
 using Agava.YandexGames;
+using TowerDefense.Daniel;
 
 public class UIHandler : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class UIHandler : MonoBehaviour
     [SerializeField] private Button _leaderboardExitButton;
     [SerializeField] private GameObject _pausePanel;
     [SerializeField] private Button _pauseButton;
-    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private MusicPlayer _musicPlayer;
 
     private void OnEnable()
     {
@@ -54,13 +55,13 @@ public class UIHandler : MonoBehaviour
     {
         Time.timeScale = 0;
         _pausePanel.gameObject.SetActive(true);
-        _audioSource.Pause();
+        _musicPlayer.Disable();
     }
 
     private void ResumeGame()
     {
         Time.timeScale = 1;
         _pausePanel.gameObject.SetActive(false);
-        _audioSource.Play();
+        _musicPlayer.Enable();
     }
 }

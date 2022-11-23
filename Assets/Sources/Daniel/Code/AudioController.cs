@@ -44,8 +44,10 @@ namespace TowerDefense.Daniel
             SwitchTo(_castleMusic);
         }
 
-        private void OnEnable()
+        protected override void OnEnable()
         {
+            base.OnEnable();
+
             _prepareButton.onClick.AddListener(OnPrepareButtonClicked);
             _battleButton.onClick.AddListener(OnBattleButtonClicked);
             _castleHealth.CastleDestroyed += OnCastleDestroyed;
@@ -53,8 +55,10 @@ namespace TowerDefense.Daniel
             _battleCanvas.PanelButtonClicked += OnPanelButtonClicked;
         }
 
-        private void OnDisable()
+        protected override void OnDisable()
         {
+            base.OnDisable();
+
             _prepareButton.onClick.RemoveListener(OnPrepareButtonClicked);
             _battleButton.onClick.RemoveListener(OnBattleButtonClicked);
             _castleHealth.CastleDestroyed -= OnCastleDestroyed;
@@ -159,7 +163,15 @@ namespace TowerDefense.Daniel
                 _ => null,
             };
 
-            PlaySFX(sound, 0.5f);
+            var volume = weapon switch
+            {
+                Arrow => 0.25f,
+                //MagicBall => 0.5f,
+                //Spear => 0.5f,
+                _ => 0.5f,
+            };
+
+            PlaySFX(sound, volume);
         }
 
         private void OnPlaceClicked()

@@ -32,9 +32,31 @@ namespace TowerDefense.Daniel
             _sfx = go.AddComponent<AudioSource>();
         }
 
+        protected virtual void OnEnable()
+        {
+            if (_enabled)
+            {
+                Enable();
+            }
+        }
+
+        protected virtual void OnDisable()
+        {
+            var enabled = _enabled;
+
+            Disable();
+
+            _enabled = enabled;
+        }
+
         public void Enable()
         {
             _enabled = true;
+
+            if (!enabled)
+            {
+                return;
+            }
 
             foreach (var source in _sources)
             {
@@ -94,11 +116,13 @@ namespace TowerDefense.Daniel
 
             source.clip = clip;
             source.loop = isLooped;
-            //source.pitch = Enabled ? 1 : 0;
+            //source.pitch = _enabled ? 1 : 0;
             source.DOFade(_maxVolume, speed).From(0).SetSpeedBased();
-            if (Enabled)
+            source.Play();
+
+            if (!_enabled || !enabled)
             {
-                source.Play();
+                source.Pause();
             }
 
             _sources[clip] = source;
@@ -106,7 +130,7 @@ namespace TowerDefense.Daniel
 
         public void PlaySFX(AudioClip clip, float volumeScale = 0.75f)
         {
-            if (!Enabled)
+            if (!_enabled || !enabled)
             {
                 return;
             }

@@ -489,11 +489,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46026f87df1288541b6acd049e15c0be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pointerClick: {fileID: 8300000, guid: 2d210f898bb06de4ebde8c940f375059, type: 3}
-  _pointerEnter: {fileID: 0}
-  _pointerExit: {fileID: 0}
-  _select: {fileID: 0}
-  _deselect: {fileID: 0}
 --- !u!1 &4484582736192656550
 GameObject:
   m_ObjectHideFlags: 0
@@ -1309,11 +1304,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46026f87df1288541b6acd049e15c0be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pointerClick: {fileID: 8300000, guid: 2d210f898bb06de4ebde8c940f375059, type: 3}
-  _pointerEnter: {fileID: 0}
-  _pointerExit: {fileID: 0}
-  _select: {fileID: 0}
-  _deselect: {fileID: 0}
 --- !u!1 &8709520575686303088
 GameObject:
   m_ObjectHideFlags: 0
@@ -1987,11 +1977,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46026f87df1288541b6acd049e15c0be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pointerClick: {fileID: 8300000, guid: 2d210f898bb06de4ebde8c940f375059, type: 3}
-  _pointerEnter: {fileID: 0}
-  _pointerExit: {fileID: 0}
-  _select: {fileID: 0}
-  _deselect: {fileID: 0}
 --- !u!1 &8709520576868775838
 GameObject:
   m_ObjectHideFlags: 0
@@ -2527,14 +2512,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rooms:
   - {fileID: 11400000, guid: 910db73dee44c424b81f510d965d81aa, type: 2}
-  - {fileID: 11400000, guid: 0580128285f217246bc538ebec77bb5f, type: 2}
   - {fileID: 11400000, guid: fb4fc463b3fd47f4ab3db413561acbd4, type: 2}
-  - {fileID: 11400000, guid: c38b7dbb0515bce489ab2a269d6e18a2, type: 2}
-  - {fileID: 11400000, guid: 5964374fdbedb174db2505454739d820, type: 2}
+  - {fileID: 11400000, guid: 0580128285f217246bc538ebec77bb5f, type: 2}
   - {fileID: 11400000, guid: 911daa06b97090b4a970a52a33767835, type: 2}
+  - {fileID: 11400000, guid: 5964374fdbedb174db2505454739d820, type: 2}
   - {fileID: 11400000, guid: 5798b592757f0034684cd02f2d2f5377, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 11400000, guid: 95357bd3c6d65fc499e2d3fe0b234053, type: 2}
   _money: {fileID: 0}
   _itemPrefab: {fileID: 2804093155799139446, guid: 3f63896529a75764fa965726440a1095, type: 3}

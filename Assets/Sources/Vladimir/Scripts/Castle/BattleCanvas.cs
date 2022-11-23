@@ -3,6 +3,7 @@ using UnityEngine.Events;
 using DG.Tweening;
 using System;
 using UnityEngine.UI;
+using TowerDefense.Daniel;
 
 public class BattleCanvas : MonoBehaviour
 {
@@ -69,11 +70,15 @@ public class BattleCanvas : MonoBehaviour
 
     public void OnNextButtonClicked()
     {
+        AudioController.TryPlayUIClick();
+
         _adHandler.ShowInterstitialAd();
     }
 
     public void OnAdButtonClicked()
     {
+        AudioController.TryPlayUIClick();
+
         _adHandler.ShowRewardedAd();
     }
 

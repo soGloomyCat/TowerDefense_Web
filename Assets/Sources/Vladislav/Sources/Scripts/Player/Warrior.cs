@@ -1,9 +1,12 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using static WarriorLevelStats;
 
 public class Warrior : MonoBehaviour
 {
+    public event Action<Weapon> Shot;
+
     [SerializeField] private Weapon _weaponPrefab;
     [SerializeField] private Transform _spawnPosition;
     [SerializeField] private List<AnimationHandler> _animationHandlers;
@@ -119,6 +122,8 @@ public class Warrior : MonoBehaviour
             Weapon tempWeapon = Instantiate(_weaponPrefab, _currentHolder.TrashBox);
             tempWeapon.transform.position = _spawnPosition.position;
             tempWeapon.PrepairFly(_currentEnemy, _currentDamageMultiplier);
+
+            Shot?.Invoke(tempWeapon);
         }
     }
 

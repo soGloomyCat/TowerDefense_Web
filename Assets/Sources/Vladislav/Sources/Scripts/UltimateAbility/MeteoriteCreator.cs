@@ -6,6 +6,8 @@ public class MeteoriteCreator : UltimateAbility
 
     public override void Use(Transform spawnPoint, Transform parent)
     {
+        base.Use(spawnPoint, parent);
+
         Meteorite tempMeteorite = Instantiate(_meteorite, parent);
         tempMeteorite.transform.position = new Vector3(spawnPoint.position.x, spawnPoint.position.y, spawnPoint.position.z);
         tempMeteorite.transform.rotation = spawnPoint.rotation;

@@ -46,7 +46,7 @@ public class UltimateHandler : MonoBehaviour
         foreach (var spawnPoint in _spawnPoints)
         {
             Arrow tempArrow = Instantiate(_arrowPrefab, spawnPoint);
-            tempArrow.PrepairFly(null);
+            tempArrow.PrepairFly(null, 1);
         }
     }
 }
