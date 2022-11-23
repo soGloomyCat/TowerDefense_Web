@@ -5,7 +5,6 @@ using UnityEngine.UI;
 namespace TowerDefense.Daniel.UI
 {
     [RequireComponent(typeof(Toggle))]
-    [ExecuteAlways]
     public class AudioToggle : MonoBehaviour
     {
         [SerializeField] private MusicPlayer _musicPlayer = null;

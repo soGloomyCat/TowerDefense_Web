@@ -19,6 +19,7 @@ namespace TowerDefense.Daniel
         [Header("SFX")]
         [SerializeField] private AudioClip _placeSound = null;
         [SerializeField] private AudioClip _uiClickSound = null;
+        [SerializeField] private AudioClip _ultimateSound = null;
         [SerializeField] private AudioClip _arrowSound = null;
         [SerializeField] private AudioClip _magicBallSound = null;
         [SerializeField] private AudioClip _spearSound = null;
@@ -26,6 +27,7 @@ namespace TowerDefense.Daniel
         [Header("Targets")]
         [SerializeField] private Button _prepareButton = null;
         [SerializeField] private Button _battleButton = null;
+        [SerializeField] private UltimateButton _ultimateButton = null;
         [SerializeField] private CastleHealth _castleHealth = null;
         [SerializeField] private EnemySquad _enemySquad = null;
         [SerializeField] private BattleCanvas _battleCanvas = null;
@@ -50,6 +52,7 @@ namespace TowerDefense.Daniel
 
             _prepareButton.onClick.AddListener(OnPrepareButtonClicked);
             _battleButton.onClick.AddListener(OnBattleButtonClicked);
+            _ultimateButton.ButtonClicked += OnUltimateButtonClicked;
             _castleHealth.CastleDestroyed += OnCastleDestroyed;
             _enemySquad.AllEnemiesKilled += OnAllEnemiesKilled;
             _battleCanvas.PanelButtonClicked += OnPanelButtonClicked;
@@ -61,6 +64,7 @@ namespace TowerDefense.Daniel
 
             _prepareButton.onClick.RemoveListener(OnPrepareButtonClicked);
             _battleButton.onClick.RemoveListener(OnBattleButtonClicked);
+            _ultimateButton.ButtonClicked -= OnUltimateButtonClicked;
             _castleHealth.CastleDestroyed -= OnCastleDestroyed;
             _enemySquad.AllEnemiesKilled -= OnAllEnemiesKilled;
             _battleCanvas.PanelButtonClicked -= OnPanelButtonClicked;
@@ -129,6 +133,11 @@ namespace TowerDefense.Daniel
             _subscribedPlaces.Clear();
 
             StartCoroutine(SubscribeToHandlersLater());
+        }
+
+        private void OnUltimateButtonClicked()
+        {
+            PlaySFX(_ultimateSound, 0.5f);
         }
 
         private void OnCastleDestroyed()

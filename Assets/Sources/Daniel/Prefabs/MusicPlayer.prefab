@@ -52,11 +52,13 @@ MonoBehaviour:
   _loseSound: {fileID: 8300000, guid: c093fffdce7780944b5ca52a40a22ec6, type: 3}
   _placeSound: {fileID: 8300000, guid: b0c20f5ef6e3fdd4b96d27ffc013373f, type: 3}
   _uiClickSound: {fileID: 8300000, guid: 2d210f898bb06de4ebde8c940f375059, type: 3}
+  _ultimateSound: {fileID: 8300000, guid: 288ab91c39ed2df40b3f1db9cb495dac, type: 3}
   _arrowSound: {fileID: 8300000, guid: 5b008d580c612c84182e7ed896486836, type: 3}
   _magicBallSound: {fileID: 8300000, guid: 54918bb6ce0794e419ed6989098be465, type: 3}
   _spearSound: {fileID: 8300000, guid: 5b008d580c612c84182e7ed896486836, type: 3}
   _prepareButton: {fileID: 0}
   _battleButton: {fileID: 0}
+  _ultimateButton: {fileID: 0}
   _castleHealth: {fileID: 0}
   _enemySquad: {fileID: 0}
   _battleCanvas: {fileID: 0}
