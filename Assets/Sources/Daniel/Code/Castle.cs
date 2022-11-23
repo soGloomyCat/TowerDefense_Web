@@ -38,7 +38,6 @@ namespace TowerDefense.Daniel
         [SerializeField] private MeshFilter _meshFilter = null;
         [SerializeField] private UpgradePopup _upgradePopup = null;
         [SerializeField] private MoneyWrapper _money = null;
-        [SerializeField] private int _baseMaxMoney = 500;
 
         private RoomHolder _selectedHolder = null;
 
@@ -206,7 +205,7 @@ namespace TowerDefense.Daniel
                 }
             }
 
-            _money.SetMaxValue(_baseMaxMoney + sum);
+            _money.SetMaxValue(sum);
         }
 
         private void LoadState()
