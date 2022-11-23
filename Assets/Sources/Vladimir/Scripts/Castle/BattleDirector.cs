@@ -19,9 +19,12 @@ public class BattleDirector : MonoBehaviour
     [SerializeField] private EnvironmentChanger _environmentChanger;
 
     private bool _levelJustFinished;
+    private float _leftTime;
 
     public event UnityAction LevelFinished;
-    public event UnityAction<int> WaveFinished;
+    public event UnityAction<int> WaveStarted;
+    public event UnityAction<int, float> WaveFinished;
+    public event UnityAction<int, float> WaveFailed;
 
     private void OnEnable()
     {
@@ -49,6 +52,7 @@ public class BattleDirector : MonoBehaviour
 
     private void Awake()
     {
+        _leftTime = 0;
         _levelsHandler.Init();
         _money.Init();
         SetupSpawner(true);
@@ -56,14 +60,22 @@ public class BattleDirector : MonoBehaviour
         _waveInfo.text = $"Волна {_levelsHandler.CurrentWaveNumber}";
     }
 
+    private void Update()
+    {
+        _leftTime += Time.deltaTime;
+    }
+
     public void OnNewWave()
     {
+        _leftTime = 0;
+        WaveStarted?.Invoke(_levelsHandler.CurrentWaveNumber);
         _enemySpawner.TryNextWave();
         _battleCanvas.ShowBar();
     }
 
     private void OnCastleDestroy()
     {
+        WaveFailed?.Invoke(_levelsHandler.CurrentWaveNumber, _leftTime);
         OnBattleEnd();
         _wavesSlider.Done(_levelsHandler.CurrentWaveNumber - 1);
         _battleCanvas.ShowLosePanel(_enemySpawner.WaveSettings.LoseMoney);
@@ -71,6 +83,7 @@ public class BattleDirector : MonoBehaviour
 
     private void OnAllEnemiesKill(int waveNumber)
     {
+        WaveFinished?.Invoke(_levelsHandler.CurrentWaveNumber, _leftTime);
         _wavesSlider.Done(_levelsHandler.CurrentWaveNumber);
         _enemySpawner.OnWaveDone();
         OnBattleEnd();

@@ -1,35 +1,45 @@
-using TMPro;
+using System;
 using TowerDefense.Daniel;
 using TowerDefense.Daniel.Interfaces;
 using TowerDefense.Daniel.UI;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using Lean.Localization;
 
 public class Tutorial : MonoBehaviour
 {
-    private const string StartMessage = "Зайди в магазин, чтобы купить новую комнату";
-    private const string FirstMessage = "Возьми стрельбище и установи в свободную ячейку";
-    private const string SecondMessage = "В будущем, ты сможешь улучшать комнаты, а пока вернись в магазин";
-    private const string ThirdMessage = "Установи стратегический пункт, он будет улучшать замок";
-    private const string FourthMessage = "Вернись в магазин (в последний раз)";
-    private const string FifthMessage = "Возьми кузницу, она отвечает за кол-во башен";
-    private const string SixthMessage = "Теперь нажми кнопку 'В бой'";
-    private const string SeventhMessage = "Перетащи лучника на башню";
-    private const string EighthMessage = "Ты можешь поставить второго лучника и после отправляйся защищать замок";
-    private const string NinthMessage = "";
-    private const string TenthMessage = "";
+    private const int FirstBlockFramesIndex = 0;
+    private const int SecondBlockFramesIndex = 1;
+    private const int ThirdBlockFramesIndex = 2;
+    private const int ForthBlockFramesIndex = 3;
 
-    [SerializeField] private TMP_Text _info;
+    private const string StartMessage = "StartMessage";
+    private const string FirstMessage = "FirstMessage";
+    private const string SecondMessage = "SecondMessage";
+    private const string ThirdMessage = "ThirdMessage";
+    private const string FourthMessage = "FourthMessage";
+    private const string FifthMessage = "FifthMessage";
+    private const string SixthMessage = "SixthMessage";
+    private const string SeventhMessage = "SeventhMessage";
+    private const string EighthMessage = "EighthMessage";
+
+    [SerializeField] private TMP_Text _infoText;
     [SerializeField] private Button _marketButton;
     [SerializeField] private Castle _castle;
     [SerializeField] private Button _prepairButton;
     [SerializeField] private PlaceHandler _placeHandler;
     [SerializeField] private Button _battleButton;
+    [SerializeField] private BlockFrameHandler _blockFrame;
+    [SerializeField] private Market _market;
 
+    private int _currentTextIndex;
     private bool _isFirstPurchase = true;
     private bool _isSecondPurchase = true;
     private bool _isThirdPurchase = true;
+
+    public event Action Started;
+    public event Action Done;
 
     private void OnEnable()
     {
@@ -38,6 +48,15 @@ public class Tutorial : MonoBehaviour
         _prepairButton.onClick.AddListener(ActivatePrepairTutorial);
         _placeHandler.BattleButtonActivated += ActivateFinalMessage;
         _battleButton.onClick.AddListener(DeactivateTutorial);
+        _market.ItemSelected += OnItemSelected;
+    }
+
+    private void Awake()
+    {
+        Started?.Invoke();
+        _currentTextIndex = 0;
+        _blockFrame.ActivateFrame(FirstBlockFramesIndex);
+        _infoText.text = LeanLocalization.GetTranslationText(StartMessage);
     }
 
     private void OnDisable()
@@ -47,54 +66,62 @@ public class Tutorial : MonoBehaviour
         _prepairButton.onClick.RemoveListener(ActivatePrepairTutorial);
         _placeHandler.BattleButtonActivated -= ActivateFinalMessage;
         _battleButton.onClick.RemoveListener(DeactivateTutorial);
-    }
-
-    private void Start()
-    {
-        _info.text = LeanLocalization.GetTranslationText(nameof(StartMessage));
+        _market.ItemSelected -= OnItemSelected;
     }
 
     private void ActivateCastleTutorial()
     {
+        _blockFrame.ActivateFrame(SecondBlockFramesIndex);
+
         if (_isFirstPurchase)
-            _info.text = LeanLocalization.GetTranslationText(nameof(FirstMessage));
+            _infoText.text = LeanLocalization.GetTranslationText(FirstMessage);
         else if (_isSecondPurchase)
-            _info.text = LeanLocalization.GetTranslationText(nameof(ThirdMessage));
+            _infoText.text = LeanLocalization.GetTranslationText(ThirdMessage);
         else if (_isThirdPurchase)
-            _info.text = LeanLocalization.GetTranslationText(nameof(FifthMessage));
+            _infoText.text = LeanLocalization.GetTranslationText(FifthMessage);
     }
 
     private void ChangeText(IReadOnlyRoom readOnlyRoom)
     {
+        _blockFrame.ActivateFrame(FirstBlockFramesIndex);
+
         if (_isFirstPurchase)
         {
             _isFirstPurchase = false;
-            _info.text = LeanLocalization.GetTranslationText(nameof(SecondMessage));
+            _infoText.text = LeanLocalization.GetTranslationText(SecondMessage);
         }
         else if (_isSecondPurchase)
         {
             _isSecondPurchase = false;
-            _info.text = LeanLocalization.GetTranslationText(nameof(FourthMessage));
+            _infoText.text = LeanLocalization.GetTranslationText(FourthMessage);
         }
         else if (_isThirdPurchase)
         {
             _isThirdPurchase = false;
-            _info.text = LeanLocalization.GetTranslationText(nameof(SixthMessage));
+            _blockFrame.ActivateFrame(ForthBlockFramesIndex);
+            _infoText.text = LeanLocalization.GetTranslationText(SixthMessage);
         }
     }
 
     private void ActivatePrepairTutorial()
     {
-        _info.text = LeanLocalization.GetTranslationText(nameof(SeventhMessage));
+        _blockFrame.DeactivateAllFrames();
+        _infoText.text = LeanLocalization.GetTranslationText(SeventhMessage);
     }
 
     private void ActivateFinalMessage()
     {
-        _info.text = LeanLocalization.GetTranslationText(nameof(EighthMessage));
+        _infoText.text = LeanLocalization.GetTranslationText(EighthMessage);
     }
 
     private void DeactivateTutorial()
     {
+        Done?.Invoke();
         gameObject.SetActive(false);
+    }
+
+    private void OnItemSelected(MarketItem marketItem)
+    {
+        _blockFrame.ActivateFrame(ThirdBlockFramesIndex);
     }
 }

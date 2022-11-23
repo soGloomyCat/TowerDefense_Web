@@ -111,18 +111,29 @@ public class EnemySpawner : MonoBehaviour
     }
 
     public void SetLevelSettings(EnemySpawnerSettings settings, int waveNumber, bool isStart = false)
-    { 
+    {
         _settings = settings;
 
         //if (_settings is EnemySpawnerSettingsRandom && !isStart)
         if (_settings is EnemySpawnerSettingsRandom)
-        { 
+        {
             _settings.Generate();
             //_settings.Save();
         }
 
         WaveNumber = waveNumber;
         //_waveInfo.text = $"Волна {WaveNumber}";
+    }
+
+    public void Clean()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (i < 2)
+                continue;
+
+            Destroy(transform.GetChild(i).gameObject);
+        }
     }
 
     private void StopSpawn()

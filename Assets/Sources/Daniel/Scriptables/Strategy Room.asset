@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Strategy Room
   m_EditorClassIdentifier: 
   _internalId: e8ce9f5f-5eff-4f6f-914b-a66d387c58a2
-  <Prefab>k__BackingField: {fileID: 5714660829908029752, guid: b3f35298d787d4544b26ad8b49eb705f, type: 3}
+  <Prefab>k__BackingField: {fileID: 5714660829908029752, guid: 290a339cb965a0f48a984cc07de6343b, type: 3}
   <Title>k__BackingField: Strategy
   <Preview>k__BackingField: {fileID: 21300000, guid: 3042b019b052942a1baf7aa49d7ca6bb, type: 3}
   <Description>k__BackingField: "\u0420\u0430\u0441\u0448\u0438\u0440\u044F\u0435\u0442

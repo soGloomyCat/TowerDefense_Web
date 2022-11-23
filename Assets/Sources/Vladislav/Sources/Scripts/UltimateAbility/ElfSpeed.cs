@@ -1,11 +1,33 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ElfSpeed : UltimateAbility
 {
-    protected override void ActivateUltimate()
+    [SerializeField] private float _duration;
+    [SerializeField] private float _tempCooldown;
+
+    private float _leftTime;
+    private Coroutine _coroutine;
+
+    public override void Use(Warrior warrior)
     {
-        Warrior.ActivateUltimate(true);
+        if (_coroutine != null)
+            StopCoroutine(_coroutine);
+
+        _coroutine = StartCoroutine(AccelerateAttack(warrior));
+    }
+
+    private IEnumerator AccelerateAttack(Warrior warrior)
+    {
+        _leftTime = 0;
+        warrior.AccelerateAttackSpeed(_tempCooldown);
+
+        while (_leftTime <= _duration)
+        {
+            _leftTime += Time.deltaTime;
+            yield return null;
+        }
+
+        warrior.ResumeAttackSpeed();
     }
 }

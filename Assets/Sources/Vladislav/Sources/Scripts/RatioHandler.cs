@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RatioHandler : MonoBehaviour
@@ -9,6 +7,7 @@ public class RatioHandler : MonoBehaviour
     [SerializeField] private Camera _battleCamera;
     [SerializeField] private BattleCanvas _battleCanvas;
     [SerializeField] private PlaceHandler _placeHandler;
+    [SerializeField] private BlockFrameHandler _frameHandler;
 
     private Vector3 _castleCameraPosition;
     private float _castleCameraFOV;
@@ -38,7 +37,7 @@ public class RatioHandler : MonoBehaviour
 
         if (screenRatio >= 1)
         {
-            SetHorizontalView1();
+            SetHorizontalView();
         }
         else if (screenRatio < 1)
         {
@@ -48,7 +47,7 @@ public class RatioHandler : MonoBehaviour
 
     private void SetVerticalView()
     {
-        _castleCamera.transform.position = new Vector3(-7.2f, 8.6f, -13f);
+        _castleCamera.transform.position = new Vector3(-8.2f, 8.6f, -13f);
         _castleCamera.fieldOfView = 90;
         _prepairCamera.transform.position = new Vector3(18f, 15f, 4f);
         _prepairCamera.orthographicSize = 16.8f;
@@ -56,9 +55,10 @@ public class RatioHandler : MonoBehaviour
         _battleCamera.fieldOfView = 115;
         _battleCanvas.ActivateVerticalBars();
         _placeHandler.ActivateVerticalPanel();
+        _frameHandler.ActivateVerticalFrames();
     }
 
-    private void SetHorizontalView1()
+    private void SetHorizontalView()
     {
         _castleCamera.transform.position = _castleCameraPosition;
         _castleCamera.fieldOfView = _castleCameraFOV;
@@ -68,5 +68,6 @@ public class RatioHandler : MonoBehaviour
         _battleCamera.fieldOfView = _battleCameraFOV;
         _battleCanvas.ActivateHorizontalBars();
         _placeHandler.ActivateHorizontalPanel();
+        _frameHandler.ActivateHorizontalFrames();
     }
 }

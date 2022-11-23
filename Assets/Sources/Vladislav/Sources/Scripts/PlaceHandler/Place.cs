@@ -17,7 +17,6 @@ public class Place : MonoBehaviour, IDropHandler
 
     public event Action Clicked;
     public event Action<Sprite> NeedSetIcon;
-    public event Action NeedClean;
 
     public bool IsEmpty => _currentItem == null;
     public bool IsActive => _isActive;
@@ -37,10 +36,10 @@ public class Place : MonoBehaviour, IDropHandler
         }
     }
 
-    public Warrior CreateWarrior()
+    public Warrior CreateWarrior(Holder holder)
     {
         _currentWarrior = Instantiate(_currentItem.GetWarrior(), _spawnPoint);
-        _currentWarrior.Inizialize(_ultimateButton);
+        _currentWarrior.Inizialize(_ultimateButton, holder);
         Destroy(_currentIcon.gameObject);
         NeedSetIcon?.Invoke(_currentWarrior.GetUltimateIcon());
         return _currentWarrior;
@@ -68,7 +67,6 @@ public class Place : MonoBehaviour, IDropHandler
         {
             Destroy(_currentWarrior.gameObject);
             _currentWarrior = null;
-            NeedClean?.Invoke();
         }
     }
 }

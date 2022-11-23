@@ -11,6 +11,7 @@ public class Meteorite : MonoBehaviour
     private Rigidbody _rigidbody;
     private float _currentTime;
     private float _leftTime;
+    private Transform _parent;
 
     private void Update()
     {
@@ -21,19 +22,19 @@ public class Meteorite : MonoBehaviour
         _leftTime += Time.deltaTime;
     }
 
-    public void Fall()
+    public void Fall(Transform parent)
     {
         _rigidbody = GetComponent<Rigidbody>();
         _rigidbody.AddRelativeForce(transform.forward * 400);
+        _parent = parent;
     }
 
     private void OnTriggerStay(Collider other)
     {
         if (other.TryGetComponent(out MeteoriteZone meteoriteZone) && _leftTime >= _trailCooldown)
         {
-            Debug.Log("Check");
             _leftTime = 0;
-            MeteoriteTrail tempTrail = Instantiate(_trail);
+            MeteoriteTrail tempTrail = Instantiate(_trail, _parent);
             tempTrail.transform.position = new Vector3(transform.position.x, meteoriteZone.transform.position.y + 0.05f, transform.position.z);
         }
     }

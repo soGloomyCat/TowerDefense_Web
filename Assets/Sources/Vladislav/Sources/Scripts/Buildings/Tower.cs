@@ -15,14 +15,13 @@ public class Tower : MonoBehaviour
 
     private void OnEnable()
     {
+        _ultimateButton.gameObject.SetActive(false);
         _place.NeedSetIcon += SetIcon;
-        _place.NeedClean += DeactivateIcon;
     }
 
     private void OnDisable()
     {
         _place.NeedSetIcon -= SetIcon;
-        _place.NeedClean -= DeactivateIcon;
     }
 
     public void ActivatePlace()
@@ -45,10 +44,5 @@ public class Tower : MonoBehaviour
     {
         _ultimateButton.gameObject.SetActive(true);
         _ultimateButton.Inizialize(sprite);
-    }
-
-    private void DeactivateIcon()
-    {
-        _ultimateButton.gameObject.SetActive(false);
     }
 }
