@@ -31,6 +31,10 @@ PrefabInstance:
       propertyPath: _points.Array.data[2]
       value: 
       objectReference: {fileID: 3632774661056697471}
+    - target: {fileID: 4726710409871424468, guid: 7ec3dc757fa3bd84bade37c777137771, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 2.698
+      objectReference: {fileID: 0}
     - target: {fileID: 5772621643698900713, guid: 7ec3dc757fa3bd84bade37c777137771, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -142,6 +146,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2447278422708963187, guid: 243080d35b22de344ae2892fd72a990c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.3129524
+      objectReference: {fileID: 0}
+    - target: {fileID: 2447278422708963187, guid: 243080d35b22de344ae2892fd72a990c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.3129524
+      objectReference: {fileID: 0}
+    - target: {fileID: 2447278422708963187, guid: 243080d35b22de344ae2892fd72a990c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.3129524
+      objectReference: {fileID: 0}
+    - target: {fileID: 2447278422708963187, guid: 243080d35b22de344ae2892fd72a990c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -185,6 +201,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WarriorModel
       objectReference: {fileID: 0}
+    - target: {fileID: 2447278422722664019, guid: 243080d35b22de344ae2892fd72a990c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 40c00e84e4a068e47a730966fc3be7cc, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 243080d35b22de344ae2892fd72a990c, type: 3}
 --- !u!114 &1654108193952487254 stripped

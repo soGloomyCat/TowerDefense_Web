@@ -395,6 +395,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.00003885795
       objectReference: {fileID: 0}
+    - target: {fileID: 7503975899094695970, guid: 2c610a09df32df24aa07f286a5b18274, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e284af9ba96c11546bf7e8956f3d9847, type: 2}
     - target: {fileID: 7839178956555830124, guid: 2c610a09df32df24aa07f286a5b18274, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 23.646833
@@ -588,18 +592,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5772621643698900719, guid: 7ec3dc757fa3bd84bade37c777137771, type: 3}
   m_PrefabInstance: {fileID: 4930822702172406595}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4466831685396691336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1473158473688321452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54a14e38232d987459382201902d61d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &957708520288980526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -615,3 +607,15 @@ MonoBehaviour:
   AnimatedModel: {fileID: 7373028496301029985}
   AttackPower: 1
   _projectile: {fileID: 36141675156108353, guid: 6541d85bfa411f84fb563d34ade52f64, type: 3}
+--- !u!114 &4466831685396691336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473158473688321452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54a14e38232d987459382201902d61d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
