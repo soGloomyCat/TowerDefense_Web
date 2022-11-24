@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxVolume: 0.75
-  _castleMusic: {fileID: 8300000, guid: 24bea010411ced44b95096e33d165c01, type: 3}
-  _prepareMusic: {fileID: 8300000, guid: c5b3208f62b4aac4891bc8c7ebd80f6c, type: 3}
-  _battleMusic: {fileID: 8300000, guid: 62e1428ff57bd4b4ab7f2928a732743a, type: 3}
+  _castleMusic: {fileID: 8300000, guid: 5e30a1b669a28b84fb6dae41dd216dfd, type: 3}
+  _prepareMusic: {fileID: 8300000, guid: 1af9f4b419935be46b4144de5dcec01b, type: 3}
+  _battleMusic: {fileID: 8300000, guid: 4dc06be9932661541b95dcfb6c66a6d8, type: 3}
   _winSound: {fileID: 8300000, guid: eee22b2be2ac7de44b48ff639e2173d3, type: 3}
   _loseSound: {fileID: 8300000, guid: c093fffdce7780944b5ca52a40a22ec6, type: 3}
   _placeSound: {fileID: 8300000, guid: b0c20f5ef6e3fdd4b96d27ffc013373f, type: 3}
