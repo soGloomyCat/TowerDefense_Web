@@ -12,7 +12,7 @@ namespace TowerDefense.Daniel
 
         private IEnumerator Start()
         {
-            PlayerPrefs.DeleteAll();
+            //PlayerPrefs.DeleteAll();
 #if UNITY_WEBGL && !UNITY_EDITOR
             yield return YandexGamesSdk.Initialize();
             Agava.YandexGames.InterstitialAd.Show(onOpenCallback: null, onCloseCallback: StartGame, onErrorCallback: StartGame);
