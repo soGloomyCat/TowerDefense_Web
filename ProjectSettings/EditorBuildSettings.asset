@@ -11,7 +11,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Sources/Daniel/Scenes/PrototypeScene2.0.unity
     guid: 8f05599e88a3da341849510eba24eeed
-  - enabled: 1
+  - enabled: 0
     path: Assets/Sources/Daniel/Scenes/PrototypeScene3.0.unity
     guid: 19aab8efff6cec241887ef99c883e70a
+  - enabled: 1
+    path: Assets/Sources/Daniel/Scenes/PrototypeScene3.0 1.unity
+    guid: 834438ac43cfbc145a32b102ac2ab397
   m_configObjects: {}
