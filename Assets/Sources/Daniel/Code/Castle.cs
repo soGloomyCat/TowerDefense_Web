@@ -36,6 +36,7 @@ namespace TowerDefense.Daniel
         [SerializeField, HideInInspector] private List<RoomHolder> _roomHolders = new List<RoomHolder>();
         [SerializeField] private List<CastleUpgrade> _upgrades = new List<CastleUpgrade>();
         [SerializeField] private MeshFilter _meshFilter = null;
+        [SerializeField] private ParticleSystem _explosionParticles = null;
         [SerializeField] private UpgradePopup _upgradePopup = null;
         [SerializeField] private MoneyWrapper _money = null;
 
@@ -82,6 +83,16 @@ namespace TowerDefense.Daniel
         private void OnValidate()
         {
             _roomHolders = GetComponentsInChildren<RoomHolder>().ToList();
+        }
+
+        public void Explode()
+        {
+            _explosionParticles.Play();
+        }
+
+        public void Revive(bool clearParticles = false)
+        {
+            _explosionParticles.Stop(true, clearParticles ? ParticleSystemStopBehavior.StopEmittingAndClear : ParticleSystemStopBehavior.StopEmitting);
         }
 
         public void CancelSelection()
